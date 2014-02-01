@@ -48,7 +48,7 @@ class LoadPersona extends AbstractFixture implements OrderedFixtureInterface, Co
             $pe->setPeFechaNacimiento($persona['pe_fecha_nacimiento']);
             $pe->setPeEmail($persona['pe_email']);
             $pe->setPeUsr($persona['pe_usr']);
-            $pe->setPePwd($persona['pe_usr']);
+            $pe->setPePwd($persona['pe_pwd']);
 //            $pe->setPePwd(\sha1($persona['pe_usr']));
             $pe->setPeFechaCrea($persona['pe_fecha_crea']);
             $pe->setPeQuienCrea($persona['pe_quien_crea']);
