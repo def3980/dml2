@@ -1,0 +1,56 @@
+Dml\TodoBundle\Entity\ComprasTv:
+    type: entity
+    table: COMPRAS_TV
+    repositoryClass: Dml\TodoBundle\Entity\ComprasTvRepository
+    indexes:
+        fk_compras_tv_registro_tv1_idx:
+            columns:
+                - registro_tv_rtv_id
+    id:
+        ctvId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: ctv_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        ctvFecha:
+            type: date
+            nullable: true
+            comment: ''
+            column: ctv_fecha
+        ctvNumeroOrden:
+            type: string
+            nullable: true
+            length: 20
+            fixed: false
+            comment: ''
+            column: ctv_numero_orden
+        ctvEntregaManejo:
+            type: decimal
+            nullable: true
+            precision: 10
+            scale: 2
+            comment: ''
+            column: ctv_entrega_manejo
+        ctvTaxes:
+            type: decimal
+            nullable: true
+            precision: 10
+            scale: 2
+            comment: ''
+            column: ctv_taxes
+    manyToOne:
+        registroTvRtv:
+            targetEntity: RegistroTv
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                registro_tv_rtv_id:
+                    referencedColumnName: rtv_id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

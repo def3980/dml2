@@ -1,0 +1,42 @@
+Dml\TodoBundle\Entity\Enfermedades:
+    type: entity
+    table: ENFERMEDADES
+    repositoryClass: Dml\TodoBundle\Entity\EnfermedadesRepository
+    indexes:
+        fk_enfermedades_hijos1_idx:
+            columns:
+                - hijos_hi_id
+    id:
+        enId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: en_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        enFecha:
+            type: date
+            nullable: true
+            comment: ''
+            column: en_fecha
+        enNombre:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            comment: ''
+            column: en_nombre
+    manyToOne:
+        hijosHi:
+            targetEntity: Hijos
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                hijos_hi_id:
+                    referencedColumnName: hi_id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

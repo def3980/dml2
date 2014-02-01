@@ -1,0 +1,87 @@
+Dml\TodoBundle\Entity\EntidadSbbip:
+    type: entity
+    table: ENTIDAD_SBBIP
+    repositoryClass: Dml\TodoBundle\Entity\EntidadSbbipRepository
+    id:
+        esId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: es_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        esEntidad:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            comment: ''
+            column: es_entidad
+        esAlias:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: ''
+            column: es_alias
+        esDireccion:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: es_direccion
+        esTlf1:
+            type: string
+            nullable: true
+            length: 9
+            fixed: true
+            comment: ''
+            column: es_tlf1
+        esTlf2:
+            type: string
+            nullable: true
+            length: 9
+            fixed: true
+            comment: ''
+            column: es_tlf2
+        esExt:
+            type: string
+            nullable: true
+            length: 5
+            fixed: true
+            comment: ''
+            column: es_ext
+        esSitioWeb:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            comment: ''
+            column: es_sitio_web
+        esFechaCrea:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: es_fecha_crea
+        esQuienCrea:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: es_quien_crea
+        esFechaModifica:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: es_fecha_modifica
+        esQuienModifica:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: es_quien_modifica
+    lifecycleCallbacks: {  }

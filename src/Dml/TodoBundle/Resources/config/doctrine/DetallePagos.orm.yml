@@ -1,0 +1,42 @@
+Dml\TodoBundle\Entity\DetallePagos:
+    type: entity
+    table: DETALLE_PAGOS
+    repositoryClass: Dml\TodoBundle\Entity\DetallePagosRepository
+    indexes:
+        fk_detalle_pagos_prestamos1_idx:
+            columns:
+                - prestamos_pr_id
+    id:
+        dpId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: dp_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        dpFecha:
+            type: date
+            nullable: true
+            comment: ''
+            column: dp_fecha
+        dpValor:
+            type: decimal
+            nullable: true
+            precision: 10
+            scale: 2
+            comment: ''
+            column: dp_valor
+    manyToOne:
+        prestamosPr:
+            targetEntity: Prestamos
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                prestamos_pr_id:
+                    referencedColumnName: pr_id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

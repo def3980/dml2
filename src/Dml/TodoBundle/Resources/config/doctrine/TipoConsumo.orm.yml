@@ -1,0 +1,30 @@
+Dml\TodoBundle\Entity\TipoConsumo:
+    type: entity
+    table: TIPO_CONSUMO
+    repositoryClass: Dml\TodoBundle\Entity\TipoConsumoRepository
+    id:
+        tcId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: tc_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        tcNombre:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            comment: ''
+            column: tc_nombre
+        tcAlias:
+            type: string
+            nullable: true
+            length: 2
+            fixed: true
+            comment: ''
+            column: tc_alias
+    lifecycleCallbacks: {  }

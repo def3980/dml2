@@ -1,0 +1,123 @@
+Dml\TodoBundle\Entity\Binarios:
+    type: entity
+    table: BINARIOS
+    repositoryClass: Dml\TodoBundle\Entity\BinariosRepository
+    indexes:
+        fk_binarios_persona1_idx:
+            columns:
+                - persona_pe_id
+        fk_binarios_contrato_ip1_idx:
+            columns:
+                - contrato_ip_cip_id
+        fk_binarios_pagos1_idx:
+            columns:
+                - pagos_pa_id
+        fk_binarios_hijos1_idx:
+            columns:
+                - hijos_hi_id
+        fk_binarios_enfermedades1_idx:
+            columns:
+                - enfermedades_en_id
+        fk_binarios_tarjetas_cd1_idx:
+            columns:
+                - tarjetas_cd_tcd_id
+    id:
+        biId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: bi_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        biFechaIngreso:
+            type: date
+            nullable: true
+            comment: ''
+            column: bi_fecha_ingreso
+        biNombre:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            comment: ''
+            column: bi_nombre
+        biTamanioBytes:
+            type: decimal
+            nullable: true
+            precision: 10
+            scale: 2
+            comment: ''
+            column: bi_tamanio_bytes
+        biBin:
+            type: blob
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: bi_bin
+        biExt:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            comment: ''
+            column: bi_ext
+    manyToOne:
+        personaPe:
+            targetEntity: Persona
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                persona_pe_id:
+                    referencedColumnName: pe_id
+            orphanRemoval: false
+        contratoIpCip:
+            targetEntity: ContratoIp
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                contrato_ip_cip_id:
+                    referencedColumnName: cip_id
+            orphanRemoval: false
+        pagosPa:
+            targetEntity: Pagos
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                pagos_pa_id:
+                    referencedColumnName: pa_id
+            orphanRemoval: false
+        hijosHi:
+            targetEntity: Hijos
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                hijos_hi_id:
+                    referencedColumnName: hi_id
+            orphanRemoval: false
+        enfermedadesEn:
+            targetEntity: Enfermedades
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                enfermedades_en_id:
+                    referencedColumnName: en_id
+            orphanRemoval: false
+        tarjetasCdTcd:
+            targetEntity: TarjetasCd
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                tarjetas_cd_tcd_id:
+                    referencedColumnName: tcd_id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

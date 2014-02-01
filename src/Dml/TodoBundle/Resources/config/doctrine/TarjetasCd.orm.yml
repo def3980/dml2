@@ -1,0 +1,71 @@
+Dml\TodoBundle\Entity\TarjetasCd:
+    type: entity
+    table: TARJETAS_CD
+    repositoryClass: Dml\TodoBundle\Entity\TarjetasCdRepository
+    indexes:
+        fk_tarjetas_cd_contratar_b1_idx:
+            columns:
+                - contratar_b_cb_id
+        fk_tarjetas_cd_tipo_tcd1_idx:
+            columns:
+                - tipo_tcd_ttcd_id
+    id:
+        tcdId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: tcd_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        tcdFechaEmision:
+            type: date
+            nullable: true
+            comment: ''
+            column: tcd_fecha_emision
+        tcdFechaTerminacion:
+            type: date
+            nullable: true
+            comment: ''
+            column: tcd_fecha_terminacion
+        tcdNumero:
+            type: string
+            nullable: true
+            length: 16
+            fixed: false
+            comment: ''
+            column: tcd_numero
+        tcdCvv:
+            type: string
+            nullable: true
+            length: 3
+            fixed: true
+            comment: ''
+            column: tcd_cvv
+        tcdEstado:
+            type: boolean
+            nullable: true
+            comment: ''
+            column: tcd_estado
+    manyToOne:
+        contratarBCb:
+            targetEntity: ContratarB
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                contratar_b_cb_id:
+                    referencedColumnName: cb_id
+            orphanRemoval: false
+        tipoTcdTtcd:
+            targetEntity: TipoTcd
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                tipo_tcd_ttcd_id:
+                    referencedColumnName: ttcd_id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,85 @@
+Dml\TodoBundle\Entity\Persona:
+    type: entity
+    table: PERSONA
+    repositoryClass: Dml\TodoBundle\Entity\PersonaRepository
+    id:
+        peId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: pe_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        peCedula:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            comment: ''
+            column: pe_cedula
+        peNombres:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            comment: ''
+            column: pe_nombres
+        peApellidos:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            comment: ''
+            column: pe_apellidos
+        peFechaNacimiento:
+            type: date
+            nullable: true
+            comment: ''
+            column: pe_fecha_nacimiento
+        peEmail:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            comment: ''
+            column: pe_email
+        peUsr:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            comment: ''
+            column: pe_usr
+        pePwd:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: ''
+            column: pe_pwd
+        peFechaCrea:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: pe_fecha_crea
+        peQuienCrea:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: pe_quien_crea
+        peFechaModifica:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: pe_fecha_modifica
+        peQuienModifica:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: pe_quien_modifica
+    lifecycleCallbacks: {  }

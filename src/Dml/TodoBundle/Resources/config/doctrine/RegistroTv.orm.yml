@@ -1,0 +1,56 @@
+Dml\TodoBundle\Entity\RegistroTv:
+    type: entity
+    table: REGISTRO_TV
+    repositoryClass: Dml\TodoBundle\Entity\RegistroTvRepository
+    indexes:
+        fk_registro_tv_persona1_idx:
+            columns:
+                - persona_pe_id
+        fk_registro_tv_tiendas_virtuales1_idx:
+            columns:
+                - tiendas_virtuales_tv_id
+    id:
+        rtvId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: rtv_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        rtvUsr:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            comment: ''
+            column: rtv_usr
+        rtvPwd:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: ''
+            column: rtv_pwd
+    manyToOne:
+        personaPe:
+            targetEntity: Persona
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                persona_pe_id:
+                    referencedColumnName: pe_id
+            orphanRemoval: false
+        tiendasVirtualesTv:
+            targetEntity: TiendasVirtuales
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                tiendas_virtuales_tv_id:
+                    referencedColumnName: tv_id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

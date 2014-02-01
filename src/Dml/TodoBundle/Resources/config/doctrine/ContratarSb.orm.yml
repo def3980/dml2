@@ -1,0 +1,54 @@
+Dml\TodoBundle\Entity\ContratarSb:
+    type: entity
+    table: CONTRATAR_SB
+    repositoryClass: Dml\TodoBundle\Entity\ContratarSbRepository
+    indexes:
+        fk_contratar_sb_persona1_idx:
+            columns:
+                - persona_pe_id
+        fk_contratar_sb_entidad_sbbip1_idx:
+            columns:
+                - entidad_sbbip_es_id
+    id:
+        csbId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: csb_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        csbIdentificacion:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: ''
+            column: csb_identificacion
+        csbFecha:
+            type: date
+            nullable: true
+            comment: ''
+            column: csb_fecha
+    manyToOne:
+        personaPe:
+            targetEntity: Persona
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                persona_pe_id:
+                    referencedColumnName: pe_id
+            orphanRemoval: false
+        entidadSbbipEs:
+            targetEntity: EntidadSbbip
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                entidad_sbbip_es_id:
+                    referencedColumnName: es_id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,30 @@
+Dml\TodoBundle\Entity\TiendasVirtuales:
+    type: entity
+    table: TIENDAS_VIRTUALES
+    repositoryClass: Dml\TodoBundle\Entity\TiendasVirtualesRepository
+    id:
+        tvId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: tv_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        tvNombre:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            comment: ''
+            column: tv_nombre
+        tvSitioWeb:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            comment: ''
+            column: tv_sitio_web
+    lifecycleCallbacks: {  }

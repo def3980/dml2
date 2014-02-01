@@ -1,0 +1,23 @@
+Dml\TodoBundle\Entity\TipoTcd:
+    type: entity
+    table: TIPO_TCD
+    repositoryClass: Dml\TodoBundle\Entity\TipoTcdRepository
+    id:
+        ttcdId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: ttcd_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        ttcdNombre:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            comment: ''
+            column: ttcd_nombre
+    lifecycleCallbacks: {  }

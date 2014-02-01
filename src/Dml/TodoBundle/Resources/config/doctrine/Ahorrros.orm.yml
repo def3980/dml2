@@ -1,0 +1,86 @@
+Dml\TodoBundle\Entity\Ahorrros:
+    type: entity
+    table: AHORRROS
+    repositoryClass: Dml\TodoBundle\Entity\AhorrrosRepository
+    indexes:
+        fk_ahorrros_contratar_b1_idx:
+            columns:
+                - contratar_b_cb_id
+        fk_ahorrros_tipo_cuenta1_idx:
+            columns:
+                - tipo_cuenta_tc_id
+    id:
+        ahId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: ah_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        ahFechaCreacion:
+            type: date
+            nullable: true
+            comment: ''
+            column: ah_fecha_creacion
+        ahNumeroCuenta:
+            type: string
+            nullable: true
+            length: 10
+            fixed: true
+            comment: ''
+            column: ah_numero_cuenta
+        ahFechaEliminacion:
+            type: date
+            nullable: true
+            comment: ''
+            column: ah_fecha_eliminacion
+        ahEstado:
+            type: boolean
+            nullable: true
+            comment: ''
+            column: ah_estado
+        ahFechaCrea:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: ah_fecha_crea
+        ahQuienCrea:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: ah_quien_crea
+        ahFechaModifica:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: ah_fecha_modifica
+        ahQuienModifica:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: ah_quien_modifica
+    manyToOne:
+        contratarBCb:
+            targetEntity: ContratarB
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                contratar_b_cb_id:
+                    referencedColumnName: cb_id
+            orphanRemoval: false
+        tipoCuentaTc:
+            targetEntity: TipoCuenta
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                tipo_cuenta_tc_id:
+                    referencedColumnName: tc_id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

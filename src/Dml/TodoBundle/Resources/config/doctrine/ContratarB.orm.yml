@@ -1,0 +1,69 @@
+Dml\TodoBundle\Entity\ContratarB:
+    type: entity
+    table: CONTRATAR_B
+    repositoryClass: Dml\TodoBundle\Entity\ContratarBRepository
+    indexes:
+        fk_contratar_b_persona1_idx:
+            columns:
+                - persona_pe_id
+        fk_contratar_b_entidad_sbbip1_idx:
+            columns:
+                - entidad_sbbip_es_id
+    id:
+        cbId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: cb_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        cbFechaContrato:
+            type: date
+            nullable: true
+            comment: ''
+            column: cb_fecha_contrato
+        cbFechaCrea:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: cb_fecha_crea
+        cbQuienCrea:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: cb_quien_crea
+        cbFechaModifica:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: cb_fecha_modifica
+        cbQuienModifica:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: cb_quien_modifica
+    manyToOne:
+        personaPe:
+            targetEntity: Persona
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                persona_pe_id:
+                    referencedColumnName: pe_id
+            orphanRemoval: false
+        entidadSbbipEs:
+            targetEntity: EntidadSbbip
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                entidad_sbbip_es_id:
+                    referencedColumnName: es_id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

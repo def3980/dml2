@@ -1,0 +1,44 @@
+Dml\TodoBundle\Entity\DetalleCtv:
+    type: entity
+    table: DETALLE_CTV
+    repositoryClass: Dml\TodoBundle\Entity\DetalleCtvRepository
+    indexes:
+        fk_detalle_ctv_compras_tv1_idx:
+            columns:
+                - compras_tv_ctv_id
+    id:
+        dctvId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: dctv_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        dctvItem:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            comment: ''
+            column: dctv_item
+        dctvPrecio:
+            type: decimal
+            nullable: true
+            precision: 10
+            scale: 2
+            comment: ''
+            column: dctv_precio
+    manyToOne:
+        comprasTvCtv:
+            targetEntity: ComprasTv
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                compras_tv_ctv_id:
+                    referencedColumnName: ctv_id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

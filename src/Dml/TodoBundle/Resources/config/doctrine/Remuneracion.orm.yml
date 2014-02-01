@@ -1,0 +1,59 @@
+Dml\TodoBundle\Entity\Remuneracion:
+    type: entity
+    table: REMUNERACION
+    repositoryClass: Dml\TodoBundle\Entity\RemuneracionRepository
+    id:
+        reId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: re_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        reNombre:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            comment: ''
+            column: re_nombre
+        reAlias:
+            type: string
+            nullable: true
+            length: 7
+            fixed: true
+            comment: ''
+            column: re_alias
+        reValor:
+            type: decimal
+            nullable: true
+            precision: 10
+            scale: 2
+            comment: ''
+            column: re_valor
+        reFechaCrea:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: re_fecha_crea
+        reQuienCrea:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: re_quien_crea
+        reFechaModifica:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: re_fecha_modifica
+        reQuienModifica:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: re_quien_modifica
+    lifecycleCallbacks: {  }

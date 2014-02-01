@@ -1,0 +1,49 @@
+Dml\TodoBundle\Entity\Prestamos:
+    type: entity
+    table: PRESTAMOS
+    repositoryClass: Dml\TodoBundle\Entity\PrestamosRepository
+    indexes:
+        fk_prestamos_contratar_b1_idx:
+            columns:
+                - contratar_b_cb_id
+    id:
+        prId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: pr_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        prFechaConcesion:
+            type: date
+            nullable: true
+            comment: ''
+            column: pr_fecha_concesion
+        prNombrePrestamo:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            comment: ''
+            column: pr_nombre_prestamo
+        prDetalle:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: pr_detalle
+    manyToOne:
+        contratarBCb:
+            targetEntity: ContratarB
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                contratar_b_cb_id:
+                    referencedColumnName: cb_id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,49 @@
+Dml\TodoBundle\Entity\IngresoMonetario:
+    type: entity
+    table: INGRESO_MONETARIO
+    repositoryClass: Dml\TodoBundle\Entity\IngresoMonetarioRepository
+    indexes:
+        fk_ingreso_monetario_persona_idx:
+            columns:
+                - persona_pe_id
+    id:
+        imId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: im_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        imFecha:
+            type: date
+            nullable: true
+            comment: ''
+            column: im_fecha
+        imRazon:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: im_razon
+        imValor:
+            type: decimal
+            nullable: true
+            precision: 10
+            scale: 2
+            comment: ''
+            column: im_valor
+    manyToOne:
+        personaPe:
+            targetEntity: Persona
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                persona_pe_id:
+                    referencedColumnName: pe_id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

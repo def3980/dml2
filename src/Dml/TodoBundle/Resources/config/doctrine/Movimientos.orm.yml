@@ -1,0 +1,99 @@
+Dml\TodoBundle\Entity\Movimientos:
+    type: entity
+    table: MOVIMIENTOS
+    repositoryClass: Dml\TodoBundle\Entity\MovimientosRepository
+    indexes:
+        fk_movimientos_ahorrros1_idx:
+            columns:
+                - ahorrros_ah_id
+    id:
+        moId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: mo_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        moFecha:
+            type: date
+            nullable: true
+            comment: ''
+            column: mo_fecha
+        moConcepto:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            comment: ''
+            column: mo_concepto
+        moTipo:
+            type: string
+            nullable: true
+            length: 1
+            fixed: true
+            comment: ''
+            column: mo_tipo
+        moDocumento:
+            type: string
+            nullable: true
+            length: 10
+            fixed: true
+            comment: ''
+            column: mo_documento
+        moOficina:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            comment: ''
+            column: mo_oficina
+        moMonto:
+            type: decimal
+            nullable: true
+            precision: 10
+            scale: 2
+            comment: ''
+            column: mo_monto
+        moSaldo:
+            type: decimal
+            nullable: true
+            precision: 10
+            scale: 2
+            comment: ''
+            column: mo_saldo
+        moFechaCrea:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: mo_fecha_crea
+        moQuienCrea:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: mo_quien_crea
+        moFechaModifica:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: mo_fecha_modifica
+        moQuienModifica:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: mo_quien_modifica
+    manyToOne:
+        ahorrrosAh:
+            targetEntity: Ahorrros
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                ahorrros_ah_id:
+                    referencedColumnName: ah_id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

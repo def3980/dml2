@@ -1,0 +1,45 @@
+Dml\TodoBundle\Entity\TipoCuenta:
+    type: entity
+    table: TIPO_CUENTA
+    repositoryClass: Dml\TodoBundle\Entity\TipoCuentaRepository
+    id:
+        tcId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: tc_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        tcNombre:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            comment: ''
+            column: tc_nombre
+        tcFechaCrea:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: tc_fecha_crea
+        tcQuienCrea:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: tc_quien_crea
+        tcFechaModifica:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: tc_fecha_modifica
+        tcQuienModifica:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: tc_quien_modifica
+    lifecycleCallbacks: {  }

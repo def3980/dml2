@@ -1,0 +1,54 @@
+Dml\TodoBundle\Entity\UsoTc:
+    type: entity
+    table: USO_TC
+    repositoryClass: Dml\TodoBundle\Entity\UsoTcRepository
+    indexes:
+        fk_uso_tc_tarjetas_cd1_idx:
+            columns:
+                - tarjetas_cd_tcd_id
+    id:
+        utcId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: utc_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        utcFecha:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: utc_fecha
+        utcDetalle:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: utc_detalle
+        utcValorTotal:
+            type: decimal
+            nullable: true
+            precision: 10
+            scale: 2
+            comment: ''
+            column: utc_valor_total
+        utcPagado:
+            type: boolean
+            nullable: true
+            comment: 'Este campos va a estar asociado a que si despues del uso de la tarjeta dicho valor ya se cancelo de forma física y no existe deuda en la entidad bancaria correspondiente'
+            column: utc_pagado
+    manyToOne:
+        tarjetasCdTcd:
+            targetEntity: TarjetasCd
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                tarjetas_cd_tcd_id:
+                    referencedColumnName: tcd_id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,89 @@
+Dml\TodoBundle\Entity\Pagos:
+    type: entity
+    table: PAGOS
+    repositoryClass: Dml\TodoBundle\Entity\PagosRepository
+    indexes:
+        fk_pagos_persona1_idx:
+            columns:
+                - persona_pe_id
+        fk_pagos_tipo_consumo1_idx:
+            columns:
+                - tipo_consumo_tc_id
+    id:
+        paId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: pa_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        paNumeroFactura:
+            type: string
+            nullable: true
+            length: 17
+            fixed: false
+            comment: ''
+            column: pa_numero_factura
+        paFecha:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: pa_fecha
+        paDetalle:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: pa_detalle
+        paIva:
+            type: decimal
+            nullable: true
+            precision: 10
+            scale: 2
+            comment: ''
+            column: pa_iva
+        paIce:
+            type: decimal
+            nullable: true
+            precision: 10
+            scale: 2
+            comment: ''
+            column: pa_ice
+        paComision:
+            type: decimal
+            nullable: true
+            precision: 10
+            scale: 2
+            comment: ''
+            column: pa_comision
+        paValorTotal:
+            type: decimal
+            nullable: true
+            precision: 10
+            scale: 2
+            comment: ''
+            column: pa_valor_total
+    manyToOne:
+        personaPe:
+            targetEntity: Persona
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                persona_pe_id:
+                    referencedColumnName: pe_id
+            orphanRemoval: false
+        tipoConsumoTc:
+            targetEntity: TipoConsumo
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                tipo_consumo_tc_id:
+                    referencedColumnName: tc_id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }
