@@ -29,7 +29,7 @@ class LoadPersona extends AbstractFixture implements OrderedFixtureInterface, Co
             array(
                 'pe_cedula' => '1500583339',
                 'pe_nombres' => 'Oswaldo Ramiro',
-                'pe_apellidos' =>'Rojas Cevallos',
+                'pe_apellidos' => 'Rojas Cevallos',
                 'pe_fecha_nacimiento' => new \DateTime('2014-02-01'),
                 'pe_email' => 'def.3980@gmail.com',
                 'pe_usr' => 'def_3980',
