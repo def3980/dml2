@@ -32,6 +32,9 @@ class LoadEntidadSbbip extends AbstractFixture implements OrderedFixtureInterfac
          *  - E Instituciones Públicas
          */
         $EntidadSbbip = array(
+            /**
+             * Servicios Básicos
+             */
             array(
                 'es_entidad' => 'Empresa Pública Metropolitana de Agua Potable Y Saneamiento',
                 'es_alias' => 'E.P.M.A.P.S',
@@ -45,6 +48,166 @@ class LoadEntidadSbbip extends AbstractFixture implements OrderedFixtureInterfac
                 'es_fecha_modifica' => NULL,
                 'es_quien_modifica' => NULL
             ),
+            array(
+                'es_entidad' => 'Empresa Eléctrica Quito',
+                'es_alias' => 'E.E.Q',
+                'es_direccion' => 'Las Casas E1-24 y Av. 10 de Agosto',
+                'es_tlf1' => '023964700',
+                'es_tlf2' => NULL,
+                'es_ext' => NULL,
+                'es_sitio_web' => 'http://www.eeq.com.ec/',
+                'es_fecha_crea' => new \DateTime('2014-02-01 00:00:01'),
+                'es_quien_crea' => 1,
+                'es_fecha_modifica' => NULL,
+                'es_quien_modifica' => NULL
+            ),
+            array(
+                'es_entidad' => 'NetLife',
+                'es_alias' => 'NetLife',
+                'es_direccion' => 'Núñez de Vela E3-13 y Atahualpa',
+                'es_tlf1' => NULL,
+                'es_tlf2' => NULL,
+                'es_ext' => NULL,
+                'es_sitio_web' => 'http://www.netlife.ec/',
+                'es_fecha_crea' => new \DateTime('2014-02-01 00:00:01'),
+                'es_quien_crea' => 1,
+                'es_fecha_modifica' => NULL,
+                'es_quien_modifica' => NULL
+            ),
+            array(
+                'es_entidad' => 'Corporación Nacional de Telecomunicaciones C.N.T. E.P.',
+                'es_alias' => 'C.N.T.',
+                'es_direccion' => 'Veintimilla E4-66 y Amazonas, Edificio Studio Z',
+                'es_tlf1' => '023966102',
+                'es_tlf2' => NULL,
+                'es_ext' => NULL,
+                'es_sitio_web' => 'http://www.cnt.gob.ec/',
+                'es_fecha_crea' => new \DateTime('2014-02-01 00:00:01'),
+                'es_quien_crea' => 1,
+                'es_fecha_modifica' => NULL,
+                'es_quien_modifica' => NULL
+            ),
+            array(
+                'es_entidad' => 'Telefonica',
+                'es_alias' => 'Movistar',
+                'es_direccion' => 'Av. República y Pradera',
+                'es_tlf1' => NULL,
+                'es_tlf2' => NULL,
+                'es_ext' => NULL,
+                'es_sitio_web' => 'http://www.movistar.com.ec/',
+                'es_fecha_crea' => new \DateTime('2014-02-01 00:00:01'),
+                'es_quien_crea' => 1,
+                'es_fecha_modifica' => NULL,
+                'es_quien_modifica' => NULL
+            ),
+            array(
+                'es_entidad' => 'Conjunto Habitacional Rinconada del Norte - Segunda Etapa',
+                'es_alias' => 'Departamento',
+                'es_direccion' => 'Av. Juan Molineros y Guacamayos, Bloque 18 Departament 41',
+                'es_tlf1' => '023281024',
+                'es_tlf2' => NULL,
+                'es_ext' => NULL,
+                'es_sitio_web' => 'http://www.cnt.gob.ec/',
+                'es_fecha_crea' => new \DateTime('2014-02-01 00:00:01'),
+                'es_quien_crea' => 1,
+                'es_fecha_modifica' => NULL,
+                'es_quien_modifica' => NULL
+            ),
+            /**
+             * -----------------------------------------------------------------
+             */
+            
+            /**
+             * Bancos
+             */
+            array(
+                'es_entidad' => 'Banco del Pichincha',
+                'es_alias' => 'Banco Pichincha',
+                'es_direccion' => 'Av. Amazonas 4560 Y Pereira',
+                'es_tlf1' => '022999999',
+                'es_tlf2' => NULL,
+                'es_ext' => NULL,
+                'es_sitio_web' => 'http://www.pichincha.com/',
+                'es_fecha_crea' => new \DateTime('2014-02-01 00:00:01'),
+                'es_quien_crea' => 1,
+                'es_fecha_modifica' => NULL,
+                'es_quien_modifica' => NULL
+            ),
+            array(
+                'es_entidad' => 'Banco Internacional',
+                'es_alias' => 'Banco Internacional',
+                'es_direccion' => 'Av. Amazonas y 9 de Octubre',
+                'es_tlf1' => NULL,
+                'es_tlf2' => NULL,
+                'es_ext' => NULL,
+                'es_sitio_web' => 'http://www.bancointernacional.com.ec/bcointernacional/',
+                'es_fecha_crea' => new \DateTime('2014-02-01 00:00:01'),
+                'es_quien_crea' => 1,
+                'es_fecha_modifica' => NULL,
+                'es_quien_modifica' => NULL
+            ),
+            array(
+                'es_entidad' => 'Banco del Austro',
+                'es_alias' => 'Banco Austro',
+                'es_direccion' => 'Av. Amazonas y Roca',
+                'es_tlf1' => NULL,
+                'es_tlf2' => NULL,
+                'es_ext' => NULL,
+                'es_sitio_web' => 'http://www.bancodelaustro.com/',
+                'es_fecha_crea' => new \DateTime('2014-02-01 00:00:01'),
+                'es_quien_crea' => 1,
+                'es_fecha_modifica' => NULL,
+                'es_quien_modifica' => NULL
+            ),
+            /**
+             * -----------------------------------------------------------------
+             */
+
+            /**
+             * Instituciones Públicas
+             */
+            array(
+                'es_entidad' => 'Instituto Técnico Fiscal Tena',
+                'es_alias' => 'Colegio Nacional',
+                'es_direccion' => 'Av. Jumandy (Sector Dos Ríos)',
+                'es_tlf1' => NULL,
+                'es_tlf2' => NULL,
+                'es_ext' => NULL,
+                'es_sitio_web' => NULL,
+                'es_fecha_crea' => new \DateTime('2014-02-01 00:00:01'),
+                'es_quien_crea' => 1,
+                'es_fecha_modifica' => NULL,
+                'es_quien_modifica' => NULL
+            ),
+            array(
+                'es_entidad' => 'Servicio d Contratación de Obras',
+                'es_alias' => 'S.E.C.O.B.',
+                'es_direccion' => 'Av. 10 de Agosto y Santiago',
+                'es_tlf1' => NULL,
+                'es_tlf2' => NULL,
+                'es_ext' => NULL,
+                'es_sitio_web' => 'http://www.ico.gob.ec/',
+                'es_fecha_crea' => new \DateTime('2014-02-01 00:00:01'),
+                'es_quien_crea' => 1,
+                'es_fecha_modifica' => NULL,
+                'es_quien_modifica' => NULL
+            ),
+            array(
+                'es_entidad' => 'Ministerio del Ambiente',
+                'es_alias' => 'M.A.E.',
+                'es_direccion' => 'Av. Madrid y Andalucia',
+                'es_tlf1' => NULL,
+                'es_tlf2' => NULL,
+                'es_ext' => NULL,
+                'es_sitio_web' => 'http://www.ambiente.gob.ec/',
+                'es_fecha_crea' => new \DateTime('2014-02-01 00:00:01'),
+                'es_quien_crea' => 1,
+                'es_fecha_modifica' => NULL,
+                'es_quien_modifica' => NULL
+            ),
+            /**
+             * -----------------------------------------------------------------
+             */
         );
         foreach ($EntidadSbbip as $e):
             $e_sbbip = new EntidadSbbip();

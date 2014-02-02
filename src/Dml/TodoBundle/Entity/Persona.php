@@ -362,14 +362,4 @@ class Persona
     {
         return $this->peQuienModifica;
     }
-    
-    /**
-     * Metodo mágico para convertir Object a String
-     *
-     * @return string 
-     */
-    public function __toString()
-    {
-        return $this->getPeNombres().' '.$this->getPeApellidos();
-    }
 }

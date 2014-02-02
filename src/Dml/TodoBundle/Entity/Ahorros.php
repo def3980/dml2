@@ -5,12 +5,12 @@ namespace Dml\TodoBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Ahorrros
+ * Ahorros
  *
- * @ORM\Table(name="AHORRROS", indexes={@ORM\Index(name="fk_ahorrros_contratar_b1_idx", columns={"contratar_b_cb_id"}), @ORM\Index(name="fk_ahorrros_tipo_cuenta1_idx", columns={"tipo_cuenta_tc_id"})})
- * @ORM\Entity(repositoryClass="Dml\TodoBundle\Entity\AhorrrosRepository")
+ * @ORM\Table(name="AHORROS", indexes={@ORM\Index(name="fk_ahorrros_contratar_b1_idx", columns={"contratar_b_cb_id"}), @ORM\Index(name="fk_ahorrros_tipo_cuenta1_idx", columns={"tipo_cuenta_tc_id"})})
+ * @ORM\Entity(repositoryClass="Dml\TodoBundle\Entity\AhorrosRepository")
  */
-class Ahorrros
+class Ahorros
 {
     /**
      * @var integer
@@ -113,7 +113,7 @@ class Ahorrros
      * Set ahFechaCreacion
      *
      * @param \DateTime $ahFechaCreacion
-     * @return Ahorrros
+     * @return Ahorros
      */
     public function setAhFechaCreacion($ahFechaCreacion)
     {
@@ -136,7 +136,7 @@ class Ahorrros
      * Set ahNumeroCuenta
      *
      * @param string $ahNumeroCuenta
-     * @return Ahorrros
+     * @return Ahorros
      */
     public function setAhNumeroCuenta($ahNumeroCuenta)
     {
@@ -159,7 +159,7 @@ class Ahorrros
      * Set ahFechaEliminacion
      *
      * @param \DateTime $ahFechaEliminacion
-     * @return Ahorrros
+     * @return Ahorros
      */
     public function setAhFechaEliminacion($ahFechaEliminacion)
     {
@@ -182,7 +182,7 @@ class Ahorrros
      * Set ahEstado
      *
      * @param boolean $ahEstado
-     * @return Ahorrros
+     * @return Ahorros
      */
     public function setAhEstado($ahEstado)
     {
@@ -205,7 +205,7 @@ class Ahorrros
      * Set ahFechaCrea
      *
      * @param \DateTime $ahFechaCrea
-     * @return Ahorrros
+     * @return Ahorros
      */
     public function setAhFechaCrea($ahFechaCrea)
     {
@@ -228,7 +228,7 @@ class Ahorrros
      * Set ahQuienCrea
      *
      * @param integer $ahQuienCrea
-     * @return Ahorrros
+     * @return Ahorros
      */
     public function setAhQuienCrea($ahQuienCrea)
     {
@@ -251,7 +251,7 @@ class Ahorrros
      * Set ahFechaModifica
      *
      * @param \DateTime $ahFechaModifica
-     * @return Ahorrros
+     * @return Ahorros
      */
     public function setAhFechaModifica($ahFechaModifica)
     {
@@ -274,7 +274,7 @@ class Ahorrros
      * Set ahQuienModifica
      *
      * @param integer $ahQuienModifica
-     * @return Ahorrros
+     * @return Ahorros
      */
     public function setAhQuienModifica($ahQuienModifica)
     {
@@ -297,7 +297,7 @@ class Ahorrros
      * Set contratarBCb
      *
      * @param \Dml\TodoBundle\Entity\ContratarB $contratarBCb
-     * @return Ahorrros
+     * @return Ahorros
      */
     public function setContratarBCb(\Dml\TodoBundle\Entity\ContratarB $contratarBCb = null)
     {
@@ -320,7 +320,7 @@ class Ahorrros
      * Set tipoCuentaTc
      *
      * @param \Dml\TodoBundle\Entity\TipoCuenta $tipoCuentaTc
-     * @return Ahorrros
+     * @return Ahorros
      */
     public function setTipoCuentaTc(\Dml\TodoBundle\Entity\TipoCuenta $tipoCuentaTc = null)
     {

@@ -3,9 +3,9 @@ Dml\TodoBundle\Entity\Movimientos:
     table: MOVIMIENTOS
     repositoryClass: Dml\TodoBundle\Entity\MovimientosRepository
     indexes:
-        fk_movimientos_ahorrros1_idx:
+        fk_movimientos_ahorros1_idx:
             columns:
-                - ahorrros_ah_id
+                - ahorros_ah_id
     id:
         moId:
             type: integer
@@ -87,13 +87,13 @@ Dml\TodoBundle\Entity\Movimientos:
             comment: ''
             column: mo_quien_modifica
     manyToOne:
-        ahorrrosAh:
-            targetEntity: Ahorrros
+        ahorrosAh:
+            targetEntity: Ahorros
             cascade: {  }
             mappedBy: null
             inversedBy: null
             joinColumns:
-                ahorrros_ah_id:
+                ahorros_ah_id:
                     referencedColumnName: ah_id
             orphanRemoval: false
     lifecycleCallbacks: {  }

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Movimientos
  *
- * @ORM\Table(name="MOVIMIENTOS", indexes={@ORM\Index(name="fk_movimientos_ahorrros1_idx", columns={"ahorrros_ah_id"})})
+ * @ORM\Table(name="MOVIMIENTOS", indexes={@ORM\Index(name="fk_movimientos_ahorros1_idx", columns={"ahorros_ah_id"})})
  * @ORM\Entity(repositoryClass="Dml\TodoBundle\Entity\MovimientosRepository")
  */
 class Movimientos
@@ -99,14 +99,14 @@ class Movimientos
     private $moQuienModifica;
 
     /**
-     * @var \Dml\TodoBundle\Entity\Ahorrros
+     * @var \Dml\TodoBundle\Entity\Ahorros
      *
-     * @ORM\ManyToOne(targetEntity="Dml\TodoBundle\Entity\Ahorrros")
+     * @ORM\ManyToOne(targetEntity="Dml\TodoBundle\Entity\Ahorros")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="ahorrros_ah_id", referencedColumnName="ah_id")
+     *   @ORM\JoinColumn(name="ahorros_ah_id", referencedColumnName="ah_id")
      * })
      */
-    private $ahorrrosAh;
+    private $ahorrosAh;
 
 
 
@@ -374,25 +374,25 @@ class Movimientos
     }
 
     /**
-     * Set ahorrrosAh
+     * Set ahorrosAh
      *
-     * @param \Dml\TodoBundle\Entity\Ahorrros $ahorrrosAh
+     * @param \Dml\TodoBundle\Entity\Ahorros $ahorrosAh
      * @return Movimientos
      */
-    public function setAhorrrosAh(\Dml\TodoBundle\Entity\Ahorrros $ahorrrosAh = null)
+    public function setAhorrosAh(\Dml\TodoBundle\Entity\Ahorros $ahorrosAh = null)
     {
-        $this->ahorrrosAh = $ahorrrosAh;
+        $this->ahorrosAh = $ahorrosAh;
     
         return $this;
     }
 
     /**
-     * Get ahorrrosAh
+     * Get ahorrosAh
      *
-     * @return \Dml\TodoBundle\Entity\Ahorrros 
+     * @return \Dml\TodoBundle\Entity\Ahorros 
      */
-    public function getAhorrrosAh()
+    public function getAhorrosAh()
     {
-        return $this->ahorrrosAh;
+        return $this->ahorrosAh;
     }
 }
