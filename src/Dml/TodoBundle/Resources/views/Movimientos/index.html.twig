@@ -1,0 +1,251 @@
+{% extends '::layout.html.twig' %}
+
+{% block title %}Music detail{% endblock %}
+{% block incluir_css %}
+        <link href="{{ asset('bundles/todo/js/bootstrap-select/bootstrap-select.css') }}" rel="stylesheet">
+{% endblock %}
+{% block incluir_javascripts %}
+        <script src="{{ asset('bundles/todo/js/bootstrap-select/bootstrap-select.js') }}"></script>
+        <script src="{{ asset('bundles/todo/js/bootstrap3-typeahead/bootstrap3-typeahead.js') }}"></script>
+{% endblock %}
+{% block body %}
+        <style>
+            /* Sticky footer styles -------------------------------------------------- */
+            html,
+            body {
+              height: 100%;
+              /* The html and body elements cannot have any padding or margin. */
+            }
+
+            /* Wrapper for page content to push down footer */
+            #wrap {
+              min-height: 100%;
+              height: auto;
+              /* Negative indent footer by its height */
+              margin: 0 auto -60px;
+              /* Pad bottom by footer height */
+              padding: 0 0 60px;
+            }
+
+            /* Set the fixed height of the footer here */
+            #footer {
+              height: 60px;
+              background-color: #f5f5f5;
+            }
+
+
+            /* Custom page CSS
+            -------------------------------------------------- */
+            /* Not required for template or sticky footer method. */
+
+            #wrap > .container {
+              padding: 60px 15px 0;
+            }
+            .container .text-muted {
+              margin: 20px 0;
+            }
+
+            #footer > .container {
+              padding-left: 15px;
+              padding-right: 15px;
+            }
+
+            code {
+              font-size: 80%;
+            }
+            
+            {#.table thead th:nth-child(1) {
+                width: 6%;
+            }
+            .table thead th:nth-child(2),
+            .table thead th:nth-child(3) {
+                width: 47%;
+            }
+            .table thead th:nth-child(1),
+            .table tbody td:nth-child(1) {
+                text-align: center;
+            }#}
+            table thead th:nth-child(6),
+            table thead th:nth-child(7) {
+                text-align: center;
+            }
+            table tbody td:nth-child(6),
+            table tbody td:nth-child(7) {
+                text-align: right;
+            }
+        </style>        
+        <!-- Wrap all page content here -->
+        <div id="wrap">
+
+            <!-- Fixed navbar -->
+            <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">Project name</a>
+                    </div>
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="#">Home</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                            <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li class="divider"></li>
+                                <li class="dropdown-header">Nav header</li>
+                                <li><a href="#">Separated link</a></li>
+                                <li><a href="#">One more separated link</a></li>
+                            </ul>
+                        </li>
+                        </ul>
+                    </div><!--/.nav-collapse -->
+                </div>
+            </div>
+
+            <!-- Begin page content -->
+            <div class="container">
+                <div class="page-header">
+                    <h1>Sticky footer with fixed navbar</h1>
+                    <div class="row">
+                        <div class="col-xs-8"></div>
+                        <div class="col-xs-4">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="B&uacute;squeda..." data-provide="typeahead" />
+                                <span class="input-group-btn">
+                                    <button id="btnBuscar" class="btn btn-primary" type="button">Buscar</button>
+                                </span>
+                            </div><!-- /input-group -->
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading"><strong>{#{ tracks.0.albumsAl.artistasAr.arNombre }#}</strong></div>
+                    <div class="panel-body">
+                        <div class="media">
+                            <a class="pull-left" href="#">
+                                <img class="img media-object" src="{#% if cover | length %}{{ path('todo_image', { 'id' : cover.0.albumsAl.alId }) }}{% else %}{{ asset('uploads/images/3_door_down_tgh.jpg') }}{% endif %#}" height="64" width="64" alt="Generic placeholder image">
+                            </a>
+                            <div class="media-body">
+                                <h4 class="media-heading">{#{ tracks.0.albumsAl.alNombre }#}</h4>
+                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus. <strong><span id="cant">{#{ tracks | length }#}</span> canciones en total.</strong>
+                            </div>
+                        </div>
+                    </div>                    
+                    <div style="padding: 25px 15px 15px">
+                        <table class="table table-hover table-responsive table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Concepto</th>
+                                    <th>Tipo</th>
+                                    <th>Documento</th>
+                                    <th>Oficina</th>
+                                    <th>Monto</th>
+                                    <th>Saldo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+{% for mo in movimientos %}
+                                <tr>
+                                    <td>{{ mo.moFecha | date('Y-m-d') }}</td>
+                                    <td>{{ mo.moConcepto }}</td>
+                                    <td>{{ mo.moTipo }}</td>
+                                    <td>{{ mo.moDocumento }}</td>
+                                    <td>{{ mo.moOficina }}</td>
+                                    <td>{{ mo.moMonto }}</td>
+                                    <td>{{ mo.moSaldo }}</td>
+                                </tr>
+{% endfor %}
+                            </tbody>
+                        </table>
+                    </div><!-- /example -->
+                </div>
+                {#<div class="highlight">
+                    <div class="row">
+                        <form id="frm" method="post" action="{{ path('todo_upload') }}" enctype="multipart/form-data" autocomplete="off">
+                            <div class="col-xs-6" style="padding-top: 5px">
+                                <input type="file" name="cover" id="cover" />
+                            </div>
+                            <div class="col-xs-6 text-right">
+                                <button id="btnGuardar" class="btn btn-default" type="submit">Guardar</button>
+                            </div>
+                            <input type="hidden" name="alId" id="alId" />
+                        </form>
+                    </div>
+                </div>#}
+            </div>
+        </div>
+
+        <div id="footer">
+            <div class="container">
+                <p class="text-muted">Place sticky footer content here.</p>                
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(function() {
+                {#$.ajaxSetup({ async: false });
+                /** --------------------------------- CARGANDO COMBO CON AJAX */
+                var select = '<select class="selectpicker show-menu-arrow show-tick" data-size="7">';
+                $.getJSON('{{ path('todo_combo_albums') }}', function(data) {
+                    $.each(data, function(i,o) {
+                        select += '<option value="'+o.alId+'">'+o.alNombre+'</option>';
+                    });
+                });
+                select += '</select>';
+                $('.page-header div div:first').append(select);
+                $('.selectpicker').selectpicker('refresh');
+                $('#alId').val($('.selectpicker').val());
+                /** --------------------------------------------------------- */
+
+                
+                /** ------- CARGANDO LISTA DE OPCIONES CON TYPEAHEAD CON AJAX */
+                var array = []; var objIds = new Object();
+                $.getJSON('{{ path('todo_search') }}', function(data) {
+                    $.each(data, function(i,o) { 
+                        array.push(o.alNombre);
+                        objIds[o.alNombre] = o.alId;
+                    });
+                });
+                $('.form-control').typeahead({ source : array });
+                /** --------------------------------------------------------- */
+
+                /** --------- REALIZANDO CONSULTA AJAX Y CARGANDO EN LA TABLA */
+                $('.selectpicker').change(function() {
+                    $('#alId').val($(this).val());
+                    $.get('{{ path('todo_data') }}', { id : $(this).val() } , function(data) {
+                        $('.img').attr('src', data[data.length - 2].cover ? data[data.length - 2].cover : '{{ asset('uploads/images/3_door_down_tgh.jpg') }}');
+                        $('.panel-heading strong').text(data[0].albumsAl.artistasAr.arNombre);
+                        $('.media-heading').text(data[0].albumsAl.alNombre);
+                        $('#cant').text(data[data.length - 3].cont); //alert(data[data.length - 3].cont);
+                        $('.table tbody').html(data[data.length - 1].html);
+                    },'json');
+                });
+                /** --------------------------------------------------------- */
+                
+                /** --------- REALIZANDO CONSULTA AJAX Y CARGANDO EN LA TABLA */
+                $('#btnBuscar').bind('click', function() {
+                    $('.selectpicker').selectpicker('val', objIds[$('.form-control').val()]);
+                    $('.selectpicker').selectpicker('refresh');
+                    /*$.getJSON('{{ path('todo_data') }}', { id : $('.form-control').val(), opc : 'like' } , function(data) {
+                        $('.img').attr('src', data[data.length - 2].cover ? data[data.length - 2].cover : '{{ asset('uploads/images/3_door_down_tgh.jpg') }}');
+                        $('.panel-heading strong').text(data[0].albumsAl.artistasAr.arNombre);
+                        $('.media-heading').text(data[0].albumsAl.alNombre);
+                        $('#cant').text(data.length - 1);
+                        $('.table tbody').html(data[data.length - 1].html);
+                    });*/
+                });
+                /** --------------------------------------------------------- */
+                $.ajaxSetup({ async: true });#}
+            });
+        </script>
+{% endblock %}

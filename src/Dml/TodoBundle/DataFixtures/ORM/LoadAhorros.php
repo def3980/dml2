@@ -41,6 +41,26 @@ class LoadAhorros extends AbstractFixture implements OrderedFixtureInterface, Co
                             'ah_fecha_modifica' => NULL,
                             'ah_quien_modifica' => NULL
                         ),
+                        array(
+                            'ah_fecha_creacion' => new \DateTime('2013-05-02'),
+                            'ah_numero_cuenta' => '2200555126',
+                            'ah_fecha_eliminacion' => NULL,
+                            'ah_estado' => true,
+                            'ah_fecha_crea' => new \DateTime('2014-02-01 00:00:01'),
+                            'ah_quien_crea' => 1,
+                            'ah_fecha_modifica' => NULL,
+                            'ah_quien_modifica' => NULL
+                        ),
+                        array(
+                            'ah_fecha_creacion' => new \DateTime('2013-05-02'),
+                            'ah_numero_cuenta' => '2200555154',
+                            'ah_fecha_eliminacion' => NULL,
+                            'ah_estado' => true,
+                            'ah_fecha_crea' => new \DateTime('2014-02-01 00:00:01'),
+                            'ah_quien_crea' => 1,
+                            'ah_fecha_modifica' => NULL,
+                            'ah_quien_modifica' => NULL
+                        ),
                     );
                     foreach ($Ahorros as $ahorro):
                         $ah = new Ahorros();
