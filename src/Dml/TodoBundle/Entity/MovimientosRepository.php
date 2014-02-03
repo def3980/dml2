@@ -16,7 +16,7 @@ class MovimientosRepository extends EntityRepository {
      * returns el numero de imagen de acuerdo al album
      * @return int
      */
-    public function allRows() {
+    public function moAlias() {
         return $this->createQueryBuilder('mo');
     }
     

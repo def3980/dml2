@@ -1,3 +1,7 @@
 todo_homepage:
     pattern:  /index
     defaults: { _controller: TodoBundle:Movimientos:index }
+
+todo_combo_cuentas:
+    pattern:  /cmb-cuentas
+    defaults: { _controller: TodoBundle:Movimientos:combos }

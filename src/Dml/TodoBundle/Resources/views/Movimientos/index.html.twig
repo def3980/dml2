@@ -53,18 +53,7 @@
             code {
               font-size: 80%;
             }
-            
-            {#.table thead th:nth-child(1) {
-                width: 6%;
-            }
-            .table thead th:nth-child(2),
-            .table thead th:nth-child(3) {
-                width: 47%;
-            }
-            .table thead th:nth-child(1),
-            .table tbody td:nth-child(1) {
-                text-align: center;
-            }#}
+
             table thead th:nth-child(6),
             table thead th:nth-child(7) {
                 text-align: center;
@@ -129,7 +118,7 @@
                 </div>
                 <div class="panel panel-default">
                     <!-- Default panel contents -->
-                    <div class="panel-heading"><strong>{#{ tracks.0.albumsAl.artistasAr.arNombre }#}</strong></div>
+                    <div class="panel-heading"><strong>Cuenta # {{ movimientos.0.ahorrosAh.ahNumeroCuenta }}</strong></div>
                     <div class="panel-body">
                         <div class="media">
                             <a class="pull-left" href="#">
@@ -193,22 +182,22 @@
         </div>
         <script type="text/javascript">
             $(function() {
-                {#$.ajaxSetup({ async: false });
+                $.ajaxSetup({ async: false });
                 /** --------------------------------- CARGANDO COMBO CON AJAX */
                 var select = '<select class="selectpicker show-menu-arrow show-tick" data-size="7">';
-                $.getJSON('{{ path('todo_combo_albums') }}', function(data) {
+                $.getJSON('{{ path('todo_combo_cuentas') }}', function(data) {
                     $.each(data, function(i,o) {
-                        select += '<option value="'+o.alId+'">'+o.alNombre+'</option>';
+                        select += '<option value="'+o.ahId+'">'+o.ahNumeroCuenta+'</option>';
                     });
                 });
                 select += '</select>';
                 $('.page-header div div:first').append(select);
                 $('.selectpicker').selectpicker('refresh');
-                $('#alId').val($('.selectpicker').val());
+{#                $('#alId').val($('.selectpicker').val());#}
                 /** --------------------------------------------------------- */
 
                 
-                /** ------- CARGANDO LISTA DE OPCIONES CON TYPEAHEAD CON AJAX */
+                {#/** ------- CARGANDO LISTA DE OPCIONES CON TYPEAHEAD CON AJAX */
                 var array = []; var objIds = new Object();
                 $.getJSON('{{ path('todo_search') }}', function(data) {
                     $.each(data, function(i,o) { 
@@ -217,22 +206,18 @@
                     });
                 });
                 $('.form-control').typeahead({ source : array });
-                /** --------------------------------------------------------- */
+                /** --------------------------------------------------------- */#}
 
                 /** --------- REALIZANDO CONSULTA AJAX Y CARGANDO EN LA TABLA */
                 $('.selectpicker').change(function() {
-                    $('#alId').val($(this).val());
-                    $.get('{{ path('todo_data') }}', { id : $(this).val() } , function(data) {
-                        $('.img').attr('src', data[data.length - 2].cover ? data[data.length - 2].cover : '{{ asset('uploads/images/3_door_down_tgh.jpg') }}');
-                        $('.panel-heading strong').text(data[0].albumsAl.artistasAr.arNombre);
-                        $('.media-heading').text(data[0].albumsAl.alNombre);
-                        $('#cant').text(data[data.length - 3].cont); //alert(data[data.length - 3].cont);
-                        $('.table tbody').html(data[data.length - 1].html);
+{#                    $('#alId').val($(this).val());#}
+                    $.get('{{ path('todo_combo_cuentas') }}', { id : $(this).val() } , function(data) { alert();
+{#                        $('.table tbody').html(data[data.length - 1].html);#}
                     },'json');
                 });
                 /** --------------------------------------------------------- */
                 
-                /** --------- REALIZANDO CONSULTA AJAX Y CARGANDO EN LA TABLA */
+                {#/** --------- REALIZANDO CONSULTA AJAX Y CARGANDO EN LA TABLA */
                 $('#btnBuscar').bind('click', function() {
                     $('.selectpicker').selectpicker('val', objIds[$('.form-control').val()]);
                     $('.selectpicker').selectpicker('refresh');
