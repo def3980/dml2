@@ -210,7 +210,8 @@
                 /** --------------------------------------------------------- */#}
 
                 /** --------- REALIZANDO CONSULTA AJAX Y CARGANDO EN LA TABLA */
-                $('.selectpicker').change(function() {
+{#                $('.selectpicker').change(function() {#}
+                $('.page-header div div:first select').change(function() {
 {#                    $('#alId').val($(this).val());#}
 {#                    $.get('{{ path('todo_combo_cuentas') }}', { id : $(this).val() } , function(data) { alert(data[0].moSaldo);#}
 {#                        $('.table tbody').html(data[data.length - 1].html);#}
