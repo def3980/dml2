@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class MovimientosController extends Controller {
     
@@ -39,7 +40,7 @@ class MovimientosController extends Controller {
             $q = $em->getRepository('TodoBundle:Ahorros')->ahAlias();
         endif;
         $q = $q->getQuery()->getArrayResult();
-//        Util::getMyDump($ahorros);
+//        Util::getMyDump($q);
         return new Response(Util::getJSON($q));
     }
     

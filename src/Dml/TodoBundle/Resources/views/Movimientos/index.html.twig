@@ -211,9 +211,12 @@
                 /** --------- REALIZANDO CONSULTA AJAX Y CARGANDO EN LA TABLA */
                 $('.selectpicker').change(function() {
 {#                    $('#alId').val($(this).val());#}
-                    $.get('{{ path('todo_combo_cuentas') }}', { id : $(this).val() } , function(data) { alert();
+{#                    $.get('{{ path('todo_combo_cuentas') }}', { id : $(this).val() } , function(data) { alert(data[0].moSaldo);#}
 {#                        $('.table tbody').html(data[data.length - 1].html);#}
-                    },'json');
+{#                    },'json');#}
+                    $.getJSON('{{ path('todo_combo_cuentas') }}', { id : $(this).val() }, function(data){
+                        alert(data[0].moSaldo);
+                    });
                 });
                 /** --------------------------------------------------------- */
                 
