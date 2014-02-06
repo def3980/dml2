@@ -7,6 +7,7 @@
 {% block incluir_javascripts %}
         <script src="{{ asset('bundles/todo/js/bootstrap-select/bootstrap-select.js') }}"></script>
         <script src="{{ asset('bundles/todo/js/bootstrap3-typeahead/bootstrap3-typeahead.js') }}"></script>
+        <script src="{{ asset('bundles/todo/js/mis-javascripts/dump.js') }}"></script>
 {% endblock %}
 {% block body %}
         <style>
@@ -185,17 +186,16 @@
                 $.ajaxSetup({ async: false });
                 /** --------------------------------- CARGANDO COMBO CON AJAX */
                 var select = '<select class="selectpicker show-menu-arrow show-tick" data-size="7">';
-                $.getJSON('{{ path('todo_combo_cuentas') }}', function(data) {
-                    $.each(data, function(i,o) {
+                $.getJSON('{{ path('todo_combo_cuentas') }}', function(dataObj) {
+                    delete dataObj.html;
+                    $.each(dataObj, function(i, o) {
                         select += '<option value="'+o.ahId+'">'+o.ahNumeroCuenta+'</option>';
                     });
                 });
                 select += '</select>';
                 $('.page-header div div:first').append(select);
                 $('.selectpicker').selectpicker('refresh');
-{#                $('#alId').val($('.selectpicker').val());#}
                 /** --------------------------------------------------------- */
-
                 
                 {#/** ------- CARGANDO LISTA DE OPCIONES CON TYPEAHEAD CON AJAX */
                 var array = []; var objIds = new Object();
@@ -209,13 +209,13 @@
                 /** --------------------------------------------------------- */#}
 
                 /** --------- REALIZANDO CONSULTA AJAX Y CARGANDO EN LA TABLA */
-                $('.selectpicker').change(function() {
+                $('.page-header div div:first select').change(function() {
 {#                    $('#alId').val($(this).val());#}
 {#                    $.get('{{ path('todo_combo_cuentas') }}', { id : $(this).val() } , function(data) { alert(data[0].moSaldo);#}
 {#                        $('.table tbody').html(data[data.length - 1].html);#}
 {#                    },'json');#}
-                    $.getJSON('{{ path('todo_combo_cuentas') }}', { id : $(this).val() }, function(data){
-                        alert(data[0].moSaldo);
+                    $.getJSON('{{ path('todo_combo_cuentas') }}', { id : $(this).val() }, function(dataObj){
+                        $('.table tbody').html(dataObj.html);
                     });
                 });
                 /** --------------------------------------------------------- */

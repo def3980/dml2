@@ -15,7 +15,7 @@ class MovimientosController extends Controller {
     public function indexAction() {
         $em = $this->getDoctrine();
         $movimientos = $em->getRepository('TodoBundle:Movimientos')
-                            ->moAlias()
+                            ->moTable()
                                 ->addSelect('ah')
                                 ->join('mo.ahorrosAh', 'ah')
                                 ->where('ah.ahId = 1')
@@ -29,17 +29,19 @@ class MovimientosController extends Controller {
     public function combosAction(Request $request) {
         $em = $this->getDoctrine();
         if ($request->get('id') != NULL):
-            $q = $em->getRepository('TodoBundle:Movimientos')
-                        ->moAlias()
-                            ->addSelect('ah')
-                            ->join('mo.ahorrosAh', 'ah')
-                            ->where('ah.ahId = :id')
-                            ->addOrderBy('mo.moFecha','desc')
-                            ->setParameter('id', $request->get('id'));
+            $q = $em->getRepository('TodoBundle:Movimientos')->moTable()
+                    ->addSelect('ah')
+                    ->join('mo.ahorrosAh', 'ah')
+                    ->where('ah.ahId = :id')
+                    ->addOrderBy('mo.moFecha','desc')
+                    ->setParameter('id', $request->get('id'));
+            $html = $q;
+            $html = Util::buildTable($html->getQuery()->getArrayResult());
         else:
             $q = $em->getRepository('TodoBundle:Ahorros')->ahAlias();
         endif;
         $q = $q->getQuery()->getArrayResult();
+        $q['html'] = isset($html) ? $html : NULL;
 //        Util::getMyDump($q);
         return new Response(Util::getJSON($q));
     }

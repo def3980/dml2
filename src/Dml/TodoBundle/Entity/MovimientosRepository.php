@@ -13,10 +13,10 @@ use Doctrine\ORM\EntityRepository;
 class MovimientosRepository extends EntityRepository {
     
     /**
-     * returns el numero de imagen de acuerdo al album
+     * Retorna todos los datos de la tabla Movimientos
      * @return int
      */
-    public function moAlias() {
+    public function moTable() {
         return $this->createQueryBuilder('mo');
     }
     
