@@ -186,10 +186,14 @@
                 $.ajaxSetup({ async: false });
                 /** --------------------------------- CARGANDO COMBO CON AJAX */
                 var select = '<select class="selectpicker show-menu-arrow show-tick" data-size="7">';
-                $.getJSON('{{ path('todo_combo_cuentas') }}', function(dataObj) {
+                $.getJSON('{{ path('todo_combo_cuentas', { 'id' : app.request.attributes.get('id') }) }}', function(dataObj) {                    
                     delete dataObj.html;
-                    $.each(dataObj, function(i, o) {
-                        select += '<option value="'+o.ahId+'">'+o.ahNumeroCuenta+'</option>';
+                    $.each(dataObj, function(i, o) { 
+                        if ({{ app.request.attributes.get('id') }} == o.ahId) {
+                            select += '<option value="'+o.ahId+'" selected="selected">'+o.ahNumeroCuenta+'</option>';
+                        } else {
+                            select += '<option value="'+o.ahId+'">'+o.ahNumeroCuenta+'</option>';
+                        }
                     });
                 });
                 select += '</select>';
@@ -209,14 +213,17 @@
                 /** --------------------------------------------------------- */#}
 
                 /** --------- REALIZANDO CONSULTA AJAX Y CARGANDO EN LA TABLA */
-                $('.page-header div div:first select').change(function() {
+                $('.page-header div div:first select').change(function() { 
+                    var url = '{{ path('todo_homepage', { 'id' : 'id' }) }}';
+                        url = url.replace('id', $(this).val());
+                    location.href = url;
 {#                    $('#alId').val($(this).val());#}
 {#                    $.get('{{ path('todo_combo_cuentas') }}', { id : $(this).val() } , function(data) { alert(data[0].moSaldo);#}
 {#                        $('.table tbody').html(data[data.length - 1].html);#}
 {#                    },'json');#}
-                    $.getJSON('{{ path('todo_combo_cuentas') }}', { id : $(this).val() }, function(dataObj){
+                    {#$.getJSON('{{ path('todo_combo_cuentas') }}', { id : $(this).val() }, function(dataObj){
                         $('.table tbody').html(dataObj.html);
-                    });
+                    });#}
                 });
                 /** --------------------------------------------------------- */
                 

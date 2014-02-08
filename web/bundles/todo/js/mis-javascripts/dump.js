@@ -20,3 +20,24 @@ function objLen(obj) {
     
     return len;
 }
+
+/**
+ * <strong>Por <u>Oswaldo Rojas</u>, realizado el Sáb 08 Feb 2014 12:03:12</strong>
+ * <br /><br />
+ * Funcion que devuelve datos en formato visible para poder
+ * ser investigado la forma que están distribuidos los datos
+ * de un arreglo simple, complejo y de onjetos
+ * 
+ * @param {type} obj
+ * @returns {Number}
+ */
+function var_dump(variable) {
+    switch (typeof variable) {
+        case "object":
+            for (var i in variable) console.log(i + ":" + variable[i]);
+        break;
+        default: //number, string, boolean, null, undefined 
+            console.log(typeof variable + ":" + variable);
+        break;
+    }
+}

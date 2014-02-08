@@ -12,21 +12,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class MovimientosController extends Controller {
     
-    public function indexAction() {
-        $em = $this->getDoctrine();
-        $movimientos = $em->getRepository('TodoBundle:Movimientos')
-                            ->moTable()
-                                ->addSelect('ah')
-                                ->join('mo.ahorrosAh', 'ah')
-                                ->where('ah.ahId = 1')
-                                ->addOrderBy('mo.moFecha','desc')
-                                    ->getQuery()
-                                        ->getArrayResult();
-//        Util::getMyDump($movimientos);
-        return $this->render('TodoBundle:Movimientos:index.html.twig', array('movimientos' => $movimientos));
-    }
-    
-    public function combosAction(Request $request) {
+    public function indexAction(Request $request) {
         $em = $this->getDoctrine();
         if ($request->get('id') != NULL):
             $q = $em->getRepository('TodoBundle:Movimientos')->moTable()
@@ -35,13 +21,24 @@ class MovimientosController extends Controller {
                     ->where('ah.ahId = :id')
                     ->addOrderBy('mo.moFecha','desc')
                     ->setParameter('id', $request->get('id'));
-            $html = $q;
-            $html = Util::buildTable($html->getQuery()->getArrayResult());
         else:
-            $q = $em->getRepository('TodoBundle:Ahorros')->ahAlias();
+            $q = $em->getRepository('TodoBundle:Movimientos')->moTable()
+                    ->addSelect('ah')
+                    ->join('mo.ahorrosAh', 'ah')
+                    ->where('ah.ahId = :id')
+                    ->addOrderBy('mo.moFecha','desc')
+                    ->setParameter('id', 1);
         endif;
         $q = $q->getQuery()->getArrayResult();
-        $q['html'] = isset($html) ? $html : NULL;
+//        Util::getMyDump($q);
+        return $this->render('TodoBundle:Movimientos:index.html.twig', array('movimientos' => $q));
+    }
+    
+    public function cuentasAhorrosAction(Request $request) {
+        $em = $this->getDoctrine();
+        $q = $em->getRepository('TodoBundle:Ahorros')->ahTable()
+                ->getQuery()
+                ->getArrayResult();
 //        Util::getMyDump($q);
         return new Response(Util::getJSON($q));
     }

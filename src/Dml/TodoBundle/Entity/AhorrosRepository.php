@@ -16,7 +16,7 @@ class AhorrosRepository extends EntityRepository {
      * returns el numero de imagen de acuerdo al album
      * @return int
      */
-    public function ahAlias() {
+    public function ahTable() {
         return $this->createQueryBuilder('ah');
     }
     
