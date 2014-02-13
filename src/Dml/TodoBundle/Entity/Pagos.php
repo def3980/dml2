@@ -71,6 +71,41 @@ class Pagos
     private $paValorTotal;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="pa_fecha_crea", type="datetime", nullable=true)
+     */
+    private $paFechaCrea;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="pa_quien_crea", type="integer", nullable=true)
+     */
+    private $paQuienCrea;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="pa_fecha_modifica", type="datetime", nullable=true)
+     */
+    private $paFechaModifica;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="pa_quien_modifica", type="integer", nullable=true)
+     */
+    private $paQuienModifica;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="pa_borrado_logico", type="boolean", nullable=true)
+     */
+    private $paBorradoLogico;
+
+    /**
      * @var \Dml\TodoBundle\Entity\Persona
      *
      * @ORM\ManyToOne(targetEntity="Dml\TodoBundle\Entity\Persona")
@@ -261,6 +296,121 @@ class Pagos
     public function getPaValorTotal()
     {
         return $this->paValorTotal;
+    }
+
+    /**
+     * Set paFechaCrea
+     *
+     * @param \DateTime $paFechaCrea
+     * @return Pagos
+     */
+    public function setPaFechaCrea($paFechaCrea)
+    {
+        $this->paFechaCrea = $paFechaCrea;
+    
+        return $this;
+    }
+
+    /**
+     * Get paFechaCrea
+     *
+     * @return \DateTime 
+     */
+    public function getPaFechaCrea()
+    {
+        return $this->paFechaCrea;
+    }
+
+    /**
+     * Set paQuienCrea
+     *
+     * @param integer $paQuienCrea
+     * @return Pagos
+     */
+    public function setPaQuienCrea($paQuienCrea)
+    {
+        $this->paQuienCrea = $paQuienCrea;
+    
+        return $this;
+    }
+
+    /**
+     * Get paQuienCrea
+     *
+     * @return integer 
+     */
+    public function getPaQuienCrea()
+    {
+        return $this->paQuienCrea;
+    }
+
+    /**
+     * Set paFechaModifica
+     *
+     * @param \DateTime $paFechaModifica
+     * @return Pagos
+     */
+    public function setPaFechaModifica($paFechaModifica)
+    {
+        $this->paFechaModifica = $paFechaModifica;
+    
+        return $this;
+    }
+
+    /**
+     * Get paFechaModifica
+     *
+     * @return \DateTime 
+     */
+    public function getPaFechaModifica()
+    {
+        return $this->paFechaModifica;
+    }
+
+    /**
+     * Set paQuienModifica
+     *
+     * @param integer $paQuienModifica
+     * @return Pagos
+     */
+    public function setPaQuienModifica($paQuienModifica)
+    {
+        $this->paQuienModifica = $paQuienModifica;
+    
+        return $this;
+    }
+
+    /**
+     * Get paQuienModifica
+     *
+     * @return integer 
+     */
+    public function getPaQuienModifica()
+    {
+        return $this->paQuienModifica;
+    }
+
+    /**
+     * Set paBorradoLogico
+     *
+     * @param boolean $paBorradoLogico
+     * @return Pagos
+     */
+    public function setPaBorradoLogico($paBorradoLogico)
+    {
+        $this->paBorradoLogico = $paBorradoLogico;
+    
+        return $this;
+    }
+
+    /**
+     * Get paBorradoLogico
+     *
+     * @return boolean 
+     */
+    public function getPaBorradoLogico()
+    {
+        return $this->paBorradoLogico;
     }
 
     /**

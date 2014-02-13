@@ -39,7 +39,8 @@ class LoadAhorros extends AbstractFixture implements OrderedFixtureInterface, Co
                             'ah_fecha_crea' => new \DateTime('2014-02-01 00:00:01'),
                             'ah_quien_crea' => 1,
                             'ah_fecha_modifica' => NULL,
-                            'ah_quien_modifica' => NULL
+                            'ah_quien_modifica' => NULL,
+                            'ah_borrado_logico' => false
                         ),
                         array(
                             'ah_fecha_creacion' => new \DateTime('2013-05-02'),
@@ -49,7 +50,8 @@ class LoadAhorros extends AbstractFixture implements OrderedFixtureInterface, Co
                             'ah_fecha_crea' => new \DateTime('2014-02-01 00:00:01'),
                             'ah_quien_crea' => 1,
                             'ah_fecha_modifica' => NULL,
-                            'ah_quien_modifica' => NULL
+                            'ah_quien_modifica' => NULL,
+                            'ah_borrado_logico' => false
                         ),
                         array(
                             'ah_fecha_creacion' => new \DateTime('2013-05-02'),
@@ -59,7 +61,8 @@ class LoadAhorros extends AbstractFixture implements OrderedFixtureInterface, Co
                             'ah_fecha_crea' => new \DateTime('2014-02-01 00:00:01'),
                             'ah_quien_crea' => 1,
                             'ah_fecha_modifica' => NULL,
-                            'ah_quien_modifica' => NULL
+                            'ah_quien_modifica' => NULL,
+                            'ah_borrado_logico' => false
                         ),
                     );
                     foreach ($Ahorros as $ahorro):
@@ -72,6 +75,7 @@ class LoadAhorros extends AbstractFixture implements OrderedFixtureInterface, Co
                         $ah->setAhQuienCrea($ahorro['ah_quien_crea']);
                         $ah->setAhFechaModifica($ahorro['ah_fecha_modifica']);
                         $ah->setAhQuienModifica($ahorro['ah_quien_modifica']);
+                        $ah->setAhBorradoLogico($ahorro['ah_borrado_logico']);
                         $ah->setContratarBCb($c_b);
                         $ah->setTipoCuentaTc($TipoCuenta);
                         $manager->persist($ah);

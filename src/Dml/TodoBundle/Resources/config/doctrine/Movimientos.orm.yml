@@ -86,6 +86,11 @@ Dml\TodoBundle\Entity\Movimientos:
             unsigned: false
             comment: ''
             column: mo_quien_modifica
+        moBorradoLogico:
+            type: boolean
+            nullable: true
+            comment: ''
+            column: mo_borrado_logico
     manyToOne:
         ahorrosAh:
             targetEntity: Ahorros

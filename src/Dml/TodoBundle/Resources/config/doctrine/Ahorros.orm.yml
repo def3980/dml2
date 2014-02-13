@@ -64,6 +64,11 @@ Dml\TodoBundle\Entity\Ahorros:
             unsigned: false
             comment: ''
             column: ah_quien_modifica
+        ahBorradoLogico:
+            type: boolean
+            nullable: true
+            comment: ''
+            column: ah_borrado_logico
     manyToOne:
         contratarBCb:
             targetEntity: ContratarB

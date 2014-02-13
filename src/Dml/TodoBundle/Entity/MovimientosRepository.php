@@ -17,7 +17,9 @@ class MovimientosRepository extends EntityRepository {
      * @return int
      */
     public function moTable() {
-        return $this->createQueryBuilder('mo');
+        return $this->createQueryBuilder('mo')
+                    ->where('mo.moBorradoLogico = :bool')
+                    ->setParameter('bool', 0);
     }
     
 }

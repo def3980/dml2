@@ -65,6 +65,33 @@ Dml\TodoBundle\Entity\Binarios:
             fixed: false
             comment: ''
             column: bi_ext
+        biFechaCrea:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: bi_fecha_crea
+        biQuienCrea:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: bi_quien_crea
+        biFechaModifica:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: bi_fecha_modifica
+        biQuienModifica:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: bi_quien_modifica
+        biBorradoLogico:
+            type: boolean
+            nullable: true
+            comment: ''
+            column: bi_borrado_logico
     manyToOne:
         personaPe:
             targetEntity: Persona

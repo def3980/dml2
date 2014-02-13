@@ -84,4 +84,9 @@ Dml\TodoBundle\Entity\EntidadSbbip:
             unsigned: false
             comment: ''
             column: es_quien_modifica
+        esBorradoLogico:
+            type: boolean
+            nullable: true
+            comment: ''
+            column: es_borrado_logico
     lifecycleCallbacks: {  }

@@ -8,7 +8,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
 
 class MovimientosController extends Controller {
     
@@ -28,9 +27,9 @@ class MovimientosController extends Controller {
         $q = $em->getRepository('TodoBundle:Movimientos')->moTable()
                 ->select($fields)
                 ->join('mo.ahorrosAh', 'ah')
-                ->where('ah.ahId = :id')
-                ->addOrderBy('mo.moFecha','desc')
-                ->setParameter('id', $request->get('id') != NULL ? $request->get('id') : 1)
+                ->andWhere('ah.ahId = :id')                
+                ->orderBy('mo.moFecha','desc')
+                ->setParameter('id', $request->get('id') != NULL ? $request->get('id') : 1)                
                 ->getQuery()
                 ->getArrayResult();
 //        Util::getMyDump($q);

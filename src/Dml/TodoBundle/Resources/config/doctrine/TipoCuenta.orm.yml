@@ -42,4 +42,9 @@ Dml\TodoBundle\Entity\TipoCuenta:
             unsigned: false
             comment: ''
             column: tc_quien_modifica
+        tcBorradoLogico:
+            type: boolean
+            nullable: true
+            comment: ''
+            column: tc_borrado_logico
     lifecycleCallbacks: {  }

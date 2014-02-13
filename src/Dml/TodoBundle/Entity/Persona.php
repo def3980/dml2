@@ -98,6 +98,13 @@ class Persona
      */
     private $peQuienModifica;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="pe_borrado_logico", type="boolean", nullable=true)
+     */
+    private $peBorradoLogico;
+
 
 
     /**
@@ -361,5 +368,28 @@ class Persona
     public function getPeQuienModifica()
     {
         return $this->peQuienModifica;
+    }
+
+    /**
+     * Set peBorradoLogico
+     *
+     * @param boolean $peBorradoLogico
+     * @return Persona
+     */
+    public function setPeBorradoLogico($peBorradoLogico)
+    {
+        $this->peBorradoLogico = $peBorradoLogico;
+    
+        return $this;
+    }
+
+    /**
+     * Get peBorradoLogico
+     *
+     * @return boolean 
+     */
+    public function getPeBorradoLogico()
+    {
+        return $this->peBorradoLogico;
     }
 }

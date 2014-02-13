@@ -56,6 +56,13 @@ class TipoCuenta
      */
     private $tcQuienModifica;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="tc_borrado_logico", type="boolean", nullable=true)
+     */
+    private $tcBorradoLogico;
+
 
 
     /**
@@ -181,5 +188,28 @@ class TipoCuenta
     public function getTcQuienModifica()
     {
         return $this->tcQuienModifica;
+    }
+
+    /**
+     * Set tcBorradoLogico
+     *
+     * @param boolean $tcBorradoLogico
+     * @return TipoCuenta
+     */
+    public function setTcBorradoLogico($tcBorradoLogico)
+    {
+        $this->tcBorradoLogico = $tcBorradoLogico;
+    
+        return $this;
+    }
+
+    /**
+     * Get tcBorradoLogico
+     *
+     * @return boolean 
+     */
+    public function getTcBorradoLogico()
+    {
+        return $this->tcBorradoLogico;
     }
 }

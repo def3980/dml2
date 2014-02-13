@@ -17,7 +17,9 @@ class AhorrosRepository extends EntityRepository {
      * @return int
      */
     public function ahTable() {
-        return $this->createQueryBuilder('ah');
+        return $this->createQueryBuilder('ah')
+                    ->where('ah.ahBorradoLogico = :bool')
+                    ->setParameter('bool', 0);
     }
     
 }

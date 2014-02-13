@@ -27,4 +27,31 @@ Dml\TodoBundle\Entity\TipoConsumo:
             fixed: true
             comment: ''
             column: tc_alias
+        tcFechaCrea:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: tc_fecha_crea
+        tcQuienCrea:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: tc_quien_crea
+        tcFechaModifica:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: tc_fecha_modifica
+        tcQuienModifica:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: tc_quien_modifica
+        tcBorradoLogico:
+            type: boolean
+            nullable: true
+            comment: ''
+            column: tc_borrado_logico
     lifecycleCallbacks: {  }

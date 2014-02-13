@@ -57,6 +57,41 @@ class Binarios
     private $biExt;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="bi_fecha_crea", type="datetime", nullable=true)
+     */
+    private $biFechaCrea;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="bi_quien_crea", type="integer", nullable=true)
+     */
+    private $biQuienCrea;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="bi_fecha_modifica", type="datetime", nullable=true)
+     */
+    private $biFechaModifica;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="bi_quien_modifica", type="integer", nullable=true)
+     */
+    private $biQuienModifica;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="bi_borrado_logico", type="boolean", nullable=true)
+     */
+    private $biBorradoLogico;
+
+    /**
      * @var \Dml\TodoBundle\Entity\Persona
      *
      * @ORM\ManyToOne(targetEntity="Dml\TodoBundle\Entity\Persona")
@@ -241,6 +276,121 @@ class Binarios
     public function getBiExt()
     {
         return $this->biExt;
+    }
+
+    /**
+     * Set biFechaCrea
+     *
+     * @param \DateTime $biFechaCrea
+     * @return Binarios
+     */
+    public function setBiFechaCrea($biFechaCrea)
+    {
+        $this->biFechaCrea = $biFechaCrea;
+    
+        return $this;
+    }
+
+    /**
+     * Get biFechaCrea
+     *
+     * @return \DateTime 
+     */
+    public function getBiFechaCrea()
+    {
+        return $this->biFechaCrea;
+    }
+
+    /**
+     * Set biQuienCrea
+     *
+     * @param integer $biQuienCrea
+     * @return Binarios
+     */
+    public function setBiQuienCrea($biQuienCrea)
+    {
+        $this->biQuienCrea = $biQuienCrea;
+    
+        return $this;
+    }
+
+    /**
+     * Get biQuienCrea
+     *
+     * @return integer 
+     */
+    public function getBiQuienCrea()
+    {
+        return $this->biQuienCrea;
+    }
+
+    /**
+     * Set biFechaModifica
+     *
+     * @param \DateTime $biFechaModifica
+     * @return Binarios
+     */
+    public function setBiFechaModifica($biFechaModifica)
+    {
+        $this->biFechaModifica = $biFechaModifica;
+    
+        return $this;
+    }
+
+    /**
+     * Get biFechaModifica
+     *
+     * @return \DateTime 
+     */
+    public function getBiFechaModifica()
+    {
+        return $this->biFechaModifica;
+    }
+
+    /**
+     * Set biQuienModifica
+     *
+     * @param integer $biQuienModifica
+     * @return Binarios
+     */
+    public function setBiQuienModifica($biQuienModifica)
+    {
+        $this->biQuienModifica = $biQuienModifica;
+    
+        return $this;
+    }
+
+    /**
+     * Get biQuienModifica
+     *
+     * @return integer 
+     */
+    public function getBiQuienModifica()
+    {
+        return $this->biQuienModifica;
+    }
+
+    /**
+     * Set biBorradoLogico
+     *
+     * @param boolean $biBorradoLogico
+     * @return Binarios
+     */
+    public function setBiBorradoLogico($biBorradoLogico)
+    {
+        $this->biBorradoLogico = $biBorradoLogico;
+    
+        return $this;
+    }
+
+    /**
+     * Get biBorradoLogico
+     *
+     * @return boolean 
+     */
+    public function getBiBorradoLogico()
+    {
+        return $this->biBorradoLogico;
     }
 
     /**

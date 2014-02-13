@@ -67,6 +67,33 @@ Dml\TodoBundle\Entity\Pagos:
             scale: 2
             comment: ''
             column: pa_valor_total
+        paFechaCrea:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: pa_fecha_crea
+        paQuienCrea:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: pa_quien_crea
+        paFechaModifica:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: pa_fecha_modifica
+        paQuienModifica:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: pa_quien_modifica
+        paBorradoLogico:
+            type: boolean
+            nullable: true
+            comment: ''
+            column: pa_borrado_logico
     manyToOne:
         personaPe:
             targetEntity: Persona

@@ -78,6 +78,13 @@ class Ahorros
     private $ahQuienModifica;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="ah_borrado_logico", type="boolean", nullable=true)
+     */
+    private $ahBorradoLogico;
+
+    /**
      * @var \Dml\TodoBundle\Entity\ContratarB
      *
      * @ORM\ManyToOne(targetEntity="Dml\TodoBundle\Entity\ContratarB")
@@ -291,6 +298,29 @@ class Ahorros
     public function getAhQuienModifica()
     {
         return $this->ahQuienModifica;
+    }
+
+    /**
+     * Set ahBorradoLogico
+     *
+     * @param boolean $ahBorradoLogico
+     * @return Ahorros
+     */
+    public function setAhBorradoLogico($ahBorradoLogico)
+    {
+        $this->ahBorradoLogico = $ahBorradoLogico;
+    
+        return $this;
+    }
+
+    /**
+     * Get ahBorradoLogico
+     *
+     * @return boolean 
+     */
+    public function getAhBorradoLogico()
+    {
+        return $this->ahBorradoLogico;
     }
 
     /**

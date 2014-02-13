@@ -99,6 +99,13 @@ class Movimientos
     private $moQuienModifica;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="mo_borrado_logico", type="boolean", nullable=true)
+     */
+    private $moBorradoLogico;
+
+    /**
      * @var \Dml\TodoBundle\Entity\Ahorros
      *
      * @ORM\ManyToOne(targetEntity="Dml\TodoBundle\Entity\Ahorros")
@@ -371,6 +378,29 @@ class Movimientos
     public function getMoQuienModifica()
     {
         return $this->moQuienModifica;
+    }
+
+    /**
+     * Set moBorradoLogico
+     *
+     * @param boolean $moBorradoLogico
+     * @return Movimientos
+     */
+    public function setMoBorradoLogico($moBorradoLogico)
+    {
+        $this->moBorradoLogico = $moBorradoLogico;
+    
+        return $this;
+    }
+
+    /**
+     * Get moBorradoLogico
+     *
+     * @return boolean 
+     */
+    public function getMoBorradoLogico()
+    {
+        return $this->moBorradoLogico;
     }
 
     /**

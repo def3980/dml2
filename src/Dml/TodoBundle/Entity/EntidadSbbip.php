@@ -98,6 +98,13 @@ class EntidadSbbip
      */
     private $esQuienModifica;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="es_borrado_logico", type="boolean", nullable=true)
+     */
+    private $esBorradoLogico;
+
 
 
     /**
@@ -361,5 +368,28 @@ class EntidadSbbip
     public function getEsQuienModifica()
     {
         return $this->esQuienModifica;
+    }
+
+    /**
+     * Set esBorradoLogico
+     *
+     * @param boolean $esBorradoLogico
+     * @return EntidadSbbip
+     */
+    public function setEsBorradoLogico($esBorradoLogico)
+    {
+        $this->esBorradoLogico = $esBorradoLogico;
+    
+        return $this;
+    }
+
+    /**
+     * Get esBorradoLogico
+     *
+     * @return boolean 
+     */
+    public function getEsBorradoLogico()
+    {
+        return $this->esBorradoLogico;
     }
 }

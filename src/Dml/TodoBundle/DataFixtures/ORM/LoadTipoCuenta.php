@@ -35,14 +35,16 @@ class LoadTipoCuenta extends AbstractFixture implements OrderedFixtureInterface,
                 'tc_fecha_crea' => new \DateTime('2014-02-01 00:00:01'),
                 'tc_quien_crea' => 1,
                 'tc_fecha_modifica' => NULL,
-                'tc_quien_modifica' => NULL
+                'tc_quien_modifica' => NULL,
+                'tc_borrado_logico' => false
             ),
             array(
                 'tc_nombre' => 'Corriente',
                 'tc_fecha_crea' => new \DateTime('2014-02-01 00:00:01'),
                 'tc_quien_crea' => 1,
                 'tc_fecha_modifica' => NULL,
-                'tc_quien_modifica' => NULL
+                'tc_quien_modifica' => NULL,
+                'tc_borrado_logico' => false
             ),
         );
         foreach ($TipoCuenta as $t_c):
@@ -52,6 +54,7 @@ class LoadTipoCuenta extends AbstractFixture implements OrderedFixtureInterface,
             $tc->setTcQuienCrea($t_c['tc_quien_crea']);
             $tc->setTcFechaModifica($t_c['tc_fecha_modifica']);
             $tc->setTcQuienModifica($t_c['tc_quien_modifica']);
+            $tc->setTcBorradoLogico($t_c['tc_borrado_logico']);
             $manager->persist($tc);
         endforeach;
         $manager->flush();

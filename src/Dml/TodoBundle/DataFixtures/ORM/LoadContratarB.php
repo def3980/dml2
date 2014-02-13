@@ -36,7 +36,8 @@ class LoadContratarB extends AbstractFixture implements OrderedFixtureInterface,
                             'cb_fecha_crea' => new \DateTime('2014-02-01 00:00:01'),
                             'cb_quien_crea' => 1,
                             'cb_fecha_modifica' => NULL,
-                            'cb_quien_modifica' => NULL
+                            'cb_quien_modifica' => NULL,
+                            'cb_borrado_logico' => false
                         ),
                     );
                     foreach ($ContratarB as $c_b):
@@ -46,6 +47,7 @@ class LoadContratarB extends AbstractFixture implements OrderedFixtureInterface,
                         $cb->setCbQuienCrea($c_b['cb_quien_crea']);
                         $cb->setCbFechaModifica($c_b['cb_fecha_modifica']);
                         $cb->setCbQuienModifica($c_b['cb_quien_modifica']);
+                        $cb->setCbBorradoLogico($c_b['cb_borrado_logico']);
                         $cb->setPersonaPe(reset($Persona));
                         $cb->setEntidadSbbipEs($e_sbbip);
                         $manager->persist($cb);
@@ -58,7 +60,8 @@ class LoadContratarB extends AbstractFixture implements OrderedFixtureInterface,
                             'cb_fecha_crea' => new \DateTime('2014-02-01 00:00:01'),
                             'cb_quien_crea' => 1,
                             'cb_fecha_modifica' => NULL,
-                            'cb_quien_modifica' => NULL
+                            'cb_quien_modifica' => NULL,
+                            'cb_borrado_logico' => false
                         ),
                     );
                     foreach ($ContratarB as $c_b):
@@ -68,6 +71,7 @@ class LoadContratarB extends AbstractFixture implements OrderedFixtureInterface,
                         $cb->setCbQuienCrea($c_b['cb_quien_crea']);
                         $cb->setCbFechaModifica($c_b['cb_fecha_modifica']);
                         $cb->setCbQuienModifica($c_b['cb_quien_modifica']);
+                        $cb->setCbBorradoLogico($c_b['cb_borrado_logico']);
                         $cb->setPersonaPe(reset($Persona));
                         $cb->setEntidadSbbipEs($e_sbbip);
                         $manager->persist($cb);
@@ -80,7 +84,8 @@ class LoadContratarB extends AbstractFixture implements OrderedFixtureInterface,
                             'cb_fecha_crea' => new \DateTime('2014-02-01 00:00:01'),
                             'cb_quien_crea' => 1,
                             'cb_fecha_modifica' => NULL,
-                            'cb_quien_modifica' => NULL
+                            'cb_quien_modifica' => NULL,
+                            'cb_borrado_logico' => false
                         ),
                     );
                     foreach ($ContratarB as $c_b):
@@ -90,6 +95,7 @@ class LoadContratarB extends AbstractFixture implements OrderedFixtureInterface,
                         $cb->setCbQuienCrea($c_b['cb_quien_crea']);
                         $cb->setCbFechaModifica($c_b['cb_fecha_modifica']);
                         $cb->setCbQuienModifica($c_b['cb_quien_modifica']);
+                        $cb->setCbBorradoLogico($c_b['cb_borrado_logico']);
                         $cb->setPersonaPe(reset($Persona));
                         $cb->setEntidadSbbipEs($e_sbbip);
                         $manager->persist($cb);
@@ -102,7 +108,8 @@ class LoadContratarB extends AbstractFixture implements OrderedFixtureInterface,
                             'cb_fecha_crea' => new \DateTime('2014-02-01 00:00:01'),
                             'cb_quien_crea' => 1,
                             'cb_fecha_modifica' => NULL,
-                            'cb_quien_modifica' => NULL
+                            'cb_quien_modifica' => NULL,
+                            'cb_borrado_logico' => false
                         ),
                     );
                     foreach ($ContratarB as $c_b):
@@ -112,6 +119,7 @@ class LoadContratarB extends AbstractFixture implements OrderedFixtureInterface,
                         $cb->setCbQuienCrea($c_b['cb_quien_crea']);
                         $cb->setCbFechaModifica($c_b['cb_fecha_modifica']);
                         $cb->setCbQuienModifica($c_b['cb_quien_modifica']);
+                        $cb->setCbBorradoLogico($c_b['cb_borrado_logico']);
                         $cb->setPersonaPe(reset($Persona));
                         $cb->setEntidadSbbipEs($e_sbbip);
                         $manager->persist($cb);
@@ -124,7 +132,8 @@ class LoadContratarB extends AbstractFixture implements OrderedFixtureInterface,
                             'cb_fecha_crea' => new \DateTime('2014-02-01 00:00:01'),
                             'cb_quien_crea' => 1,
                             'cb_fecha_modifica' => NULL,
-                            'cb_quien_modifica' => NULL
+                            'cb_quien_modifica' => NULL,
+                            'cb_borrado_logico' => false
                         ),
                     );
                     foreach ($ContratarB as $c_b):
@@ -134,6 +143,7 @@ class LoadContratarB extends AbstractFixture implements OrderedFixtureInterface,
                         $cb->setCbQuienCrea($c_b['cb_quien_crea']);
                         $cb->setCbFechaModifica($c_b['cb_fecha_modifica']);
                         $cb->setCbQuienModifica($c_b['cb_quien_modifica']);
+                        $cb->setCbBorradoLogico($c_b['cb_borrado_logico']);
                         $cb->setPersonaPe(reset($Persona));
                         $cb->setEntidadSbbipEs($e_sbbip);
                         $manager->persist($cb);
@@ -146,7 +156,8 @@ class LoadContratarB extends AbstractFixture implements OrderedFixtureInterface,
                             'cb_fecha_crea' => new \DateTime('2014-02-01 00:00:01'),
                             'cb_quien_crea' => 1,
                             'cb_fecha_modifica' => NULL,
-                            'cb_quien_modifica' => NULL
+                            'cb_quien_modifica' => NULL,
+                            'cb_borrado_logico' => false
                         ),
                     );
                     foreach ($ContratarB as $c_b):
@@ -156,6 +167,7 @@ class LoadContratarB extends AbstractFixture implements OrderedFixtureInterface,
                         $cb->setCbQuienCrea($c_b['cb_quien_crea']);
                         $cb->setCbFechaModifica($c_b['cb_fecha_modifica']);
                         $cb->setCbQuienModifica($c_b['cb_quien_modifica']);
+                        $cb->setCbBorradoLogico($c_b['cb_borrado_logico']);
                         $cb->setPersonaPe(reset($Persona));
                         $cb->setEntidadSbbipEs($e_sbbip);
                         $manager->persist($cb);
@@ -168,7 +180,8 @@ class LoadContratarB extends AbstractFixture implements OrderedFixtureInterface,
                             'cb_fecha_crea' => new \DateTime('2014-02-01 00:00:01'),
                             'cb_quien_crea' => 1,
                             'cb_fecha_modifica' => NULL,
-                            'cb_quien_modifica' => NULL
+                            'cb_quien_modifica' => NULL,
+                            'cb_borrado_logico' => false
                         ),
                     );
                     foreach ($ContratarB as $c_b):
@@ -178,6 +191,7 @@ class LoadContratarB extends AbstractFixture implements OrderedFixtureInterface,
                         $cb->setCbQuienCrea($c_b['cb_quien_crea']);
                         $cb->setCbFechaModifica($c_b['cb_fecha_modifica']);
                         $cb->setCbQuienModifica($c_b['cb_quien_modifica']);
+                        $cb->setCbBorradoLogico($c_b['cb_borrado_logico']);
                         $cb->setPersonaPe(reset($Persona));
                         $cb->setEntidadSbbipEs($e_sbbip);
                         $manager->persist($cb);
@@ -190,7 +204,8 @@ class LoadContratarB extends AbstractFixture implements OrderedFixtureInterface,
                             'cb_fecha_crea' => new \DateTime('2014-02-01 00:00:01'),
                             'cb_quien_crea' => 1,
                             'cb_fecha_modifica' => NULL,
-                            'cb_quien_modifica' => NULL
+                            'cb_quien_modifica' => NULL,
+                            'cb_borrado_logico' => false
                         ),
                     );
                     foreach ($ContratarB as $c_b):
@@ -200,6 +215,7 @@ class LoadContratarB extends AbstractFixture implements OrderedFixtureInterface,
                         $cb->setCbQuienCrea($c_b['cb_quien_crea']);
                         $cb->setCbFechaModifica($c_b['cb_fecha_modifica']);
                         $cb->setCbQuienModifica($c_b['cb_quien_modifica']);
+                        $cb->setCbBorradoLogico($c_b['cb_borrado_logico']);
                         $cb->setPersonaPe(reset($Persona));
                         $cb->setEntidadSbbipEs($e_sbbip);
                         $manager->persist($cb);
@@ -212,7 +228,8 @@ class LoadContratarB extends AbstractFixture implements OrderedFixtureInterface,
                             'cb_fecha_crea' => new \DateTime('2014-02-01 00:00:01'),
                             'cb_quien_crea' => 1,
                             'cb_fecha_modifica' => NULL,
-                            'cb_quien_modifica' => NULL
+                            'cb_quien_modifica' => NULL,
+                            'cb_borrado_logico' => false
                         ),
                     );
                     foreach ($ContratarB as $c_b):
@@ -222,6 +239,7 @@ class LoadContratarB extends AbstractFixture implements OrderedFixtureInterface,
                         $cb->setCbQuienCrea($c_b['cb_quien_crea']);
                         $cb->setCbFechaModifica($c_b['cb_fecha_modifica']);
                         $cb->setCbQuienModifica($c_b['cb_quien_modifica']);
+                        $cb->setCbBorradoLogico($c_b['cb_borrado_logico']);
                         $cb->setPersonaPe(reset($Persona));
                         $cb->setEntidadSbbipEs($e_sbbip);
                         $manager->persist($cb);
@@ -234,7 +252,8 @@ class LoadContratarB extends AbstractFixture implements OrderedFixtureInterface,
                             'cb_fecha_crea' => new \DateTime('2014-02-01 00:00:01'),
                             'cb_quien_crea' => 1,
                             'cb_fecha_modifica' => NULL,
-                            'cb_quien_modifica' => NULL
+                            'cb_quien_modifica' => NULL,
+                            'cb_borrado_logico' => false
                         ),
                     );
                     foreach ($ContratarB as $c_b):
@@ -244,6 +263,7 @@ class LoadContratarB extends AbstractFixture implements OrderedFixtureInterface,
                         $cb->setCbQuienCrea($c_b['cb_quien_crea']);
                         $cb->setCbFechaModifica($c_b['cb_fecha_modifica']);
                         $cb->setCbQuienModifica($c_b['cb_quien_modifica']);
+                        $cb->setCbBorradoLogico($c_b['cb_borrado_logico']);
                         $cb->setPersonaPe(reset($Persona));
                         $cb->setEntidadSbbipEs($e_sbbip);
                         $manager->persist($cb);
@@ -256,7 +276,8 @@ class LoadContratarB extends AbstractFixture implements OrderedFixtureInterface,
                             'cb_fecha_crea' => new \DateTime('2014-02-01 00:00:01'),
                             'cb_quien_crea' => 1,
                             'cb_fecha_modifica' => NULL,
-                            'cb_quien_modifica' => NULL
+                            'cb_quien_modifica' => NULL,
+                            'cb_borrado_logico' => false
                         ),
                     );
                     foreach ($ContratarB as $c_b):
@@ -266,6 +287,7 @@ class LoadContratarB extends AbstractFixture implements OrderedFixtureInterface,
                         $cb->setCbQuienCrea($c_b['cb_quien_crea']);
                         $cb->setCbFechaModifica($c_b['cb_fecha_modifica']);
                         $cb->setCbQuienModifica($c_b['cb_quien_modifica']);
+                        $cb->setCbBorradoLogico($c_b['cb_borrado_logico']);
                         $cb->setPersonaPe(reset($Persona));
                         $cb->setEntidadSbbipEs($e_sbbip);
                         $manager->persist($cb);

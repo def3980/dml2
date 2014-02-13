@@ -46,7 +46,8 @@ class LoadEntidadSbbip extends AbstractFixture implements OrderedFixtureInterfac
                 'es_fecha_crea' => new \DateTime('2014-02-01 00:00:01'),
                 'es_quien_crea' => 1,
                 'es_fecha_modifica' => NULL,
-                'es_quien_modifica' => NULL
+                'es_quien_modifica' => NULL,
+                'es_borrado_logico' => false
             ),
             array(
                 'es_entidad' => 'Empresa Eléctrica Quito',
@@ -59,7 +60,8 @@ class LoadEntidadSbbip extends AbstractFixture implements OrderedFixtureInterfac
                 'es_fecha_crea' => new \DateTime('2014-02-01 00:00:01'),
                 'es_quien_crea' => 1,
                 'es_fecha_modifica' => NULL,
-                'es_quien_modifica' => NULL
+                'es_quien_modifica' => NULL,
+                'es_borrado_logico' => false
             ),
             array(
                 'es_entidad' => 'NetLife',
@@ -72,7 +74,8 @@ class LoadEntidadSbbip extends AbstractFixture implements OrderedFixtureInterfac
                 'es_fecha_crea' => new \DateTime('2014-02-01 00:00:01'),
                 'es_quien_crea' => 1,
                 'es_fecha_modifica' => NULL,
-                'es_quien_modifica' => NULL
+                'es_quien_modifica' => NULL,
+                'es_borrado_logico' => false
             ),
             array(
                 'es_entidad' => 'Corporación Nacional de Telecomunicaciones C.N.T. E.P.',
@@ -85,7 +88,8 @@ class LoadEntidadSbbip extends AbstractFixture implements OrderedFixtureInterfac
                 'es_fecha_crea' => new \DateTime('2014-02-01 00:00:01'),
                 'es_quien_crea' => 1,
                 'es_fecha_modifica' => NULL,
-                'es_quien_modifica' => NULL
+                'es_quien_modifica' => NULL,
+                'es_borrado_logico' => false
             ),
             array(
                 'es_entidad' => 'Telefonica',
@@ -98,7 +102,8 @@ class LoadEntidadSbbip extends AbstractFixture implements OrderedFixtureInterfac
                 'es_fecha_crea' => new \DateTime('2014-02-01 00:00:01'),
                 'es_quien_crea' => 1,
                 'es_fecha_modifica' => NULL,
-                'es_quien_modifica' => NULL
+                'es_quien_modifica' => NULL,
+                'es_borrado_logico' => false
             ),
             array(
                 'es_entidad' => 'Conjunto Habitacional Rinconada del Norte - Segunda Etapa',
@@ -111,7 +116,8 @@ class LoadEntidadSbbip extends AbstractFixture implements OrderedFixtureInterfac
                 'es_fecha_crea' => new \DateTime('2014-02-01 00:00:01'),
                 'es_quien_crea' => 1,
                 'es_fecha_modifica' => NULL,
-                'es_quien_modifica' => NULL
+                'es_quien_modifica' => NULL,
+                'es_borrado_logico' => false
             ),
             /**
              * -----------------------------------------------------------------
@@ -131,7 +137,8 @@ class LoadEntidadSbbip extends AbstractFixture implements OrderedFixtureInterfac
                 'es_fecha_crea' => new \DateTime('2014-02-01 00:00:01'),
                 'es_quien_crea' => 1,
                 'es_fecha_modifica' => NULL,
-                'es_quien_modifica' => NULL
+                'es_quien_modifica' => NULL,
+                'es_borrado_logico' => false
             ),
             array(
                 'es_entidad' => 'Banco Internacional',
@@ -144,7 +151,8 @@ class LoadEntidadSbbip extends AbstractFixture implements OrderedFixtureInterfac
                 'es_fecha_crea' => new \DateTime('2014-02-01 00:00:01'),
                 'es_quien_crea' => 1,
                 'es_fecha_modifica' => NULL,
-                'es_quien_modifica' => NULL
+                'es_quien_modifica' => NULL,
+                'es_borrado_logico' => false
             ),
             array(
                 'es_entidad' => 'Banco del Austro',
@@ -157,7 +165,8 @@ class LoadEntidadSbbip extends AbstractFixture implements OrderedFixtureInterfac
                 'es_fecha_crea' => new \DateTime('2014-02-01 00:00:01'),
                 'es_quien_crea' => 1,
                 'es_fecha_modifica' => NULL,
-                'es_quien_modifica' => NULL
+                'es_quien_modifica' => NULL,
+                'es_borrado_logico' => false
             ),
             /**
              * -----------------------------------------------------------------
@@ -177,7 +186,8 @@ class LoadEntidadSbbip extends AbstractFixture implements OrderedFixtureInterfac
                 'es_fecha_crea' => new \DateTime('2014-02-01 00:00:01'),
                 'es_quien_crea' => 1,
                 'es_fecha_modifica' => NULL,
-                'es_quien_modifica' => NULL
+                'es_quien_modifica' => NULL,
+                'es_borrado_logico' => false
             ),
             array(
                 'es_entidad' => 'Servicio d Contratación de Obras',
@@ -190,7 +200,8 @@ class LoadEntidadSbbip extends AbstractFixture implements OrderedFixtureInterfac
                 'es_fecha_crea' => new \DateTime('2014-02-01 00:00:01'),
                 'es_quien_crea' => 1,
                 'es_fecha_modifica' => NULL,
-                'es_quien_modifica' => NULL
+                'es_quien_modifica' => NULL,
+                'es_borrado_logico' => false
             ),
             array(
                 'es_entidad' => 'Ministerio del Ambiente',
@@ -203,7 +214,8 @@ class LoadEntidadSbbip extends AbstractFixture implements OrderedFixtureInterfac
                 'es_fecha_crea' => new \DateTime('2014-02-01 00:00:01'),
                 'es_quien_crea' => 1,
                 'es_fecha_modifica' => NULL,
-                'es_quien_modifica' => NULL
+                'es_quien_modifica' => NULL,
+                'es_borrado_logico' => false
             ),
             /**
              * -----------------------------------------------------------------
@@ -222,6 +234,7 @@ class LoadEntidadSbbip extends AbstractFixture implements OrderedFixtureInterfac
             $e_sbbip->setEsQuienCrea($e['es_quien_crea']);
             $e_sbbip->setEsFechaModifica($e['es_fecha_modifica']);
             $e_sbbip->setEsQuienModifica($e['es_quien_modifica']);
+            $e_sbbip->setEsBorradoLogico($e['es_borrado_logico']);
             $manager->persist($e_sbbip);
         endforeach;
         $manager->flush();

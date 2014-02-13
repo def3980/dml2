@@ -82,4 +82,9 @@ Dml\TodoBundle\Entity\Persona:
             unsigned: false
             comment: ''
             column: pe_quien_modifica
+        peBorradoLogico:
+            type: boolean
+            nullable: true
+            comment: ''
+            column: pe_borrado_logico
     lifecycleCallbacks: {  }

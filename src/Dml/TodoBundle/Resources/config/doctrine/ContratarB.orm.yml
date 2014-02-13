@@ -47,6 +47,11 @@ Dml\TodoBundle\Entity\ContratarB:
             unsigned: false
             comment: ''
             column: cb_quien_modifica
+        cbBorradoLogico:
+            type: boolean
+            nullable: true
+            comment: ''
+            column: cb_borrado_logico
     manyToOne:
         personaPe:
             targetEntity: Persona

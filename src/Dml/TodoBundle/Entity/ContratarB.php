@@ -57,6 +57,13 @@ class ContratarB
     private $cbQuienModifica;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="cb_borrado_logico", type="boolean", nullable=true)
+     */
+    private $cbBorradoLogico;
+
+    /**
      * @var \Dml\TodoBundle\Entity\Persona
      *
      * @ORM\ManyToOne(targetEntity="Dml\TodoBundle\Entity\Persona")
@@ -201,6 +208,29 @@ class ContratarB
     public function getCbQuienModifica()
     {
         return $this->cbQuienModifica;
+    }
+
+    /**
+     * Set cbBorradoLogico
+     *
+     * @param boolean $cbBorradoLogico
+     * @return ContratarB
+     */
+    public function setCbBorradoLogico($cbBorradoLogico)
+    {
+        $this->cbBorradoLogico = $cbBorradoLogico;
+    
+        return $this;
+    }
+
+    /**
+     * Get cbBorradoLogico
+     *
+     * @return boolean 
+     */
+    public function getCbBorradoLogico()
+    {
+        return $this->cbBorradoLogico;
     }
 
     /**

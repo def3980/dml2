@@ -37,7 +37,22 @@ class LoadPersona extends AbstractFixture implements OrderedFixtureInterface, Co
                 'pe_fecha_crea' => new \DateTime('2014-02-01 00:00:01'),
                 'pe_quien_crea' => 1,
                 'pe_fecha_modifica' => NULL,
-                'pe_quien_modifica' => NULL
+                'pe_quien_modifica' => NULL,
+                'pe_borrado_logico' => false
+            ),
+            array(
+                'pe_cedula' => '1500699937',
+                'pe_nombres' => 'Susana Tamara',
+                'pe_apellidos' => 'Andy Cerda',
+                'pe_fecha_nacimiento' => new \DateTime('1983-09-20'),
+                'pe_email' => 'susanatamara@hotmail.com',
+                'pe_usr' => 'tamara',
+                'pe_pwd' => '123456',
+                'pe_fecha_crea' => new \DateTime('2014-02-01 00:00:01'),
+                'pe_quien_crea' => 1,
+                'pe_fecha_modifica' => NULL,
+                'pe_quien_modifica' => NULL,
+                'pe_borrado_logico' => false
             ),
         );
         foreach ($personas as $persona):
@@ -54,6 +69,7 @@ class LoadPersona extends AbstractFixture implements OrderedFixtureInterface, Co
             $pe->setPeQuienCrea($persona['pe_quien_crea']);
             $pe->setPeFechaModifica($persona['pe_fecha_modifica']);
             $pe->setPeQuienModifica($persona['pe_quien_modifica']);
+            $pe->setPeBorradoLogico($persona['pe_borrado_logico']);
             $manager->persist($pe);
         endforeach;
         $manager->flush();
