@@ -5,3 +5,7 @@ todo_homepage:
 todo_combo_cuentas:
     pattern:  /cuentas-ahorros
     defaults: { _controller: TodoBundle:Movimientos:cuentasAhorros }
+
+todo_pagos:
+    pattern: /pagos
+    defaults: { _controller: TodoBundle:Pagos:index }

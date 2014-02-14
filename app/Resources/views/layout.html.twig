@@ -1,11 +1,10 @@
-{% extends '::base.html.twig' %}
+{% extends '::base.html.twig' %}{{ asset('bundles/todo/css/bootstrap.min.css') }}
 {% block stylesheets %}
         <!-- Bootstrap core CSS -->
         <link href="{{ asset('bundles/todo/css/bootstrap.min.css') }}" rel="stylesheet">
 
         <!-- Documentation extras -->
-        <link href="{{ asset('bundles/todo/css/docs.css') }}" rel="stylesheet">
-        <link href="{{ asset('bundles/todo/css/pygments-manni.css') }}" rel="stylesheet">
+        <link href="{{ asset('bundles/todo/css/docs.min.css') }}" rel="stylesheet">
         <!--[if lt IE 9]><script src="{{ asset('bundles/todo/js/ie8-responsive-file-warning.js') }}"></script><![endif]-->
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->

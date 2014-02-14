@@ -31,6 +31,14 @@ class Util {
         return json_encode($array);
     }
     
+    static public function getMyDumpSQL($strSQL) {
+        $html = '<textarea rows="5" cols="80">';
+        $html .= $strSQL;
+        $html .= '</textarea>';
+        echo $html;
+        die();
+    }
+    
     /**
      * <b>Por Oswaldo Rojas, realizado el Mié 05 Feb 2014 21:46:03</b>
      * 
