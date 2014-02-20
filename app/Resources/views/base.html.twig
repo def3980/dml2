@@ -4,21 +4,37 @@
         <!-- Meta, title, CSS, favicons, etc. -->
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
-        <meta name="author" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Detail My Life">
+        <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, bootstrap, front-end, frontend, web development">
+        <meta name="author" content="Oswaldo Rojas">
         <title>{% block title %}{% endblock %}</title>
-{% block stylesheets %}{% endblock %}
+
+        <!-- Bootstrap core CSS -->
+        <link href="{{ asset('bundles/todo/css/bootstrap.min.css') }}" rel="stylesheet">
 {% block incluir_css %}{% endblock %}
-        
+
+        <!-- Documentation extras -->
+        <link href="{{ asset('bundles/todo/css/docs.min.css') }}" rel="stylesheet">
+        <!--[if lt IE 9]><script src="{{ asset('bundles/todo/js/ie8-responsive-file-warning.js') }}"></script><![endif]-->
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+        <script src="{{ asset('bundles/todo/js/html5shiv.js') }}"></script>
+        <script src="{{ asset('bundles/todo/js/respond.min.js') }}"></script>
+        <![endif]-->
+
         <!-- Favicons -->
         <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ asset('bundles/todo/ico/apple-touch-icon-144-precomposed.png') }}">
-        <link rel="shortcut icon" href="{{ asset('bundles/todo/ico/favicon.ico') }}">
+                                       <link rel="shortcut icon" href="{{ asset('bundles/todo/ico/favicon.ico') }}">
         
-{% block javascripts %}{% endblock %}
+        <!-- Javascript -->
+        <script src="{{ asset('bundles/todo/js/jquery.min.js') }}"></script>
+        <script src="{{ asset('bundles/todo/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('bundles/todo/js/docs.min.js') }}"></script>
 {% block incluir_javascripts %}{% endblock %}
     </head>
-    <body>
+    <body class="bs-docs-home">
 {% block body %}{% endblock %}
     </body>
 </html>

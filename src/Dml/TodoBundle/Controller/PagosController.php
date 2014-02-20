@@ -35,7 +35,7 @@ class PagosController extends Controller {
                 ->getArrayResult();
 //        Util::getMyDump($q);
 //        Util::getMyDumpSQL($q);
-        return $this->render('TodoBundle:Pagos:index.html.twig', array('pagod' => $q));
+        return $this->render('TodoBundle:Pagos:index.html.twig', array('pagos' => $q));
     }
     
 }

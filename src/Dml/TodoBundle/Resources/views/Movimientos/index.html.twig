@@ -1,242 +1,219 @@
-{% extends '::layout.html.twig' %}
+{% extends '::base.html.twig' %}
 
-{% block title %}Music detail{% endblock %}
+{% block title %}Detalle gastos{% endblock %}
 {% block incluir_css %}
         <link href="{{ asset('bundles/todo/js/bootstrap-select/bootstrap-select.css') }}" rel="stylesheet">
 {% endblock %}
 {% block incluir_javascripts %}
+        <script src="{{ asset('bundles/todo/js/expander/jquery.expander.js') }}"></script>
         <script src="{{ asset('bundles/todo/js/bootstrap-select/bootstrap-select.js') }}"></script>
         <script src="{{ asset('bundles/todo/js/bootstrap3-typeahead/bootstrap3-typeahead.js') }}"></script>
         <script src="{{ asset('bundles/todo/js/mis-javascripts/dump.js') }}"></script>
 {% endblock %}
 {% block body %}
         <style>
-            /* Sticky footer styles -------------------------------------------------- */
-            html,
-            body {
-              height: 100%;
-              /* The html and body elements cannot have any padding or margin. */
+            .table {
+                font-size: 87%;
             }
-
-            /* Wrapper for page content to push down footer */
-            #wrap {
-              min-height: 100%;
-              height: auto;
-              /* Negative indent footer by its height */
-              margin: 0 auto -60px;
-              /* Pad bottom by footer height */
-              padding: 0 0 60px;
+            .table thead th:nth-child(1) {
+                width: 14%
             }
-
-            /* Set the fixed height of the footer here */
-            #footer {
-              height: 60px;
-              background-color: #f5f5f5;
+            .table thead th:nth-child(2),
+            .table thead th:nth-child(5) {
+                width: 27%
             }
-
-
-            /* Custom page CSS
-            -------------------------------------------------- */
-            /* Not required for template or sticky footer method. */
-
-            #wrap > .container {
-              padding: 60px 15px 0;
+            .table thead th:nth-child(3) {
+                width: 5%
             }
-            .container .text-muted {
-              margin: 20px 0;
+            .table thead th:nth-child(4) {
+                width: 10%
             }
-
-            #footer > .container {
-              padding-left: 15px;
-              padding-right: 15px;
+            .table thead th:nth-child(6),
+            .table thead th:nth-child(7) {
+                width: 8%
             }
-
-            code {
-              font-size: 80%;
-            }
-
-            table thead th:nth-child(6),
-            table thead th:nth-child(7) {
+            .table thead th:nth-child(1),
+            .table thead th:nth-child(2),
+            .table thead th:nth-child(3),
+            .table thead th:nth-child(4),
+            .table thead th:nth-child(5),
+            .table thead th:nth-child(6),
+            .table thead th:nth-child(7),
+            .table tbody th:nth-child(1) {
                 text-align: center;
             }
-            table tbody td:nth-child(6),
-            table tbody td:nth-child(7) {
+            .table tbody td:nth-child(6),
+            .table tbody td:nth-child(7) {
                 text-align: right;
             }
-        </style>        
-        <!-- Wrap all page content here -->
-        <div id="wrap">
-
-            <!-- Fixed navbar -->
-            <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="#">Project name</a>
-                    </div>
-                    <div class="collapse navbar-collapse">
-                        <ul class="nav navbar-nav">
-                            <li class="active"><a href="#">Home</a></li>
-                            <li><a href="#about">About</a></li>
-                            <li><a href="#contact">Contact</a></li>
-                            <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li class="divider"></li>
-                                <li class="dropdown-header">Gastos en general</li>
-                                <li><a href="{{ path('todo_pagos') }}">Pagos</a></li>
-                                <li><a href="#">One more separated link</a></li>
-                            </ul>
-                        </li>
-                        </ul>
-                    </div><!--/.nav-collapse -->
-                </div>
-            </div>
-
-            <!-- Begin page content -->
+        </style>
+        <a class="sr-only" href="#content">Skip to main content</a>
+        <!-- Docs master nav -->
+        <header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
             <div class="container">
-                <div class="page-header">
-                    <h1>Sticky footer with fixed navbar</h1>
-                    <div class="row">
-                        <div class="col-xs-8"></div>
-                        <div class="col-xs-4">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="B&uacute;squeda..." data-provide="typeahead" />
-                                <span class="input-group-btn">
-                                    <button id="btnBuscar" class="btn btn-primary" type="button">Buscar</button>
-                                </span>
-                            </div><!-- /input-group -->
-                        </div>
-                    </div>
+                <div class="navbar-header">
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                </button>
+                <a href="../" class="navbar-brand">Bootstrap</a>
                 </div>
-                <div class="panel panel-default">
-                    <!-- Default panel contents -->
-                    <div class="panel-heading"><strong>Cuenta # {{ movimientos[0].ahNumeroCuenta }}</strong></div>
-                    <div class="panel-body">
-                        <div class="media">
-                            <a class="pull-left" href="#">
-                                <img class="img media-object" src="{#% if cover | length %}{{ path('todo_image', { 'id' : cover.0.albumsAl.alId }) }}{% else %}{{ asset('uploads/images/3_door_down_tgh.jpg') }}{% endif %#}" height="64" width="64" alt="Generic placeholder image">
-                            </a>
-                            <div class="media-body">
-                                <h4 class="media-heading">{#{ tracks.0.albumsAl.alNombre }#}</h4>
-                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus. <strong><span id="cant">{#{ tracks | length }#}</span> canciones en total.</strong>
-                            </div>
-                        </div>
-                    </div>                    
-                    <div style="padding: 25px 15px 15px">
-                        <table class="table table-hover table-responsive table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Fecha</th>
-                                    <th>Concepto</th>
-                                    <th>Tipo</th>
-                                    <th>Documento</th>
-                                    <th>Oficina</th>
-                                    <th>Monto</th>
-                                    <th>Saldo</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+                    <ul class="nav navbar-nav">
+                        <li><a href="../getting-started">Getting started</a></li>
+                        <li class="active"><a href="../css">CSS</a></li>
+                        <li><a href="../components">Components</a></li>
+                        <li><a href="../javascript">JavaScript</a></li>
+                        <li><a href="../customize">Customize</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="http://expo.getbootstrap.com" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Community links', 'Expo']);">Expo</a></li>
+                        <li><a href="http://blog.getbootstrap.com" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Community links', 'Blog']);">Blog</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <!-- Docs page layout -->
+        <div class="bs-docs-header" id="content">
+            <div class="container">
+                <h1>CSS</h1>
+                <p>Global CSS settings, fundamental HTML elements styled and enhanced with extensible classes, and an advanced grid system.</p>
+                <div id="carbonads-container"><div class="carbonad"><div id="azcarbon"></div><script>var z = document.createElement("script"); z.async = true; z.src = "http://engine.carbonads.com/z/32341/azcarbon_2_1_0_HORIZ"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(z, s);</script></div></div>
+            </div>
+        </div>
+        <div class="container bs-docs-container">
+            <div class="row">
+                <div class="col-md-9" role="main">
+                    <!-- Global Bootstrap settings ================================================== -->
+                    <div class="bs-docs-section">
+                        <h1 id="overview" class="page-header">Overview</h1>
+                        <p class="lead">Get the lowdown on the key pieces of Bootstrap's infrastructure, including our approach to better, faster, stronger web development.</p>
+                        <h3 id="overview-doctype">HTML5 doctype</h3>
+                        <p>Bootstrap makes use of certain HTML elements and CSS properties that require the use of the HTML5 doctype. Include it at the beginning of all your projects.</p>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped responsive-utilities">
+                                <thead>
+                                    <tr>
+                                        <th>Fecha</th>
+                                        <th>Concepto</th>
+                                        <th>Tipo</th>
+                                        <th>Documento</th>
+                                        <th>Oficina</th>
+                                        <th>Monto</th>
+                                        <th>Saldo</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
 {% for mo in movimientos %}
-                                <tr>
-                                    <td>{{ mo.moFecha | date('Y-m-d') }}</td>
-                                    <td>{{ mo.moConcepto }}</td>
-                                    <td>{{ mo.moTipo }}</td>
-                                    <td>{{ mo.moDocumento }}</td>
-                                    <td>{{ mo.moOficina }}</td>
-                                    <td>{{ mo.moMonto }}</td>
-                                    <td>{{ mo.moSaldo }}</td>
-                                </tr>
+                                    <tr>
+                                        <th>{{ mo.moFecha | date('Y-m-d') }}</th>
+                                        <td><span class="expander">{{ mo.moConcepto }}</span></td>
+                                        <td>{{ mo.moTipo }}</td>
+                                        <td>{{ mo.moDocumento }}</td>
+                                        <td><span class="expander">{{ mo.moOficina }}</span></td>
+                                        <td>{{ mo.moMonto }}</td>
+                                        <td>{{ mo.moSaldo }}</td>
+                                    </tr>
 {% endfor %}
-                            </tbody>
-                        </table>
-                    </div><!-- /example -->
-                </div>
-                {#<div class="highlight">
-                    <div class="row">
-                        <form id="frm" method="post" action="{{ path('todo_upload') }}" enctype="multipart/form-data" autocomplete="off">
-                            <div class="col-xs-6" style="padding-top: 5px">
-                                <input type="file" name="cover" id="cover" />
-                            </div>
-                            <div class="col-xs-6 text-right">
-                                <button id="btnGuardar" class="btn btn-default" type="submit">Guardar</button>
-                            </div>
-                            <input type="hidden" name="alId" id="alId" />
-                        </form>
+                                </tbody>
+                            </table>
+                        </div>
+                        <ul class="pagination" style="margin: 0">
+                            <li><a href="#">&laquo;</a></li>
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#">&raquo;</a></li>
+                        </ul>
+                        <h3 id="overview-mobile">Mobile first</h3>
+                        <p>With Bootstrap 2, we added optional mobile friendly styles for key aspects of the framework. With Bootstrap 3, we've rewritten the project to be mobile friendly from the start. Instead of adding on optional mobile styles, they're baked right into the core. In fact, <strong>Bootstrap is mobile first</strong>. Mobile first styles can be found throughout the entire library instead of in separate files.</p>
+                        <p>To ensure proper rendering and touch zooming, <strong>add the viewport meta tag</strong> to your <code>&lt;head&gt;</code>.</p>
+<div class="highlight"><pre><code class="html"><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content=</span><span class="s">&quot;width=device-width, initial-scale=1&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+                        <p>You can disable zooming capabilities on mobile devices by adding <code>user-scalable=no</code> to the viewport meta tag. This disables zooming, meaning users are only able to scroll, and results in your site feeling a bit more like a native application. Overall, we don't recommend this on every site, so use caution!</p>
+<div class="highlight"><pre><code class="html"><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content=</span><span class="s">&quot;width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+                        <h3 id="overview-type-links">Typography and links</h3>
+                            <p>Bootstrap sets basic global display, typography, and link styles. Specifically, we:</p>
+                            <ul>
+                                <li>Set <code>background-color: #fff;</code> on the <code>body</code></li>
+                                <li>Use the <code>@font-family-base</code>, <code>@font-size-base</code>, and <code>@line-height-base</code> attributes as our typographic base</li>
+                                <li>Set the global link color via <code>@link-color</code> and apply link underlines only on <code>:hover</code></li>
+                            </ul>
+                        <p>These styles can be found within <code>scaffolding.less</code>.</p>
+                        <h3 id="overview-normalize">Normalize.css</h3>
+                        <p>For improved cross-browser rendering, we use <a href="http://necolas.github.io/normalize.css/" target="_blank">Normalize.css</a>, a project by <a href="http://twitter.com/necolas" target="_blank">Nicolas Gallagher</a> and <a href="http://twitter.com/jon_neal" target="_blank">Jonathan Neal</a>.</p>
+                        <h3 id="overview-container">Containers</h3>
+                        <p>Easily center a page's contents by wrapping its contents in a <code>.container</code>. Containers set <code>width</code> at various media query breakpoints to match our grid system.</p>
+                        <p>Note that, due to <code>padding</code> and fixed widths, containers are not nestable by default.</p>
+<div class="highlight"><pre><code class="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;container&quot;</span><span class="nt">&gt;</span>
+...
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div>
                     </div>
-                </div>#}
+                </div>
+                <div class="col-md-3">
+                    <div class="bs-docs-sidebar hidden-print" role="complementary">
+                        <ul class="nav bs-docs-sidenav">
+                            <li>
+                                <a href="#overview">Overview</a>
+                                <ul class="nav">
+                                    <li><a href="#overview-doctype">HTML5 doctype</a></li>
+                                    <li><a href="#overview-mobile">Mobile first</a></li>
+                                    <li><a href="#overview-type-links">Typography and links</a></li>
+                                    <li><a href="#overview-normalize">Normalize.css</a></li>
+                                    <li><a href="#overview-container">Containers</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <a class="back-to-top" href="#top">Back to top</a>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <div id="footer">
+        <!-- Footer ================================================== -->
+        <footer class="bs-docs-footer" role="contentinfo">
             <div class="container">
-                <p class="text-muted">Place sticky footer content here.</p>                
+                <p>Designed and built with all the love in the world by <a href="http://twitter.com/mdo" target="_blank">@mdo</a> and <a href="http://twitter.com/fat" target="_blank">@fat</a>.</p>
+                <p>Maintained by the <a href="https://github.com/twbs?tab=members">core team</a> with the help of <a href="https://github.com/twbs/bootstrap/graphs/contributors">our contributors</a>.</p>
+                <p>Code licensed under <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT</a>, documentation under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+                <ul class="bs-docs-footer-links muted">
+                    <li>Currently v3.1.1</li>
+                    <li>&middot;</li>
+                    <li><a href="https://github.com/twbs/bootstrap">GitHub</a></li>
+                    <li>&middot;</li>
+                    <li><a href="../getting-started/#examples">Examples</a></li>
+                    <li>&middot;</li>
+                    <li><a href="../2.3.2/">v2.3.2 docs</a></li>
+                    <li>&middot;</li>
+                    <li><a href="../about/">About</a></li>
+                    <li>&middot;</li>
+                    <li><a href="http://expo.getbootstrap.com">Expo</a></li>
+                    <li>&middot;</li>
+                    <li><a href="http://blog.getbootstrap.com">Blog</a></li>
+                    <li>&middot;</li>
+                    <li><a href="https://github.com/twbs/bootstrap/issues?state=open">Issues</a></li>
+                    <li>&middot;</li>
+                    <li><a href="https://github.com/twbs/bootstrap/releases">Releases</a></li>
+                </ul>
             </div>
-        </div>
+        </footer>
         <script type="text/javascript">
             $(function() {
-                $.ajaxSetup({ async: false });
-                /** --------------------------------- CARGANDO COMBO CON AJAX */
-                var select = '<select class="selectpicker show-menu-arrow show-tick" data-size="7">';
-                $.getJSON('{{ path('todo_combo_cuentas') }}', function(dataObj) {                    
-{#                    delete dataObj.html;#}
-                    $.each(dataObj, function(i, o) { 
-                        select += '<option value="'+o.ahId+'">'+o.ahNumeroCuenta+'</option>';
-                    });
+                $('span.expander').expander({
+                    slicePoint      : 17,
+                    widow           : 2,
+                    expandEffect    : 'show',
+                    expandSpeed     : 0,
+                    collapseEffect  : 'hide',
+                    collapseSpeed   : 0,
+                    expandText      : '>>',
+                    userCollapseText: '<<'
                 });
-                select += '</select>';
-                $('.page-header div div:first').append(select);
-                $('.selectpicker').selectpicker('refresh');
-                /** --------------------------------------------------------- */
-                
-                {#/** ------- CARGANDO LISTA DE OPCIONES CON TYPEAHEAD CON AJAX */
-                var array = []; var objIds = new Object();
-                $.getJSON('{{ path('todo_search') }}', function(data) {
-                    $.each(data, function(i,o) { 
-                        array.push(o.alNombre);
-                        objIds[o.alNombre] = o.alId;
-                    });
-                });
-                $('.form-control').typeahead({ source : array });
-                /** --------------------------------------------------------- */#}
-
-                /** --------- REALIZANDO CONSULTA AJAX Y CARGANDO EN LA TABLA */
-                $('.page-header div div:first select').change(function() {
-                    var url = '{{ path('todo_homepage', { 'id' : 'val' }) }}';
-                        url = url.replace('val', $(this).val());
-                    location.href = url;
-{#                    $('#alId').val($(this).val());#}
-{#                    $.get('{{ path('todo_combo_cuentas') }}', { id : $(this).val() } , function(data) { alert(data[0].moSaldo);#}
-{#                        $('.table tbody').html(data[data.length - 1].html);#}
-{#                    },'json');#}
-                    {#$.getJSON('{{ path('todo_combo_cuentas') }}', { id : $(this).val() }, function(dataObj){
-                        $('.table tbody').html(dataObj.html);
-                    });#}
-                });
-                /** --------------------------------------------------------- */
-                
-                {#/** --------- REALIZANDO CONSULTA AJAX Y CARGANDO EN LA TABLA */
-                $('#btnBuscar').bind('click', function() {
-                    $('.selectpicker').selectpicker('val', objIds[$('.form-control').val()]);
-                    $('.selectpicker').selectpicker('refresh');
-                    /*$.getJSON('{{ path('todo_data') }}', { id : $('.form-control').val(), opc : 'like' } , function(data) {
-                        $('.img').attr('src', data[data.length - 2].cover ? data[data.length - 2].cover : '{{ asset('uploads/images/3_door_down_tgh.jpg') }}');
-                        $('.panel-heading strong').text(data[0].albumsAl.artistasAr.arNombre);
-                        $('.media-heading').text(data[0].albumsAl.alNombre);
-                        $('#cant').text(data.length - 1);
-                        $('.table tbody').html(data[data.length - 1].html);
-                    });*/
-                });
-                /** --------------------------------------------------------- */
-                $.ajaxSetup({ async: true });#}
             });
         </script>
 {% endblock %}

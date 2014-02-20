@@ -24,12 +24,23 @@ class MovimientosController extends Controller {
                         'mo.moSaldo',
                         'ah.ahNumeroCuenta'
                        );
+        $em2 = $this->getDoctrine()->getEntityManager();
+        $q2 = $em2->getRepository('TodoBundle:Movimientos')->moTable()
+                ->select('count(mo)')
+                ->getQuery()
+                ->getSingleScalarResult();
+        Util::getMyDump($q2);
+        $filas_por_pagina = 5;
+        $pagina_actual = 1;
+        
         $q = $em->getRepository('TodoBundle:Movimientos')->moTable()
                 ->select($fields)
                 ->join('mo.ahorrosAh', 'ah')
                 ->andWhere('ah.ahId = :id')                
                 ->orderBy('mo.moFecha','desc')
-                ->setParameter('id', $request->get('id') != NULL ? $request->get('id') : 1)                
+                ->setParameter('id', $request->get('id') != NULL ? $request->get('id') : 1)
+            ->setFirstResult(0)
+            ->setMaxResults(5)
                 ->getQuery()
                 ->getArrayResult();
 //        Util::getMyDump($q);
