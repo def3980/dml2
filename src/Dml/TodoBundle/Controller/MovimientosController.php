@@ -24,27 +24,25 @@ class MovimientosController extends Controller {
                         'mo.moSaldo',
                         'ah.ahNumeroCuenta'
                        );
-        $em2 = $this->getDoctrine()->getEntityManager();
-        $q2 = $em2->getRepository('TodoBundle:Movimientos')->moTable()
-                ->select('count(mo)')
-                ->getQuery()
-                ->getSingleScalarResult();
-        Util::getMyDump($q2);
-        $filas_por_pagina = 5;
+        $filas_por_pagina = 10;
         $pagina_actual = 1;
-        
+        $total_registros = $em->getRepository('TodoBundle:Movimientos')->moCount(1);
+        $param = (int) $request->get('pag');
+        switch ($param):
+            case 0: 
+            case 1: $param = 0; break;
+            default: $param = ($param - 1) * $filas_por_pagina;
+        endswitch;
         $q = $em->getRepository('TodoBundle:Movimientos')->moTable()
                 ->select($fields)
                 ->join('mo.ahorrosAh', 'ah')
-                ->andWhere('ah.ahId = :id')                
-                ->orderBy('mo.moFecha','desc')
+                ->andWhere('ah.ahId = :id')
                 ->setParameter('id', $request->get('id') != NULL ? $request->get('id') : 1)
-            ->setFirstResult(0)
-            ->setMaxResults(5)
-                ->getQuery()
-                ->getArrayResult();
-//        Util::getMyDump($q);
-        return $this->render('TodoBundle:Movimientos:index.html.twig', array('movimientos' => $q));
+                ->setFirstResult($param)
+                ->setMaxResults($filas_por_pagina);
+//        Util::getMyDump($q->getQuery()->getArrayResult());
+//        Util::getMyDumpSQL($q->getQuery()->getSQL());
+        return $this->render('TodoBundle:Movimientos:index.html.twig', array('movimientos' => $q->getQuery()->getArrayResult()));
     }
     
     public function cuentasAhorrosAction(Request $request) {

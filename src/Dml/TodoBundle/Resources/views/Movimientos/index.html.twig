@@ -93,7 +93,7 @@
                         <h3 id="overview-doctype">HTML5 doctype</h3>
                         <p>Bootstrap makes use of certain HTML elements and CSS properties that require the use of the HTML5 doctype. Include it at the beginning of all your projects.</p>
                         <div class="table-responsive">
-                            <table class="table table-bordered table-striped responsive-utilities">
+                            <table class="table table-bordered table-striped responsive-utilities table-hover table-condensed">
                                 <thead>
                                     <tr>
                                         <th>Fecha</th>
@@ -107,7 +107,7 @@
                                 </thead>
                                 <tbody>
 {% for mo in movimientos %}
-                                    <tr>
+                                    <tr{% if loop.index0 is odd %} class="active"{% endif %}>
                                         <th>{{ mo.moFecha | date('Y-m-d') }}</th>
                                         <td><span class="expander">{{ mo.moConcepto }}</span></td>
                                         <td>{{ mo.moTipo }}</td>
