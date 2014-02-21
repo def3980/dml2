@@ -25,24 +25,28 @@ class MovimientosController extends Controller {
                         'ah.ahNumeroCuenta'
                        );
         $filas_por_pagina = 10;
-        $pagina_actual = 1;
-        $total_registros = $em->getRepository('TodoBundle:Movimientos')->moCount(1);
-        $param = (int) $request->get('pag');
-        switch ($param):
+        $pagina_actual = (int) $request->get('pag');
+        switch ($pagina_actual):
             case 0: 
-            case 1: $param = 0; break;
-            default: $param = ($param - 1) * $filas_por_pagina;
+            case 1: $pagina_actual = 0; break;
+            default: $pagina_actual = ($pagina_actual - 1) * $filas_por_pagina;
         endswitch;
+        $total_filas = $em->getRepository('TodoBundle:Movimientos')->moCount(1);
+        $total_paginas = ceil($total_filas/$filas_por_pagina);
         $q = $em->getRepository('TodoBundle:Movimientos')->moTable()
                 ->select($fields)
                 ->join('mo.ahorrosAh', 'ah')
                 ->andWhere('ah.ahId = :id')
                 ->setParameter('id', $request->get('id') != NULL ? $request->get('id') : 1)
-                ->setFirstResult($param)
+                ->setFirstResult($pagina_actual)
                 ->setMaxResults($filas_por_pagina);
-//        Util::getMyDump($q->getQuery()->getArrayResult());
 //        Util::getMyDumpSQL($q->getQuery()->getSQL());
-        return $this->render('TodoBundle:Movimientos:index.html.twig', array('movimientos' => $q->getQuery()->getArrayResult()));
+        $params = array(
+                        'movimientos'   => $q->getQuery()->getArrayResult(),
+                        'pagina_actual' => $request->get('pag'),
+                        'total_paginas' => $total_paginas,
+                       );
+        return $this->render('TodoBundle:Movimientos:index.html.twig', $params);
     }
     
     public function cuentasAhorrosAction(Request $request) {

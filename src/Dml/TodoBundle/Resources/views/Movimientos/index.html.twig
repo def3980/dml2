@@ -107,7 +107,7 @@
                                 </thead>
                                 <tbody>
 {% for mo in movimientos %}
-                                    <tr{% if loop.index0 is odd %} class="active"{% endif %}>
+                                    <tr>
                                         <th>{{ mo.moFecha | date('Y-m-d') }}</th>
                                         <td><span class="expander">{{ mo.moConcepto }}</span></td>
                                         <td>{{ mo.moTipo }}</td>
@@ -120,15 +120,25 @@
                                 </tbody>
                             </table>
                         </div>
+{% if total_paginas %}
                         <ul class="pagination" style="margin: 0">
-                            <li><a href="#">&laquo;</a></li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#">&raquo;</a></li>
+{% for i in 1..total_paginas %}
+{% if loop.first %}
+                            <li{% if pagina_actual == 1 %} class="disabled"{% endif %}>
+                                <a href="{{ path('todo_homepage', { 'pag' : 1 }) }}">&laquo;</a>
+                            </li>
+{% endif %}
+                            <li{% if pagina_actual == i %} class="disabled"{% endif %}>
+                                <a href="{{ path('todo_homepage', { 'pag' : i }) }}">{{ i }}</a>
+                            </li>
+{% if loop.last %}
+                            <li{% if pagina_actual == total_paginas %} class="disabled"{% endif %}>
+                                <a href="{{ path('todo_homepage', { 'pag' : total_paginas }) }}">&raquo;</a>
+                            </li>
+{% endif %}
+{% endfor %}
                         </ul>
+{% endif %}
                         <h3 id="overview-mobile">Mobile first</h3>
                         <p>With Bootstrap 2, we added optional mobile friendly styles for key aspects of the framework. With Bootstrap 3, we've rewritten the project to be mobile friendly from the start. Instead of adding on optional mobile styles, they're baked right into the core. In fact, <strong>Bootstrap is mobile first</strong>. Mobile first styles can be found throughout the entire library instead of in separate files.</p>
                         <p>To ensure proper rendering and touch zooming, <strong>add the viewport meta tag</strong> to your <code>&lt;head&gt;</code>.</p>
