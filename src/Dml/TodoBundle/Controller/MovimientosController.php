@@ -33,6 +33,18 @@ class MovimientosController extends Controller {
         endswitch;
         $total_filas = $em->getRepository('TodoBundle:Movimientos')->moCount(1);
         $total_paginas = ceil($total_filas/$filas_por_pagina);
+        $array = array();
+        for ( $i = 1 ; $i <= $total_paginas ; $i += 1):
+            $array[$i] = $i;
+        endfor;
+        $aux = (int) $request->get('pag');
+        $ref = 3;
+        $ini = $aux == 0 || $aux == 1 ? 1 : $aux;
+        $fin = $aux == $ref ? $ref : $aux + $ref;
+        $myrange = range($ini, $fin);
+        $output = array_intersect($array, $myrange);
+
+        Util::getMyDump($output);
         $q = $em->getRepository('TodoBundle:Movimientos')->moTable()
                 ->select($fields)
                 ->join('mo.ahorrosAh', 'ah')
