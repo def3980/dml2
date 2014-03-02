@@ -44,7 +44,7 @@ class MovimientosController extends Controller {
         $myrange = range($ini, $fin);
         $output = array_intersect($array, $myrange);
 
-        Util::getMyDump($output);
+//        Util::getMyDump($output);
         $q = $em->getRepository('TodoBundle:Movimientos')->moTable()
                 ->select($fields)
                 ->join('mo.ahorrosAh', 'ah')
