@@ -122,14 +122,14 @@
                         </div>
 {% if total_paginas %}
                         <ul class="pagination" style="margin: 0">
-{% for i in 1..total_paginas %}
+{% for lk in links %}
 {% if loop.first %}
                             <li{% if pagina_actual == 1 %} class="disabled"{% endif %}>
                                 <a href="{{ path('todo_homepage', { 'pag' : 1 }) }}">&laquo;</a>
                             </li>
 {% endif %}
-                            <li{% if pagina_actual == i %} class="disabled"{% endif %}>
-                                <a href="{{ path('todo_homepage', { 'pag' : i }) }}">{{ i }}</a>
+                            <li{% if pagina_actual == lk %} class="disabled"{% endif %}>
+                                <a href="{{ path('todo_homepage', { 'pag' : lk }) }}">{{ lk }}</a>
                             </li>
 {% if loop.last %}
                             <li{% if pagina_actual == total_paginas %} class="disabled"{% endif %}>
