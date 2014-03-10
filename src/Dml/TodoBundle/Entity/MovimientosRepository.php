@@ -2,6 +2,7 @@
 
 namespace Dml\TodoBundle\Entity;
 
+use Doctrine\ORM\Query\ResultSetMappingBuilder;
 use Doctrine\ORM\EntityRepository;
 
 /**
@@ -37,6 +38,10 @@ class MovimientosRepository extends EntityRepository {
      * 
      * Función que realiza el conteo de todas las filas de la tabla movimientos
      * 
+     * @param type $id <p>
+     * Identificador que diferencia las cuentas de ahorros que puede tener
+     * el usuario
+     * </p>
      * @return int Conteo total de registros
      */
     public function moCount($id) {
@@ -48,5 +53,5 @@ class MovimientosRepository extends EntityRepository {
                     ->getQuery()
                     ->getSingleScalarResult();
     }
-    
+
 }

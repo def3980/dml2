@@ -5,9 +5,8 @@
 @echo off
 set ruta=%cd%
 set exec="\app\console"
-set espacio= 
 echo.
-php %ruta%%exec%%espacio%doctrine:database:drop --force
-php %ruta%%exec%%espacio%doctrine:database:create
-php %ruta%%exec%%espacio%doctrine:schema:create
-php %ruta%%exec%%espacio%doctrine:fixtures:load --no-interaction
+php %ruta%%exec% doctrine:database:drop --force
+php %ruta%%exec% doctrine:database:create
+php %ruta%%exec% doctrine:schema:create
+php %ruta%%exec% doctrine:fixtures:load --no-interaction

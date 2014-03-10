@@ -53,16 +53,28 @@ class MovimientosController extends Controller {
 //        endif;
 //        $myrange = range($ini, $fin);            
 //        $output = array_intersect($array, $myrange);
-$var = Paginador::pager()->getQuery();
-        Util::getMyDump($var);
-        $q = $em->getRepository('TodoBundle:Movimientos')->moTable()
-                ->select($fields)
-                ->join('mo.ahorrosAh', 'ah')
-                ->andWhere('ah.ahId = :id')
-                ->setParameter('id', $request->get('id') != NULL ? $request->get('id') : 1)
-                ->setFirstResult($pagina_actual)
-                ->setMaxResults($filas_por_pagina);
+        
+//        $q = $em->getRepository('TodoBundle:Movimientos')->moTable()
+//                ->select($fields)
+//                ->join('mo.ahorrosAh', 'ah')
+//                ->andWhere('ah.ahId = :id')
+//                ->setParameter('id', $request->get('id') != NULL ? $request->get('id') : 1)
+//                ->setFirstResult($pagina_actual)
+//                ->setMaxResults($filas_por_pagina);
+        $p = new Paginador();
+        $repo = $em->getRepository('TodoBundle:Movimientos')
+                   ->moTable()
+                   ->select($fields)
+                   ->join('mo.ahorrosAh', 'ah')
+                   ->andWhere('ah.ahId = :id')
+                   ->setParameter('id', $request->get('id') != NULL ? $request->get('id') : 1);
+//        $repoProcess = $repo->getProcessesNativeQuery();
+//        $repoProcess = $repo->getProcessesQueryBuilder();
+        $pag = $p->paginate($repo, 1, 3);
+        Util::getMyDump($pag);
+        
 //        Util::getMyDumpSQL($q->getQuery()->getSQL());
+        
         $params = array(
                         'movimientos'   => $q->getQuery()->getArrayResult(),
                         'pagina_actual' => $request->get('pag'),

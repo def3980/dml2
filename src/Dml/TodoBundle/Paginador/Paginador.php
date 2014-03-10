@@ -2,14 +2,53 @@
 
 namespace Dml\TodoBundle\Paginador;
 
-use Doctrine\ORM\EntityManager;
-
 /**
  * Description of Paginador
  *
  * @author Oswaldo
  */
-class Paginador extends EntityManager {
+class Paginador {
+    
+    private $count;
+    private $currentPage;
+    private $totalPages;
+    
+    public function paginate($query, $page = 1, $limit = 10) {
+        
+        // dando el valor actual a la página
+        $this->currentPage = $page;
+        
+        // clonando el queryBuilder
+        $clone = clone $query;
+        
+        // contando el numero de registros de la consulta
+        $this->count = count($clone->getQuery()->getArrayResult());
+        
+        // dando el valor al limite que tendrá la consulta a la vez que hago un cast
+        $limit = (int) $limit;
+        
+        // obteniendo el total de paginas
+        $this->totalPages = ceil($this->count / $limit);
+        
+        // limitando
+        $query = $query->setFirstResult(($this->currentPage - 1) * $limit)
+                       ->setMaxResults($filas_por_pagina);
+        
+        return $query->getQuery()->getArrayResult();
+    }
+
+    public function getCount() {
+        return $this->$count;
+    }
+
+    public function getCurrentPage() {
+        return $this->currentPage;
+    }
+
+    public function getTotalPages() {
+        return $this->$totalPages;
+    }
+
 
     /**
      * <b>Por Oswaldo Rojas, realizado el Mié 05 Mar 2014 21:32:19</b>
@@ -23,12 +62,8 @@ class Paginador extends EntityManager {
      * </p>
      * @return string formateado en modena
      */
-    static public function pager($value = null) {
-        $em = $this->getDoctrine();
-        return $em->createQueryBuilder('mo')
-                    ->where('mo.moBorradoLogico = :bool')
-                    ->setParameter('bool', false)
-                    ->orderBy('mo.moId', 'desc');
+    static public function pager($filas_x_pag, $pag_actual, $dql) {
+//        $em->getRepository('TodoBundle:Movimientos')
 //        $filas_por_pagina = 10;
 //        $pagina_actual = (int) $request->get('pag');
 //        switch ($pagina_actual):
