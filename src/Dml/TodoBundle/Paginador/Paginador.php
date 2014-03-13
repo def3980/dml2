@@ -32,7 +32,7 @@ class Paginador {
         
         // limitando
         $query = $query->setFirstResult(($this->currentPage - 1) * $limit)
-                       ->setMaxResults($filas_por_pagina);
+                       ->setMaxResults($limit);
         
         return $query->getQuery()->getArrayResult();
     }
