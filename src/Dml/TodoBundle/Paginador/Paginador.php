@@ -2,96 +2,87 @@
 
 namespace Dml\TodoBundle\Paginador;
 
+use Dml\TodoBundle\Pager\Pager;
+
 /**
  * Description of Paginador
  *
  * @author Oswaldo
  */
-class Paginador {
-    
-    private $count;
-    private $currentPage;
-    private $totalPages;
-    
-    public function paginate($query, $page = 1, $limit = 10) {
-        
-        // dando el valor actual a la página
-        $this->currentPage = $page;
-        
-        // clonando el queryBuilder
-        $clone = clone $query;
-        
-        // contando el numero de registros de la consulta
-        $this->count = count($clone->getQuery()->getArrayResult());
-        
-        // dando el valor al limite que tendrá la consulta a la vez que hago un cast
-        $limit = (int) $limit;
-        
-        // obteniendo el total de paginas
-        $this->totalPages = ceil($this->count / $limit);
-        
-        // limitando
-        $query = $query->setFirstResult(($this->currentPage - 1) * $limit)
-                       ->setMaxResults($limit);
-        
-        return $query->getQuery()->getArrayResult();
-    }
+class Paginador extends Pager {
 
-    public function getCount() {
-        return $this->$count;
-    }
-
-    public function getCurrentPage() {
-        return $this->currentPage;
-    }
-
-    public function getTotalPages() {
-        return $this->$totalPages;
-    }
+    /** 
+     * Declaracion de variables protegidas para la utilizacion del paginador
+     * y de las clases que se extienden de la misma
+     */
+    protected
+        $select            = null,
+        $tableMethodName   = null,
+        $tableMethodCalled = false;
 
 
     /**
-     * <b>Por Oswaldo Rojas, realizado el Mié 05 Mar 2014 21:32:19</b>
-     * 
-     * Función que nos permite crear un paginador con opciones de navegacion
-     * y que a la vez indica varias controles necesarios para mostrarlo en la
-     * vista y ser reutilizado
-     * 
-     * @param type $value <p>
-     * Valor necesario para la conversion
-     * </p>
-     * @return string formateado en modena
+     * Iniciando el paginador con las opciones indicadas por el usuario
      */
-    static public function pager($filas_x_pag, $pag_actual, $dql) {
-//        $em->getRepository('TodoBundle:Movimientos')
-//        $filas_por_pagina = 10;
-//        $pagina_actual = (int) $request->get('pag');
-//        switch ($pagina_actual):
-//        case 0: 
-//        case 1: $pagina_actual = 0; break;
-//        default: $pagina_actual = ($pagina_actual - 1) * $filas_por_pagina;
-//        endswitch;
-//        $total_filas = $em->getRepository('TodoBundle:Movimientos')->moCount(1);
-//        $total_paginas = ceil($total_filas/$filas_por_pagina);
-//        $array = array();
-//        for ( $i = 1 ; $i <= $total_paginas ; $i += 1 ) $array[$i] = $i;
-//        $aux = (int) $request->get('pag');
-//        $ref = 3;
-//        if ($aux < $ref):
-//        $ini = 1;
-//        $fin = $ref;
-//        elseif ($aux >= $ref && $aux <= ($total_paginas - $ref)):
-//        $ini = $aux - 1;
-//        $fin = $aux + 1;
-//        elseif ($aux == ($total_paginas - $ref)):
-//        $ini = $aux;
-//        $fin = $total_paginas;
-//        elseif ($aux > ($total_paginas - $ref) && $aux <= $total_paginas):
-//        $ini = $total_paginas - ($ref - 1);
-//        $fin = $total_paginas;
-//        endif;
-//        $myrange = range($ini, $fin);            
-//        $output = array_intersect($array, $myrange);
-    }
+    public function init() {
+        $countQuery = $this->getCountQuery(); // clono la consulta previamente
+        $count      = count($countQuery->getQuery()->getArrayResult());
+        
+        $this->setNbResults($count);
+        
+        $query = $this->getSelect();
+        $query->setFirstResult(0)
+              ->setMaxResults(0);
 
+        if (0 == $this->getPage() ||
+            0 == $this->getMaxPerPage() ||
+            0 == $this->getNbResults()):
+            $this->setLastPage(0);
+        else:
+            $offset = ($this->getPage() - 1) * $this->getMaxPerPage();
+            $this->setLastPage(ceil($this->getNbResults() / $this->getMaxPerPage()));
+            $query->setFirstResult($offset)
+                  ->setMaxResults($this->getMaxPerPage());
+        endif;
+    }
+    
+    /**
+     * Retorna la consulta o query para el paginador
+     * 
+     * @return type QueryBuilder
+     */
+    public function getSelect() { return $this->select; }
+
+    /**
+     * Guarda el objeto de la consulta o query para el paginador
+     * 
+     * @param type QueryBuilder $select
+     */
+    public function setSelect($select) { $this->select = $select; }
+    
+    /**
+     * Returns a query for counting the total results.
+     * Retorna una consulta o query builder del total de resultados
+     *
+     * @return type QueryBuilder
+     */
+    public function getCountQuery() {
+        $query = clone $this->getSelect();
+        $query->setFirstResult(0)
+              ->setMaxResults(0);
+
+        return $query;
+    }
+    
+    /**
+     * Obtiene todos los resultados para la instancia de la página
+     *
+     * @param mixed $hydrationMode Un modo de indetificador de hidratación
+     * @return Doctrine_Collection|array
+     */
+    public function getResults($hydrationMode = null) {
+//        return $this->getQuery()->execute(array(), $hydrationMode);
+//        return $this->getSelect()->getQuery()->getResult(Query::HYDRATE_ARRAY);
+        return $this->getSelect()->getQuery()->getSQL();//->getResult($hydrationMode);
+    }
 }
