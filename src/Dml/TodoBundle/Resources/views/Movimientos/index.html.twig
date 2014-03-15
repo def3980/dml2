@@ -106,7 +106,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-{% for mo in movimientos %}
+{% for mo in pager.getResults() %}
                                     <tr>
                                         <th>{{ mo.moFecha | date('Y-m-d') }}</th>
                                         <td><span class="expander">{{ mo.moConcepto }}</span></td>
@@ -120,23 +120,25 @@
                                 </tbody>
                             </table>
                         </div>
-{% if total_paginas %}
+{% if pager.haveTopaginate() %}
                         <ul class="pagination" style="margin: 0">
-{% for lk in links %}
-{% if loop.first %}
-                            <li{% if pagina_actual == 1 %} class="disabled"{% endif %}>
-                                <a href="{{ path('todo_homepage', { 'pag' : 1 }) }}">&laquo;</a>
+                            <li{% if pager.getPage == 1 %} class="disabled"{% endif %}>
+                                <a href="{{ path('todo_homepage', { 'page' : pager.getFirstPage() }) }}">&LeftArrow;</a>
                             </li>
-{% endif %}
-                            <li{% if pagina_actual == lk %} class="disabled"{% endif %}>
-                                <a href="{{ path('todo_homepage', { 'pag' : lk }) }}">{{ lk }}</a>
+                            <li{% if pager.getPage == pager.getPreviousPage %} class="disabled"{% endif %}>
+                                <a href="{{ path('todo_homepage', { 'page' : pager.getPreviousPage() }) }}">&laquo;</a>
                             </li>
-{% if loop.last %}
-                            <li{% if pagina_actual == total_paginas %} class="disabled"{% endif %}>
-                                <a href="{{ path('todo_homepage', { 'pag' : total_paginas }) }}">&raquo;</a>
+{% for link in pager.getLinks() %}
+                            <li{% if pager.getPage == link %} class="disabled"{% endif %}>
+                                <a href="{{ path('todo_homepage', { 'page' : link }) }}">{{ link }}</a>
                             </li>
-{% endif %}
 {% endfor %}
+                            <li{% if pager.getPage == pager.getNextPage() %} class="disabled"{% endif %}>
+                                <a href="{{ path('todo_homepage', { 'page' : pager.getNextPage() }) }}">&raquo;</a>
+                            </li>
+                            <li{% if pager.getPage == pager.getLastPage() %} class="disabled"{% endif %}>
+                                <a href="{{ path('todo_homepage', { 'page' : pager.getLastPage() }) }}">&RightArrow;</a>
+                            </li>
                         </ul>
 {% endif %}
                         <h3 id="overview-mobile">Mobile first</h3>

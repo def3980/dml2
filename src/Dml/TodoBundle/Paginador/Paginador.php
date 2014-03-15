@@ -5,9 +5,11 @@ namespace Dml\TodoBundle\Paginador;
 use Dml\TodoBundle\Pager\Pager;
 
 /**
- * Description of Paginador
+ * Detalle de la clase Paginador
+ * La presente nos ayuda a iniciar el paginador ya que usa métodos definidos
+ * de una clase padre llamada Pager.php
  *
- * @author Oswaldo
+ * @author Oswaldo Rojas, Sáb 15 Mar 2014 10:17:11
  */
 class Paginador extends Pager {
 
@@ -47,14 +49,14 @@ class Paginador extends Pager {
     /**
      * Retorna la consulta o query para el paginador
      * 
-     * @return type QueryBuilder
+     * @return QueryBuilder
      */
     public function getSelect() { return $this->select; }
 
     /**
      * Guarda el objeto de la consulta o query para el paginador
      * 
-     * @param type QueryBuilder $select
+     * @param QueryBuilder $select
      */
     public function setSelect($select) { $this->select = $select; }
     
@@ -62,7 +64,7 @@ class Paginador extends Pager {
      * Retorna una consulta o query builder clonada para despues ser ejecutada
      * y devolver el total de resultados
      *
-     * @return type QueryBuilder
+     * @return QueryBuilder
      */
     public function getCountQuery() { return clone $this->getSelect(); }
     
@@ -72,9 +74,10 @@ class Paginador extends Pager {
      * @param mixed $hydrationMode Un modo de indetificador de hidratación
      * @return Doctrine_Collection|array
      */
-    public function getResults($hydrationMode = null) {
+    public function getResults($hydrationMode = \Doctrine\ORM\Query::HYDRATE_OBJECT) {
 //        return $this->getQuery()->execute(array(), $hydrationMode);
 //        return $this->getSelect()->getQuery()->getResult(Query::HYDRATE_ARRAY);
-        return $this->getSelect()->getQuery()->getSQL();//->getResult($hydrationMode);
+//        return $this->getSelect()->getQuery()->getSQL();//->getResult($hydrationMode);
+        return $this->getSelect()->getQuery()->getResult($hydrationMode);
     }
 }

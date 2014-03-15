@@ -35,9 +35,7 @@ class MovimientosController extends Controller {
         $this->pager->setSelect($repo);
         $this->pager->setPage($request->get('page') != NULL ? $request->get('page') : 1);
         $this->pager->init();
-        Util::getMyDumpSQL($this->pager->getResults());
-        
-        return $this->render('TodoBundle:Movimientos:abstract.html.twig', array('pager' => $this->pager));
+        return $this->render('TodoBundle:Movimientos:index.html.twig', array('pager' => $this->pager));
     }
     
     public function cuentasAhorrosAction(Request $request) {

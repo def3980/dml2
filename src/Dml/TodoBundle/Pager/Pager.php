@@ -38,8 +38,8 @@ abstract class Pager {
      * defecto que necesita en el paginador para empezar a realizar la consulta
      * que nos devuelve los datos necesarios para paginar
      * 
-     * @param type $class El nombre del modelo de la clase para Symfony2
-     * @param type $maxPerPage Numero de registros que se muestran por página
+     * @param $class El nombre del modelo de la clase para Symfony2
+     * @param $maxPerPage Numero de registros que se muestran por página
      */
     public function __construct($class, $maxPerPage = 10) {
         $this->setClass($class);
@@ -57,7 +57,7 @@ abstract class Pager {
     /**
      * Retorna un arreglo de resultados de la páginad dada.
      *
-     * @return type array
+     * @return array
      */
     abstract public function getResults();
 
@@ -65,28 +65,28 @@ abstract class Pager {
      * Retorna el nombre del modelo guardado en el constructor y nos servirá para
      * realizar la consulta correspondiente.
      * 
-     * @return type string
+     * @return string
      */
     public function getClass() { return $this->class; }
 
     /**
      * Guarda el nombre de la clase indicada previamente en el constructor
      * 
-     * @param type string $class
+     * @param string $class
      */
     public function setClass($class) { $this->class = $class; }
 
     /**
      * Retorna la página actual
      * 
-     * @return type integer
+     * @return integer
      */
     public function getPage() { return $this->page; }
 
     /**
      * Guarda la página actual
      * 
-     * @param type $page
+     * @param $page
      */
     public function setPage($page) {
         $this->page = intval($page);
@@ -99,14 +99,14 @@ abstract class Pager {
     /**
      * Retorna el último número de página
      * 
-     * @return type integer
+     * @return integer
      */
     public function getLastPage() { return $this->lastPage; }
 
     /**
      * Guarda el último número de página
      * 
-     * @param integer $page
+     * @param $page
      */
     public function setLastPage($page) {
         $this->lastPage = $page;
@@ -117,14 +117,14 @@ abstract class Pager {
     /**
      * Retorna el número máximo de resultados por página
      * 
-     * @return type
+     * @return integer
      */
     public function getMaxPerPage() { return $this->maxPerPage; }
 
     /**
      * Guarda el número máximo de resultados por página
      * 
-     * @param type $max
+     * @param $max
      */
     public function setMaxPerPage($max) {
         switch ($max):
@@ -147,14 +147,14 @@ abstract class Pager {
     /**
      * Retorna el número de resultados
      * 
-     * @return type integer
+     * @return integer
      */
     public function getNbResults() { return $this->nbResults; }
 
     /**
      * Guarda el número de resultados
      * 
-     * @param type $nb
+     * @param $nb
      */
     public function setNbResults($nb) { $this->nbResults = $nb; }
     
@@ -166,5 +166,55 @@ abstract class Pager {
     public function haveToPaginate() {
         return $this->getMaxPerPage() && $this->getNbResults() > $this->getMaxPerPage();
     }
+
+    /**
+     * Retorna el primer número de página
+     *
+     * @return integer
+     */
+    public function getFirstPage() { return 1; }
+    
+    /**
+     * Retorna el número de la siguiente página.
+     *
+     * @return integer
+     */
+    public function getNextPage() { return min($this->getPage() + 1, $this->getLastPage()); }
+
+    /**
+     * Retorna el número de la página anterior
+     *
+     * @return integer
+     */
+    public function getPreviousPage() { return max($this->getPage() - 1, $this->getFirstPage()); }
+    
+    /**
+     * Retorna una arreglo de los números de páginas a usar los enlaces del
+     * paginador.
+     *
+     * @param  integer $nb_links El número máximo de páginas a retornar
+     * @return array
+     */
+    public function getLinks($nb_links = 5) {
+        $links = array();
+        $tmp   = $this->page - floor($nb_links / 2);
+        $check = $this->lastPage - $nb_links + 1;
+        $limit = $check > 0 ? $check : 1;
+        $begin = $tmp > 0 ? ($tmp > $limit ? $limit : $tmp) : 1;
+
+        $i = (int) $begin;
+        while ($i < $begin + $nb_links && $i <= $this->lastPage) $links[] = $i++;
+
+        $this->currentMaxLink = count($links) ? $links[count($links) - 1] : 1;
+
+        return $links;
+    }
+    
+    /**
+     * Retorna el enlace máximo de la página.
+     *
+     * @return integer
+     */
+    public function getCurrentMaxLink() { return $this->currentMaxLink; }
 
 }
