@@ -27,13 +27,11 @@ class Paginador extends Pager {
     public function init() {
         $countQuery = $this->getCountQuery(); // clono la consulta previamente
         $count      = count($countQuery->getQuery()->getArrayResult());
-        
+                
         $this->setNbResults($count);
         
         $query = $this->getSelect();
-        $query->setFirstResult(0)
-              ->setMaxResults(0);
-
+        
         if (0 == $this->getPage() ||
             0 == $this->getMaxPerPage() ||
             0 == $this->getNbResults()):
@@ -61,18 +59,12 @@ class Paginador extends Pager {
     public function setSelect($select) { $this->select = $select; }
     
     /**
-     * Returns a query for counting the total results.
-     * Retorna una consulta o query builder del total de resultados
+     * Retorna una consulta o query builder clonada para despues ser ejecutada
+     * y devolver el total de resultados
      *
      * @return type QueryBuilder
      */
-    public function getCountQuery() {
-        $query = clone $this->getSelect();
-        $query->setFirstResult(0)
-              ->setMaxResults(0);
-
-        return $query;
-    }
+    public function getCountQuery() { return clone $this->getSelect(); }
     
     /**
      * Obtiene todos los resultados para la instancia de la página
