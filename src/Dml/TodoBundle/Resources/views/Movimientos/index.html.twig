@@ -122,22 +122,22 @@
                         </div>
 {% if pager.haveTopaginate() %}
                         <ul class="pagination" style="margin: 0">
-                            <li{% if pager.getPage == 1 %} class="disabled"{% endif %}>
-                                <a href="{{ path('todo_homepage', { 'page' : pager.getFirstPage() }) }}">&LeftArrow;</a>
+                            <li{% if pager.getPage() == 1 %} class="disabled"{% endif %}>
+                                <a{% if pager.getPage() != 1 %} id="pag-{{ pager.getFirstPage() }}"{% else %} onclick="javascript:void(0)"{% endif %}>&LeftArrow;</a>
                             </li>
-                            <li{% if pager.getPage == pager.getPreviousPage %} class="disabled"{% endif %}>
-                                <a href="{{ path('todo_homepage', { 'page' : pager.getPreviousPage() }) }}">&laquo;</a>
+                            <li{% if pager.getPage() == pager.getPreviousPage() %} class="disabled"{% endif %}>
+                                <a{% if pager.getPage != pager.getPreviousPage() %} id="pag-{{ pager.getPreviousPage() }}"{% else %} onclick="javascript:void(0)"{% endif %}>&laquo;</a>
                             </li>
-{% for link in pager.getLinks() %}
-                            <li{% if pager.getPage == link %} class="disabled"{% endif %}>
-                                <a href="{{ path('todo_homepage', { 'page' : link }) }}">{{ link }}</a>
+{% for link in pager.getLinks(3) %}
+                            <li{% if pager.getPage() == link %} class="disabled"{% endif %}>
+                                <a{% if pager.getPage() != link %} id="pag-{{ link }}"{% endif %} onclick="javascript:void(0)">{{ link }}</a>
                             </li>
 {% endfor %}
-                            <li{% if pager.getPage == pager.getNextPage() %} class="disabled"{% endif %}>
-                                <a href="{{ path('todo_homepage', { 'page' : pager.getNextPage() }) }}">&raquo;</a>
+                            <li{% if pager.getPage() == pager.getNextPage() %} class="disabled"{% endif %}>
+                                <a{% if pager.getPage() != pager.getNextPage() %} id="pag-{{ pager.getNextPage() }}"{% else %} onclick="javascript:void(0)"{% endif %}>&RightArrow;</a>
                             </li>
-                            <li{% if pager.getPage == pager.getLastPage() %} class="disabled"{% endif %}>
-                                <a href="{{ path('todo_homepage', { 'page' : pager.getLastPage() }) }}">&RightArrow;</a>
+                            <li{% if pager.getPage() == pager.getLastPage() %} class="disabled"{% endif %}>
+                                <a{% if pager.getPage != pager.getLastPage() %} id="pag-{{ pager.getLastPage() }}"{% else %} onclick="javascript:void(0)"{% endif %}>&raquo;</a>
                             </li>
                         </ul>
 {% endif %}
@@ -217,15 +217,24 @@
         <script type="text/javascript">
             $(function() {
                 $('span.expander').expander({
-                    slicePoint      : 17,
-                    widow           : 2,
-                    expandEffect    : 'show',
-                    expandSpeed     : 0,
-                    collapseEffect  : 'hide',
-                    collapseSpeed   : 0,
-                    expandText      : '>>',
-                    userCollapseText: '<<'
+                    slicePoint       : 17,
+                    widow            : 2,
+                    expandEffect     : 'show',
+                    expandSpeed      : 0,
+                    collapseEffect   : 'hide',
+                    collapseSpeed    : 0,
+                    expandText       : '>>',
+                    userCollapseText : '<<'
                 });
+{% if pager.haveTopaginate() %}
+{%  if pager.getPage() != 1 %}
+                $('#pag-{{ pager.getFirstPage() }}').bind('click', function(){
+                    alert($(this).val());
+                });
+{%  endif %}
+{% if pager.getPage != pager.getPreviousPage() %}
+{% endif %}
+{% endif %}
             });
         </script>
 {% endblock %}

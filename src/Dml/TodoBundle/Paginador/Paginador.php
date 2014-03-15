@@ -22,7 +22,6 @@ class Paginador extends Pager {
         $tableMethodName   = null,
         $tableMethodCalled = false;
 
-
     /**
      * Iniciando el paginador con las opciones indicadas por el usuario
      */
@@ -75,9 +74,6 @@ class Paginador extends Pager {
      * @return Doctrine_Collection|array
      */
     public function getResults($hydrationMode = \Doctrine\ORM\Query::HYDRATE_OBJECT) {
-//        return $this->getQuery()->execute(array(), $hydrationMode);
-//        return $this->getSelect()->getQuery()->getResult(Query::HYDRATE_ARRAY);
-//        return $this->getSelect()->getQuery()->getSQL();//->getResult($hydrationMode);
         return $this->getSelect()->getQuery()->getResult($hydrationMode);
     }
 }
