@@ -92,6 +92,16 @@
                         <p class="lead">Get the lowdown on the key pieces of Bootstrap's infrastructure, including our approach to better, faster, stronger web development.</p>
                         <h3 id="overview-ahorros">Cuentas de ahorros</h3>
                         <p>Aqui encontramos de forma de tallada las cuentas de ahorros que tiene el usuario ordenados del &uacute;ltimo al primero.</p>
+                        <div class="row" style="padding-bottom: 1%">
+                            <div class="col-md-9" style="padding-top: 8px; text-align: right;">Cuentas :</div>
+                            <div class="col-md-3">
+                                <select id="ah" class="form-control">
+{% for ah in ahorros %}
+                                    <option value="{{ ah.ahId }}">{{ ah.ahNumeroCuenta }}</option>
+{% endfor %}
+                                </select>
+                            </div>
+                        </div>
                         <div class="table-responsive">
                             <table class="table table-bordered table-striped responsive-utilities table-hover table-condensed">
                                 <thead>
@@ -106,41 +116,24 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-{% for mo in pager.getResults() %}
-                                    <tr>
-                                        <th>{{ mo.moFecha | date('Y-m-d') }}</th>
-                                        <td><span class="expander">{{ mo.moConcepto }}</span></td>
-                                        <td>{{ mo.moTipo }}</td>
-                                        <td>{{ mo.moDocumento }}</td>
-                                        <td><span class="expander">{{ mo.moOficina }}</span></td>
-                                        <td>{{ mo.moMonto }}</td>
-                                        <td>{{ mo.moSaldo }}</td>
-                                    </tr>
-{% endfor %}
+{{ include ('TodoBundle:Movimientos:mo_list.html.twig', { 'pager' : pager }) }}
                                 </tbody>
                             </table>
                         </div>
-{% if pager.haveTopaginate() %}
-                        <ul class="pagination" style="margin: 0">
-                            <li{% if pager.getPage() == 1 %} class="disabled"{% endif %}>
-                                <a{% if pager.getPage() != 1 %} id="pag-{{ pager.getFirstPage() }}"{% else %} onclick="javascript:void(0)"{% endif %}>&LeftArrow;</a>
-                            </li>
-                            <li{% if pager.getPage() == pager.getPreviousPage() %} class="disabled"{% endif %}>
-                                <a{% if pager.getPage != pager.getPreviousPage() %} id="pag-{{ pager.getPreviousPage() }}"{% else %} onclick="javascript:void(0)"{% endif %}>&laquo;</a>
-                            </li>
-{% for link in pager.getLinks(3) %}
-                            <li{% if pager.getPage() == link %} class="disabled"{% endif %}>
-                                <a{% if pager.getPage() != link %} id="pag-{{ link }}"{% endif %} onclick="javascript:void(0)">{{ link }}</a>
-                            </li>
-{% endfor %}
-                            <li{% if pager.getPage() == pager.getNextPage() %} class="disabled"{% endif %}>
-                                <a{% if pager.getPage() != pager.getNextPage() %} id="pag-{{ pager.getNextPage() }}"{% else %} onclick="javascript:void(0)"{% endif %}>&RightArrow;</a>
-                            </li>
-                            <li{% if pager.getPage() == pager.getLastPage() %} class="disabled"{% endif %}>
-                                <a{% if pager.getPage != pager.getLastPage() %} id="pag-{{ pager.getLastPage() }}"{% else %} onclick="javascript:void(0)"{% endif %}>&raquo;</a>
-                            </li>
-                        </ul>
-{% endif %}
+                        <div class="row">
+                            <div class="col-md-9 miPager">
+{{ include ('TodoBundle:Movimientos:mo_pager.html.twig', { 'pager' : pager }) }}
+                            </div>
+                            <div class="col-md-3">
+                                <div class="btn-toolbar pull-right" role="toolbar">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default">
+                                            Total: {{ pager.getNbResults() }}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <h3 id="overview-mobile">Mobile first</h3>
                         <p>With Bootstrap 2, we added optional mobile friendly styles for key aspects of the framework. With Bootstrap 3, we've rewritten the project to be mobile friendly from the start. Instead of adding on optional mobile styles, they're baked right into the core. In fact, <strong>Bootstrap is mobile first</strong>. Mobile first styles can be found throughout the entire library instead of in separate files.</p>
                         <p>To ensure proper rendering and touch zooming, <strong>add the viewport meta tag</strong> to your <code>&lt;head&gt;</code>.</p>
@@ -216,6 +209,17 @@
         </footer>
         <script type="text/javascript">
             $(function() {
+                miExpander();
+                $('#ah').bind('change', function(){
+                    var url_list  = '{{ path('todo_mo_list', { 'id' : 'val' }) }}',
+                        url_list  = url_list.replace('val', $(this).val()),
+                        url_pager = '{{ path('todo_mo_pager', { 'id' : 'val' }) }}',
+                        url_pager = url_pager.replace('val', $(this).val());
+                    $.post(url_list, function(data) { $('.table tbody').html(data); miExpander(); });
+                    $.post(url_pager, function(data) { $('.miPager').html(data); });
+                });
+            });
+            function miExpander() {
                 $('span.expander').expander({
                     slicePoint       : 17,
                     widow            : 2,
@@ -226,15 +230,6 @@
                     expandText       : '>>',
                     userCollapseText : '<<'
                 });
-{% if pager.haveTopaginate() %}
-{%  if pager.getPage() != 1 %}
-                $('#pag-{{ pager.getFirstPage() }}').bind('click', function(){
-                    alert($(this).val());
-                });
-{%  endif %}
-{% if pager.getPage != pager.getPreviousPage() %}
-{% endif %}
-{% endif %}
-            });
+            }
         </script>
 {% endblock %}

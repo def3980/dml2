@@ -1,0 +1,11 @@
+{% for mo in pager.getResults() %}
+                                    <tr>
+                                        <th>{{ mo.moFecha | date('Y-m-d') }}</th>
+                                        <td><span class="expander">{{ mo.moConcepto }}</span></td>
+                                        <td>{{ mo.moTipo }}</td>
+                                        <td>{{ mo.moDocumento }}</td>
+                                        <td><span class="expander">{{ mo.moOficina }}</span></td>
+                                        <td>{{ mo.moMonto }}</td>
+                                        <td>{{ mo.moSaldo }}</td>
+                                    </tr>
+{% endfor %}

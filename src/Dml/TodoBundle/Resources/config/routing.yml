@@ -9,3 +9,11 @@ todo_combo_cuentas:
 todo_pagos:
     pattern: /pagos
     defaults: { _controller: TodoBundle:Pagos:index }
+
+todo_mo_list:
+    pattern: /mov-list-{page}
+    defaults: { _controller: TodoBundle:Movimientos:moList, page: 1 }
+
+todo_mo_pager:
+    pattern: /mov-pager-{page}
+    defaults: { _controller: TodoBundle:Movimientos:moPager, page: 1 }
