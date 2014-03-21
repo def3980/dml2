@@ -24,7 +24,7 @@
                                         miExpander();
                                         $('ul.pagination > li:not(".disabled") a').css('cursor','pointer');
 {% if pager.haveTopaginate() %}
-                                        $('.total_registros').text({{ pager.getNbResults() }});
+{#                                        $('.total_registros').text({{ pager.getNbResults() }});#}
 {%  if pager.getPage() != 1 %}
                                         $('#home').bind('click', function() {
                                             var url_list  = '{{ path('todo_mo_list', { 'page' : 1, 'id' : 'val' }) }}',
