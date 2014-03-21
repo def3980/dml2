@@ -3,6 +3,7 @@
 namespace Dml\TodoBundle\Controller;
 
 use Dml\TodoBundle\Util\Util;
+use DoctrineExtensions\Query\Mysql;
 use Dml\TodoBundle\Paginador\Paginador;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,8 +33,9 @@ class MovimientosController extends Controller {
                    ->select($this->fields)
                    ->join('mo.ahorrosAh', 'ah')
                    ->andWhere('ah.ahId = :id')
+                   ->andWhere('MONTH(mo.moFecha) = MONTH(CURDATE())')
                    ->setParameter('id', $request->get('id') != NULL ? $request->get('id') : 1);
-        $this->pager = new Paginador('TodoBundle:Movimientos', 7);
+        $this->pager = new Paginador('TodoBundle:Movimientos', 10);
         $this->pager->setSelect($repo);
         $this->pager->setPage($request->get('page') != NULL ? $request->get('page') : 1);
         $this->pager->init();
@@ -47,6 +49,8 @@ class MovimientosController extends Controller {
 
     public function indexAction(Request $request) {
         $this->listaDMovimientos($request);
+        $date = new \DateTime('now');
+        Util::getMyDump($date->format('d'));
         $ahorros = $this->cuentasDAhorros($request)->getQuery()->getArrayResult();
         return $this->render('TodoBundle:Movimientos:index.html.twig', array('pager' => $this->pager, 'ahorros' => $ahorros));
     }

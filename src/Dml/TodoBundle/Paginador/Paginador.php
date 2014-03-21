@@ -73,7 +73,7 @@ class Paginador extends Pager {
      * @param mixed $hydrationMode Un modo de indetificador de hidratación
      * @return Doctrine_Collection|array
      */
-    public function getResults($hydrationMode = \Doctrine\ORM\Query::HYDRATE_OBJECT) {
+    public function getResults($hydrationMode = \Doctrine\ORM\Query::HYDRATE_ARRAY) {
         return $this->getSelect()->getQuery()->getResult($hydrationMode);
     }
 }

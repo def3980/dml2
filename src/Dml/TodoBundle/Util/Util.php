@@ -39,6 +39,15 @@ class Util {
         die();
     }
     
+    static public function getMyDateSplit($date, $opc = 'anio') {
+        switch ($opc):
+            case 'anio': $result = $date->format('Y'); break;
+            case 'mes' : $result = $date->format('m'); break;
+            case 'dia' : $result = $date->format('d'); break;
+        endswitch;
+        return $result;
+    }
+    
     /**
      * <b>Por Oswaldo Rojas, realizado el Mié 05 Feb 2014 21:46:03</b>
      * 

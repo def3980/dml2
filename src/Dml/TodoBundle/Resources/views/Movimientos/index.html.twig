@@ -127,7 +127,7 @@
                             <div class="col-md-3">
                                 <div class="btn-toolbar pull-right" role="toolbar">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-default">
+                                        <button type="button" class="btn btn-default total">
                                             Total: {{ pager.getNbResults() }}
                                         </button>
                                     </div>
@@ -215,8 +215,8 @@
                         url_list  = url_list.replace('val', $(this).val()),
                         url_pager = '{{ path('todo_mo_pager', { 'id' : 'val' }) }}',
                         url_pager = url_pager.replace('val', $(this).val());
-                    $.post(url_list, function(data) { $('.table tbody').html(data); miExpander(); });
-                    $.post(url_pager, function(data) { $('.miPager').html(data); });
+                    $.post(url_list, function(data){ $('.table tbody').html(data); miExpander(); });
+                    $.post(url_pager, function(data){ $('.miPager').html(data); });
                 });
             });
             function miExpander() {

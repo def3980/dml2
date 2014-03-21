@@ -5,3 +5,7 @@ services:
 #    todo.example:
 #        class: %todo.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
+    todo.twig.dml_extension:
+        class   : Dml\TodoBundle\Twig\DmlExtension
+        tags    :
+                    - { name: twig.extension }

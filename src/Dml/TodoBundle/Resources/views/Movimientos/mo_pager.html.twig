@@ -6,7 +6,7 @@
                                     <li{% if pager.getPage() == pager.getPreviousPage() %} class="disabled"{% endif %}>
                                         <a{% if pager.getPage != pager.getPreviousPage() %} id="before"{% else %} onclick="javascript:void(0)"{% endif %}>&laquo;</a>
                                     </li>
-{% for link in pager.getLinks(3) %}
+{% for link in pager.getLinks() %}
                                     <li{% if pager.getPage() == link %} class="disabled"{% endif %}>
                                         <a{% if pager.getPage() != link %} id="pag-{{ link }}"{% endif %} onclick="javascript:void(0)">{{ link }}</a>
                                     </li>
@@ -23,10 +23,19 @@
                                     $(function() {
                                         miExpander();
                                         $('ul.pagination > li:not(".disabled") a').css('cursor','pointer');
+                                        setTimeout(function(){
+                                            if ($('.table tbody tr a').attr('data-toggle') !== undefined) {
+                                                $('a[data-toggle^="tool"]').css('cursor','default').tooltip({ placement : 'left' });
+                                                $('a[data-toggle^="tool"]').tooltip('show');
+                                                setTimeout(function(){
+                                                    $('a[data-toggle^="tool"]').tooltip('hide');
+                                                },1300);
+                                            }
+                                        },500);
 {% if pager.haveTopaginate() %}
-{#                                        $('.total_registros').text({{ pager.getNbResults() }});#}
+                                        $('.total').text("Total: {{ pager.getNbResults() }} :: Filas x Pág.: {{ pager.getMaxPerPage() }}");
 {%  if pager.getPage() != 1 %}
-                                        $('#home').bind('click', function() {
+                                        $('#home').bind('click', function(){
                                             var url_list  = '{{ path('todo_mo_list', { 'page' : 1, 'id' : 'val' }) }}',
                                                 url_list  = url_list.replace('val', $('#ah').val()),
                                                 url_pager = '{{ path('todo_mo_pager', { 'page' : 1, 'id' : 'val' }) }}',
@@ -36,7 +45,7 @@
                                         });
 {%  endif %}
 {%  if pager.getPage != pager.getPreviousPage() %}
-                                        $('#before').bind('click', function() {
+                                        $('#before').bind('click', function(){
                                             var url_list  = '{{ path('todo_mo_list', { 'page' : pager.getPreviousPage(), 'id' : 'val' }) }}',
                                                 url_list  = url_list.replace('val', $('#ah').val()),
                                                 url_pager = '{{ path('todo_mo_pager', { 'page' : pager.getPreviousPage(), 'id' : 'val' }) }}',
@@ -47,7 +56,7 @@
 {%  endif %}
 {%  for link in pager.getLinks(3) %}
 {%      if pager.getPage() != link %}
-                                        $('#pag-{{ link }}').bind('click', function() {
+                                        $('#pag-{{ link }}').bind('click', function(){
                                             var url_list  = '{{ path('todo_mo_list', { 'page' : link, 'id' : 'val' }) }}',
                                                 url_list  = url_list.replace('val', $('#ah').val()),
                                                 url_pager = '{{ path('todo_mo_pager', { 'page' : link, 'id' : 'val' }) }}',
@@ -58,7 +67,7 @@
 {%      endif %}
 {%  endfor %}
 {%  if pager.getPage() != pager.getNextPage() %}
-                                        $('#forward').bind('click', function() {
+                                        $('#forward').bind('click', function(){
                                             var url_list  = '{{ path('todo_mo_list', { 'page' : pager.getNextPage(), 'id' : 'val' }) }}',
                                                 url_list  = url_list.replace('val', $('#ah').val()),
                                                 url_pager = '{{ path('todo_mo_pager', { 'page' : pager.getNextPage(), 'id' : 'val' }) }}',
@@ -68,7 +77,7 @@
                                         });
 {%  endif %}
 {%  if pager.getPage != pager.getLastPage() %}
-                                        $('#last').bind('click', function() {
+                                        $('#last').bind('click', function(){
                                             var url_list  = '{{ path('todo_mo_list', { 'page' : pager.getLastPage(), 'id' : 'val' }) }}',
                                                 url_list  = url_list.replace('val', $('#ah').val()),
                                                 url_pager = '{{ path('todo_mo_pager', { 'page' : pager.getLastPage(), 'id' : 'val' }) }}',
