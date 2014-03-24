@@ -20,7 +20,7 @@
             }
             .table thead th:nth-child(2),
             .table thead th:nth-child(5) {
-                width: 27%
+                width: 26%
             }
             .table thead th:nth-child(3) {
                 width: 5%
@@ -30,7 +30,7 @@
             }
             .table thead th:nth-child(6),
             .table thead th:nth-child(7) {
-                width: 8%
+                width: 9%
             }
             .table thead th:nth-child(1),
             .table thead th:nth-child(2),
@@ -93,13 +93,31 @@
                         <h3 id="overview-ahorros">Cuentas de ahorros</h3>
                         <p>Aqui encontramos de forma de tallada las cuentas de ahorros que tiene el usuario ordenados del &uacute;ltimo al primero.</p>
                         <div class="row" style="padding-bottom: 1%">
-                            <div class="col-md-9" style="padding-top: 8px; text-align: right;">Cuentas :</div>
                             <div class="col-md-3">
                                 <select id="ah" class="form-control">
 {% for ah in ahorros %}
                                     <option value="{{ ah.ahId }}">{{ ah.ahNumeroCuenta }}</option>
 {% endfor %}
                                 </select>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="form-inline" style="text-align: right">
+                                    <input type="text" class="form-control" id="bMo" placeholder="Movimientos" style="width: 75%">
+                                    <div class="btn-group accion" style="text-align: left">
+                                        <button type="button" class="btn btn-primary">Default</button>
+                                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                            <span class="caret"></span>
+                                            <span class="sr-only">Toggle Dropdown</span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li class="porFecha"><a onclick="javascript:void(0)">Por fecha</a></li>
+                                            <li class="porConcepto"><a onclick="javascript:void(0)">Por concepto</a></li>
+                                            <li class="porDocumento"><a onclick="javascript:void(0)">Por documento</a></li>
+                                            <li class="divider"></li>
+                                            <li class="default"><a onclick="javascript:void(0)">Default</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="table-responsive">
@@ -210,13 +228,34 @@
         <script type="text/javascript">
             $(function() {
                 miExpander();
-                $('#ah').bind('change', function(){
+                $('select#ah').bind('change', function(){
                     var url_list  = '{{ path('todo_mo_list', { 'id' : 'val' }) }}',
                         url_list  = url_list.replace('val', $(this).val()),
                         url_pager = '{{ path('todo_mo_pager', { 'id' : 'val' }) }}',
                         url_pager = url_pager.replace('val', $(this).val());
                     $.post(url_list, function(data){ $('.table tbody').html(data); miExpander(); });
                     $.post(url_pager, function(data){ $('.miPager').html(data); });
+                });
+                $('ul.dropdown-menu li > a').css('cursor','pointer');
+                $('li.porFecha a:first').bind('click', function(){
+                    $('div.accion button:first').text($(this).text());
+                    var url_list  = '{{ path('todo_mo_list', { 'id': 'val', 'bMo': 'val2' }) | raw }}',
+                        url_list  = url_list.replace('val', $('select#ah').val()),
+                        url_list  = url_list.replace('val2', $('input#bMo').val()),
+                        url_pager = '{{ path('todo_mo_pager', { 'id' : 'val', 'bMo' : 'val2' }) | raw }}',
+                        url_pager = url_pager.replace('val', $('select#ah').val()),
+                        url_pager = url_pager.replace('val2', $('input#bMo').val());
+                    $.post(url_list, function(data){ $('.table tbody').html(data); miExpander(); });
+                    $.post(url_pager, function(data){ $('.miPager').html(data); });
+                });
+                $('li.porConcepto a:first').bind('click', function(){
+                    $('div.accion button:first').text($(this).text());                    
+                });
+                $('li.porDocumento a:first').bind('click', function(){
+                    $('div.accion button:first').text($(this).text());                    
+                });
+                $('li.default a:first').bind('click', function(){
+                    $('div.accion button:first').text($(this).text());                    
                 });
             });
             function miExpander() {

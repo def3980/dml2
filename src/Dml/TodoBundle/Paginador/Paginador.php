@@ -70,10 +70,20 @@ class Paginador extends Pager {
     /**
      * Obtiene todos los resultados para la instancia de la página
      *
-     * @param mixed $hydrationMode Un modo de indetificador de hidratación
+     * @param mixed $hydrationMode Un modo de identificador de hidratación
      * @return Doctrine_Collection|array
      */
     public function getResults($hydrationMode = \Doctrine\ORM\Query::HYDRATE_ARRAY) {
         return $this->getSelect()->getQuery()->getResult($hydrationMode);
+    }
+    
+    /**
+     * Obtiene el query nativo usado para obtener los datos consultado en el motor
+     * de basede datos.
+     *
+     * @return string
+     */
+    public function getSqlQuery() {
+        return $this->getCountQuery()->getQuery()->getSQL();
     }
 }

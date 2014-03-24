@@ -61,8 +61,11 @@ doctrine:
         auto_mapping: true
         dql:
             string_functions:
-                MONTH: DoctrineExtensions\Query\Mysql\Month
-                YEAR: DoctrineExtensions\Query\Mysql\Year
+                CURDATE: DoctrineExtensions\Query\Mysql\CurDate
+                YEAR:    DoctrineExtensions\Query\Mysql\Year
+                MONTH:   DoctrineExtensions\Query\Mysql\Month
+                DAY:     DoctrineExtensions\Query\Mysql\Day
+                NOW:     DoctrineExtensions\Query\Mysql\Now
 
 # Swiftmailer Configuration
 swiftmailer:

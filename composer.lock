@@ -3,8 +3,34 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "ef321a0188d9ef3b831555522db0abcd",
+    "hash": "97faffef60b50820800066e0a66b2908",
     "packages": [
+        {
+            "name": "beberlei/DoctrineExtensions",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/beberlei/DoctrineExtensions.git",
+                "reference": "5e4ec9c3ec3434151e1c73144b4ab87ae30aefbc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/beberlei/DoctrineExtensions/zipball/5e4ec9c3ec3434151e1c73144b4ab87ae30aefbc",
+                "reference": "5e4ec9c3ec3434151e1c73144b4ab87ae30aefbc",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/orm": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "DoctrineExtensions": "lib/"
+                }
+            },
+            "notification-url": "http://packagist.org/downloads/",
+            "time": "2013-12-20 22:02:19"
+        },
         {
             "name": "doctrine/annotations",
             "version": "v1.1.2",
@@ -1657,7 +1683,8 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "doctrine/doctrine-fixtures-bundle": 20,
-        "doctrine/data-fixtures": 20
+        "doctrine/data-fixtures": 20,
+        "beberlei/doctrineextensions": 20
     },
     "platform": {
         "php": ">=5.3.3"

@@ -18,22 +18,34 @@
                                         <a{% if pager.getPage() != pager.getLastPage() %} id="last"{% else %} onclick="javascript:void(0)"{% endif %}>&RightArrow;</a>
                                     </li>
                                 </ul>
+{% else %}
+                                <ul class="pagination" style="margin: 0">
+                                    <li class="disabled"><a onclick="javascript:void(0)">&LeftArrow;</a></li>
+                                    <li class="disabled"><a onclick="javascript:void(0)">&laquo;</a></li>
+                                    <li class="disabled"><a onclick="javascript:void(0)">1</a></li>
+                                    <li class="disabled"><a onclick="javascript:void(0)">&raquo;</a></li>
+                                    <li class="disabled"><a onclick="javascript:void(0)">&RightArrow;</a></li>
+                                </ul>
 {% endif %}
                                 <script type="text/javascript">
                                     $(function() {
                                         miExpander();
                                         $('ul.pagination > li:not(".disabled") a').css('cursor','pointer');
-                                        setTimeout(function(){
-                                            if ($('.table tbody tr a').attr('data-toggle') !== undefined) {
-                                                $('a[data-toggle^="tool"]').css('cursor','default').tooltip({ placement : 'left' });
+                                        if ($('.table tbody tr a').attr('data-toggle') !== undefined) {
+                                            setTimeout(function(){
+                                                $('a[data-toggle^="tool"]').tooltip({ placement : 'left' });
                                                 $('a[data-toggle^="tool"]').tooltip('show');
                                                 setTimeout(function(){
                                                     $('a[data-toggle^="tool"]').tooltip('hide');
                                                 },1300);
-                                            }
-                                        },500);
+                                            },500);
+                                        }
+                                        $('.total').text(
+                                                        "Total: {{ pager.getNbResults() }} :: " +
+                                                        "Filas x Pág.: {{ pager.getMaxPerPage() }} :: " +
+                                                        "Mes: {{ pager.getResults()[0].moFecha | monthOs }}"
+                                                        );
 {% if pager.haveTopaginate() %}
-                                        $('.total').text("Total: {{ pager.getNbResults() }} :: Filas x Pág.: {{ pager.getMaxPerPage() }}");
 {%  if pager.getPage() != 1 %}
                                         $('#home').bind('click', function(){
                                             var url_list  = '{{ path('todo_mo_list', { 'page' : 1, 'id' : 'val' }) }}',

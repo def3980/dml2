@@ -56,6 +56,7 @@ class DmlExtension extends \Twig_Extension {
         $methods = array(
                         new \Twig_SimpleFilter('moneyFormat', array($this, 'moneyFormatFilter')),
                         new \Twig_SimpleFilter('dateSpanish', array($this, 'dateSpanishFilter')),
+                        new \Twig_SimpleFilter('monthOs', array($this, 'monthOsFilter')),
                         );
         return $methods;
     }
@@ -109,6 +110,41 @@ class DmlExtension extends \Twig_Extension {
 
         return $complete ? ucfirst($takeDay).', '.$day.' '.ucfirst($this->monthsComplete[$month]).' '.$year
                          : $takeDayShort.', '.$day.' '.$monthShort[$month].' '.$year;
+    }
+
+    /**
+     * <b>Por Oswaldo Rojas, realizado el Sáb 22 Mar 2014 15:51:05</b>
+     * 
+     * Función que devuelve el dia, mes de un objecto fecha en formatod e letras completas
+     * o abreviadas
+     * 
+     * @param date $date <p>Fecha completa o sin h:i:s.</p>
+     * @param string $opcion <p>Bandera para la validar indicar el mes o día.</p>
+     * @param boolean $complete <p>Bandera para la validar el formato completo o abreviado de la fecha. Default: true</p>
+     * @return string Fecha transformada de manera personalizada.
+     */
+    public function monthOsFilter($date, $opcion = 'mes', $complete = true) {
+        /**
+         * En el caso de del parametro $date tenemos que es un object DateTime de Symfony2
+         * y es necesario usar el método format para poderlo pasar a string y realziar la operación
+         * deseada.
+         */
+        $day   = explode('-', $date->format('Y-m-d H:i:s'), 3);
+        $year  = $day[0];
+        $month = (string)(int) $day[1];
+        $day   = (string)(int) $day[2];
+
+        switch ($opcion):
+            case 'dia':
+                foreach ($this->daysComplete as $dc) $daysShort[] = ucfirst(substr($dc, 0, 3));                
+                $takeDay = $this->daysComplete[intval((date('w', mktime(0, 0, 0, $month, $day, $year))))];
+                $takeDayShort = $daysShort[intval((date('w', mktime(0, 0, 0, $month, $day, $year))))];
+                return $complete ? ucfirst($takeDay) : $takeDayShort;//.$monthShort[$month].' '.$year;
+            break;
+            default:
+                foreach ($this->monthsComplete as $mc) $monthShort[] = ucfirst(substr($mc, 0, 3));
+                return $complete ? ucfirst($this->monthsComplete[$month]) : $monthShort[$month];
+        endswitch;
     }
 
     /**

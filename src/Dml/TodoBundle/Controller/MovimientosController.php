@@ -33,8 +33,13 @@ class MovimientosController extends Controller {
                    ->select($this->fields)
                    ->join('mo.ahorrosAh', 'ah')
                    ->andWhere('ah.ahId = :id')
-                   ->andWhere('MONTH(mo.moFecha) = MONTH(CURDATE())')
-                   ->setParameter('id', $request->get('id') != NULL ? $request->get('id') : 1);
+//                   ->andWhere("MONTH(mo.moFecha) = MONTH(DATE_ADD(NOW(), :num, 'MONTH'))") // Funciona asi para el query builder
+                   ->andWhere('MONTH(mo.moFecha) = MONTH(CURDATE())');
+        if ($request->get('bMo') != NULL)
+//            $repo = $repo->andWhere("mo.moFecha LIKE '%{$request->get('bMo')}%'");
+            $repo = $repo->andWhere('mo.moFecha LIKE :bMo')
+                         ->setParameter('bMo', "%{$request->get('bMo')}%");
+        $repo = $repo->setParameter('id', $request->get('id') != NULL ? $request->get('id') : 1);
         $this->pager = new Paginador('TodoBundle:Movimientos', 10);
         $this->pager->setSelect($repo);
         $this->pager->setPage($request->get('page') != NULL ? $request->get('page') : 1);
@@ -49,8 +54,9 @@ class MovimientosController extends Controller {
 
     public function indexAction(Request $request) {
         $this->listaDMovimientos($request);
-        $date = new \DateTime('now');
-        Util::getMyDump($date->format('d'));
+//        $res = $this->pager;
+//        Util::getMyDumpSQL($res->getSqlQuery());
+//        Util::getMyDump($res->getResults());
         $ahorros = $this->cuentasDAhorros($request)->getQuery()->getArrayResult();
         return $this->render('TodoBundle:Movimientos:index.html.twig', array('pager' => $this->pager, 'ahorros' => $ahorros));
     }
