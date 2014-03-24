@@ -1,17 +1,28 @@
-{% for mo in pager.getResults() %}
+{% if pager.getResults() | length %}
+{%  for mo in pager.getResults() %}
                                     <tr>
                                         <th>
-{% if ((mo.moFecha | date('Y-m-d')) == ('now' | date('Y-m-d'))) %}
-                                            <a onclick="javascript:void(0)" data-toggle="tooltip" title="Nuevo">{{ mo.moFecha | dateSpanish(false) }}</a>
-{% else %}
-                                            {{ mo.moFecha | dateSpanish(false) }}
-{% endif %}
+{%      if ((mo.moFecha | date('Y-m-d')) == ('now' | date('Y-m-d'))) %}
+                                            <a onclick="javascript:void(0)" data-toggle="tooltip" title="Nuevo">{{ mo.moFecha | dateSpanishOs(false) }}</a>
+{%      else %}
+                                            {{ mo.moFecha | dateSpanishOs(false) }}
+{%      endif %}
                                         </th>
                                         <td><span class="expander">{{ mo.moConcepto }}</span></td>
                                         <td>{{ mo.moTipo }}</td>
                                         <td>{{ mo.moDocumento }}</td>
                                         <td><span class="expander">{{ mo.moOficina }}</span></td>
-                                        <td>{{ mo.moMonto | moneyFormat }}</td>
-                                        <td>{{ mo.moSaldo | moneyFormat }}</td>
+                                        <td>{{ mo.moMonto | moneyFormatOs }}</td>
+                                        <td>{{ mo.moSaldo | moneyFormatOs }}</td>
                                     </tr>
-{% endfor %}
+{%  endfor %}
+{% else %}
+                                    <tr>
+                                        <td colspan="7">
+                                            <div class="bs-callout bs-callout-warning" style="margin: 0">
+                                                <h4>{{ app.request.get('bMo') | dateSpanishOs }}</h4> 
+                                                <p><u>No</u> refleja ning&uacute;n resultado en la consulta actual.</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+{% endif %}

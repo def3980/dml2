@@ -54,8 +54,8 @@ class DmlExtension extends \Twig_Extension {
      */
     public function getFilters() {
         $methods = array(
-                        new \Twig_SimpleFilter('moneyFormat', array($this, 'moneyFormatFilter')),
-                        new \Twig_SimpleFilter('dateSpanish', array($this, 'dateSpanishFilter')),
+                        new \Twig_SimpleFilter('moneyFormatOs', array($this, 'moneyFormatOsFilter')),
+                        new \Twig_SimpleFilter('dateSpanishOs', array($this, 'dateSpanishOsFilter')),
                         new \Twig_SimpleFilter('monthOs', array($this, 'monthOsFilter')),
                         );
         return $methods;
@@ -73,7 +73,7 @@ class DmlExtension extends \Twig_Extension {
      * @param string $thousandsSep <p>Podemos indicar la división de miles en una cantidad. Default: '.'</p>
      * @return string Valor transformado al formato decimal indicado.
      */
-    public function moneyFormatFilter($number, $decimals = 2, $decPoint = ',', $thousandsSep = '.') {
+    public function moneyFormatOsFilter($number, $decimals = 2, $decPoint = ',', $thousandsSep = '.') {
         $price = number_format($number, $decimals, $decPoint, $thousandsSep);
         $price = '$ '.$price;
 
@@ -90,13 +90,14 @@ class DmlExtension extends \Twig_Extension {
      * @param boolean $complete <p>Bandera para la validar el formato completo o abreviado de la fecha. Default: true</p>
      * @return string Fecha transformada de manera personalizada.
      */
-    public function dateSpanishFilter($date, $complete = true) {
+    public function dateSpanishOsFilter($date, $complete = true) {
         /**
-         * En el caso de del parametro $date tenemos que es un object DateTime de Symfony2
-         * y es necesario usar el método format para poderlo pasar a string y realziar la operación
-         * deseada.
+         * En el caso del parametro $date tenemos que es un object DateTime de Symfony2
+         * y es necesario usar el método format para poderlo pasar a string y realizar la operación
+         * deseada. También habrá ocaciones que tenemos una fecha en string y por tal razon será necesario
+         * validar el parmetro.
          */
-        $day   = explode('-', $date->format('Y-m-d H:i:s'), 3);
+        $day   = is_object($date) ? explode('-', $date->format('Y-m-d H:i:s'), 3) : explode('-', $date, 3);
         $year  = $day[0];
         $month = (string)(int) $day[1];
         $day   = (string)(int) $day[2];
@@ -125,11 +126,12 @@ class DmlExtension extends \Twig_Extension {
      */
     public function monthOsFilter($date, $opcion = 'mes', $complete = true) {
         /**
-         * En el caso de del parametro $date tenemos que es un object DateTime de Symfony2
-         * y es necesario usar el método format para poderlo pasar a string y realziar la operación
-         * deseada.
+         * En el caso del parametro $date tenemos que es un object DateTime de Symfony2
+         * y es necesario usar el método format para poderlo pasar a string y realizar la operación
+         * deseada. También habrá ocaciones que tenemos una fecha en string y por tal razón será necesario
+         * validar el parmetro.
          */
-        $day   = explode('-', $date->format('Y-m-d H:i:s'), 3);
+        $day   = is_object($date) ? explode('-', $date->format('Y-m-d H:i:s'), 3) : explode('-', $date, 3);
         $year  = $day[0];
         $month = (string)(int) $day[1];
         $day   = (string)(int) $day[2];
@@ -139,7 +141,7 @@ class DmlExtension extends \Twig_Extension {
                 foreach ($this->daysComplete as $dc) $daysShort[] = ucfirst(substr($dc, 0, 3));                
                 $takeDay = $this->daysComplete[intval((date('w', mktime(0, 0, 0, $month, $day, $year))))];
                 $takeDayShort = $daysShort[intval((date('w', mktime(0, 0, 0, $month, $day, $year))))];
-                return $complete ? ucfirst($takeDay) : $takeDayShort;//.$monthShort[$month].' '.$year;
+                return $complete ? ucfirst($takeDay) : $takeDayShort;
             break;
             default:
                 foreach ($this->monthsComplete as $mc) $monthShort[] = ucfirst(substr($mc, 0, 3));

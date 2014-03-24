@@ -32,13 +32,15 @@ class MovimientosController extends Controller {
                    ->moTable()
                    ->select($this->fields)
                    ->join('mo.ahorrosAh', 'ah')
-                   ->andWhere('ah.ahId = :id')
+                   ->andWhere('ah.ahId = :id');
+        if ($request->get('bMo') == NULL):
 //                   ->andWhere("MONTH(mo.moFecha) = MONTH(DATE_ADD(NOW(), :num, 'MONTH'))") // Funciona asi para el query builder
-                   ->andWhere('MONTH(mo.moFecha) = MONTH(CURDATE())');
-        if ($request->get('bMo') != NULL)
+            $repo = $repo->andWhere('MONTH(mo.moFecha) = MONTH(CURDATE())');
+        else:
 //            $repo = $repo->andWhere("mo.moFecha LIKE '%{$request->get('bMo')}%'");
             $repo = $repo->andWhere('mo.moFecha LIKE :bMo')
-                         ->setParameter('bMo', "%{$request->get('bMo')}%");
+                         ->setParameter('bMo', "%{$request->get('bMo')}%");            
+        endif;
         $repo = $repo->setParameter('id', $request->get('id') != NULL ? $request->get('id') : 1);
         $this->pager = new Paginador('TodoBundle:Movimientos', 10);
         $this->pager->setSelect($repo);
