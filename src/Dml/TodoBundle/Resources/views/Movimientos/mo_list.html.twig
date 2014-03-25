@@ -13,9 +13,18 @@
                                         <td>{{ mo.moDocumento }}</td>
                                         <td><span class="expander">{{ mo.moOficina }}</span></td>
                                         <td>{{ mo.moMonto | moneyFormatOs }}</td>
-                                        <td>{{ mo.moSaldo | moneyFormatOs }}</td>
+                                        <td{% if mo.moSaldo <= 25 %} style="color: red"{% endif %}>{{ mo.moSaldo | moneyFormatOs }}</td>
                                     </tr>
 {%  endfor %}
+                                    <tr class="sinhover" style="border: none">
+                                        <th style="border: none"></th>
+                                        <td style="border: none"></td>
+                                        <td style="border: none"></td>
+                                        <td style="border: none"></td>
+                                        <td style="border: none"></td>
+                                        <td>s</td>
+                                        <td>st</td>
+                                    </tr>
 {% else %}
                                     <tr>
                                         <td colspan="7">

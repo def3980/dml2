@@ -42,7 +42,7 @@ class MovimientosController extends Controller {
                          ->setParameter('bMo', "%{$request->get('bMo')}%");            
         endif;
         $repo = $repo->setParameter('id', $request->get('id') != NULL ? $request->get('id') : 1);
-        $this->pager = new Paginador('TodoBundle:Movimientos', 10);
+        $this->pager = new Paginador('TodoBundle:Movimientos', 5);
         $this->pager->setSelect($repo);
         $this->pager->setPage($request->get('page') != NULL ? $request->get('page') : 1);
         $this->pager->init();
