@@ -12,24 +12,25 @@
                                         <td>{{ mo.moTipo }}</td>
                                         <td>{{ mo.moDocumento }}</td>
                                         <td><span class="expander">{{ mo.moOficina }}</span></td>
-                                        <td>{{ mo.moMonto | moneyFormatOs }}</td>
+                                        <td>{% if mo.moTipo == 'C' %}+{% else %}-{% endif %} {{ mo.moMonto | moneyFormatOs }}</td>
                                         <td{% if mo.moSaldo <= 25 %} style="color: red"{% endif %}>{{ mo.moSaldo | moneyFormatOs }}</td>
                                     </tr>
 {%  endfor %}
+{#                                    <tr>
+                                        <td colspan="7">&nbsp;</td>
+                                    </tr>                                    
                                     <tr>
-                                        <th style="background-color: transparent"></th>
-                                        <td style="background-color: transparent"></td>
-                                        <td style="background-color: transparent"></td>
-                                        <td style="background-color: transparent"></td>
-                                        <td style="background-color: transparent"></td>
-                                        <td style="border: 1px solid #ddd">s</td>
-                                        <td style="border: 1px solid #ddd">st</td>
-                                    </tr>
+{% set monto = pager.getSumQuery('moMonto', 'moTipo <> :tipo', 'tipo', 'D') %}
+{% set saldo = pager.getSumQuery('moSaldo', 'moTipo <> :tipo', 'tipo', 'D') %}
+                                        <td colspan="5">&nbsp;</td>
+                                        <td style="border: 1px solid #ddd; text-align: right">{{ monto[0].totalMoMonto | moneyFormatOs }}</td>
+                                        <td style="border: 1px solid #ddd; text-align: right">{{ saldo[0].totalMoSaldo | moneyFormatOs }}</td>
+                                    </tr>#}
 {% else %}
                                     <tr>
                                         <td colspan="7">
                                             <div class="bs-callout bs-callout-warning" style="margin: 0">
-                                                <h4>{{ app.request.get('bMo') | dateSpanishOs }}</h4> 
+                                                <h4>{{ app.request.get('bMoFecha') | dateSpanishOs }}</h4> 
                                                 <p><u>No</u> refleja ning&uacute;n resultado en la consulta actual.</p>
                                             </div>
                                         </td>

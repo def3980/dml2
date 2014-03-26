@@ -31,15 +31,13 @@
                                     $(function() {
                                         miExpander();
                                         $('ul.pagination > li:not(".disabled") a').css('cursor','pointer');
-                                        if ($('.table tbody tr a').attr('data-toggle') !== undefined) {
+                                        setTimeout(function(){
+                                            $('a[data-toggle^="tool"]').tooltip({ placement : 'left' });
+                                            $('a[data-toggle^="tool"]').tooltip('show');
                                             setTimeout(function(){
-                                                $('a[data-toggle^="tool"]').tooltip({ placement : 'left' });
-                                                $('a[data-toggle^="tool"]').tooltip('show');
-                                                setTimeout(function(){
-                                                    $('a[data-toggle^="tool"]').tooltip('hide');
-                                                },1300);
-                                            },500);
-                                        }
+                                                $('a[data-toggle^="tool"]').tooltip('hide');
+                                            },1300);
+                                        },500);
                                         $('.total').text(
                                                         "Total: {{ pager.getNbResults() }} :: " +
                                                         "Filas x Pág.: {{ pager.getMaxPerPage() }} :: " +
@@ -52,9 +50,22 @@
                                                 url_list  = url_list.replace('val', $('#ah').val()),
                                                 url_pager = '{{ path('todo_mo_pager', { 'page' : 1, 'id' : 'val' }) }}',
                                                 url_pager = url_pager.replace('val', $('#ah').val());
-                                            if ($('input#bMo').val().length)
-                                                url_list  = agregarParametroAURL(url_list,'bMo',$('input#bMo').val());
-                                                url_pager = agregarParametroAURL(url_pager,'bMo',$('input#bMo').val());
+                                            if ($('input#bMo').val().length) {
+                                                switch ($.trim($('button.trigger').text())){
+                                                    case "Por fecha":
+                                                        url_list  = agregarParametroAURL(url_list,'bMoFecha',$('input#bMo').val());
+                                                        url_pager = agregarParametroAURL(url_pager,'bMoFecha',$('input#bMo').val());
+                                                    break;
+                                                    case "Por concepto":
+                                                        url_list  = agregarParametroAURL(url_list,'bMoConcepto',$('input#bMo').val());
+                                                        url_pager = agregarParametroAURL(url_pager,'bMoConcepto',$('input#bMo').val());
+                                                    break;
+                                                    case "Por documento":
+                                                        url_list  = agregarParametroAURL(url_list,'bMoDcoumento',$('input#bMo').val());
+                                                        url_pager = agregarParametroAURL(url_pager,'bMoDocumento',$('input#bMo').val());
+                                                    break;
+                                                }
+                                            }
                                             $.post(url_list, function(data) { $('.table tbody').html(data); miExpander(); });
                                             $.post(url_pager, function(data) { $('.miPager').html(data); });
                                         });
@@ -65,9 +76,22 @@
                                                 url_list  = url_list.replace('val', $('#ah').val()),
                                                 url_pager = '{{ path('todo_mo_pager', { 'page' : pager.getPreviousPage(), 'id' : 'val' }) }}',
                                                 url_pager = url_pager.replace('val', $('#ah').val());
-                                            if ($('input#bMo').val().length)
-                                                url_list  = agregarParametroAURL(url_list,'bMo',$('input#bMo').val());
-                                                url_pager = agregarParametroAURL(url_pager,'bMo',$('input#bMo').val());
+                                            if ($('input#bMo').val().length) {
+                                                switch ($.trim($('button.trigger').text())){
+                                                    case "Por fecha":
+                                                        url_list  = agregarParametroAURL(url_list,'bMoFecha',$('input#bMo').val());
+                                                        url_pager = agregarParametroAURL(url_pager,'bMoFecha',$('input#bMo').val());
+                                                    break;
+                                                    case "Por concepto":
+                                                        url_list  = agregarParametroAURL(url_list,'bMoConcepto',$('input#bMo').val());
+                                                        url_pager = agregarParametroAURL(url_pager,'bMoConcepto',$('input#bMo').val());
+                                                    break;
+                                                    case "Por documento":
+                                                        url_list  = agregarParametroAURL(url_list,'bMoDcoumento',$('input#bMo').val());
+                                                        url_pager = agregarParametroAURL(url_pager,'bMoDocumento',$('input#bMo').val());
+                                                    break;
+                                                }
+                                            }
                                             $.post(url_list, function(data) { $('.table tbody').html(data); miExpander(); });
                                             $.post(url_pager, function(data) { $('.miPager').html(data); });
                                         });
@@ -79,9 +103,22 @@
                                                 url_list  = url_list.replace('val', $('#ah').val()),
                                                 url_pager = '{{ path('todo_mo_pager', { 'page' : link, 'id' : 'val' }) }}',
                                                 url_pager = url_pager.replace('val', $('#ah').val());
-                                            if ($('input#bMo').val().length)
-                                                url_list  = agregarParametroAURL(url_list,'bMo',$('input#bMo').val());
-                                                url_pager = agregarParametroAURL(url_pager,'bMo',$('input#bMo').val());
+                                            if ($('input#bMo').val().length) {
+                                                switch ($.trim($('button.trigger').text())){
+                                                    case "Por fecha":
+                                                        url_list  = agregarParametroAURL(url_list,'bMoFecha',$('input#bMo').val());
+                                                        url_pager = agregarParametroAURL(url_pager,'bMoFecha',$('input#bMo').val());
+                                                    break;
+                                                    case "Por concepto":
+                                                        url_list  = agregarParametroAURL(url_list,'bMoConcepto',$('input#bMo').val());
+                                                        url_pager = agregarParametroAURL(url_pager,'bMoConcepto',$('input#bMo').val());
+                                                    break;
+                                                    case "Por documento":
+                                                        url_list  = agregarParametroAURL(url_list,'bMoDcoumento',$('input#bMo').val());
+                                                        url_pager = agregarParametroAURL(url_pager,'bMoDocumento',$('input#bMo').val());
+                                                    break;
+                                                }
+                                            }
                                             $.post(url_list, function(data) { $('.table tbody').html(data); miExpander(); });
                                             $.post(url_pager, function(data) { $('.miPager').html(data); });
                                         });
@@ -93,9 +130,22 @@
                                                 url_list  = url_list.replace('val', $('#ah').val()),
                                                 url_pager = '{{ path('todo_mo_pager', { 'page' : pager.getNextPage(), 'id' : 'val' }) }}',
                                                 url_pager = url_pager.replace('val', $('#ah').val());
-                                            if ($('input#bMo').val().length)
-                                                url_list  = agregarParametroAURL(url_list,'bMo',$('input#bMo').val());
-                                                url_pager = agregarParametroAURL(url_pager,'bMo',$('input#bMo').val());
+                                            if ($('input#bMo').val().length) {
+                                                switch ($.trim($('button.trigger').text())){
+                                                    case "Por fecha":
+                                                        url_list  = agregarParametroAURL(url_list,'bMoFecha',$('input#bMo').val());
+                                                        url_pager = agregarParametroAURL(url_pager,'bMoFecha',$('input#bMo').val());
+                                                    break;
+                                                    case "Por concepto":
+                                                        url_list  = agregarParametroAURL(url_list,'bMoConcepto',$('input#bMo').val());
+                                                        url_pager = agregarParametroAURL(url_pager,'bMoConcepto',$('input#bMo').val());
+                                                    break;
+                                                    case "Por documento":
+                                                        url_list  = agregarParametroAURL(url_list,'bMoDcoumento',$('input#bMo').val());
+                                                        url_pager = agregarParametroAURL(url_pager,'bMoDocumento',$('input#bMo').val());
+                                                    break;
+                                                }
+                                            }
                                             $.post(url_list, function(data) { $('.table tbody').html(data); miExpander(); });
                                             $.post(url_pager, function(data) { $('.miPager').html(data); });
                                         });
@@ -106,9 +156,22 @@
                                                 url_list  = url_list.replace('val', $('#ah').val()),
                                                 url_pager = '{{ path('todo_mo_pager', { 'page' : pager.getLastPage(), 'id' : 'val' }) }}',
                                                 url_pager = url_pager.replace('val', $('#ah').val());
-                                            if ($('input#bMo').val().length)
-                                                url_list  = agregarParametroAURL(url_list,'bMo',$('input#bMo').val());
-                                                url_pager = agregarParametroAURL(url_pager,'bMo',$('input#bMo').val());
+                                            if ($('input#bMo').val().length) {
+                                                switch ($.trim($('button.trigger').text())){
+                                                    case "Por fecha":
+                                                        url_list  = agregarParametroAURL(url_list,'bMoFecha',$('input#bMo').val());
+                                                        url_pager = agregarParametroAURL(url_pager,'bMoFecha',$('input#bMo').val());
+                                                    break;
+                                                    case "Por concepto":
+                                                        url_list  = agregarParametroAURL(url_list,'bMoConcepto',$('input#bMo').val());
+                                                        url_pager = agregarParametroAURL(url_pager,'bMoConcepto',$('input#bMo').val());
+                                                    break;
+                                                    case "Por documento":
+                                                        url_list  = agregarParametroAURL(url_list,'bMoDcoumento',$('input#bMo').val());
+                                                        url_pager = agregarParametroAURL(url_pager,'bMoDocumento',$('input#bMo').val());
+                                                    break;
+                                                }
+                                            }
                                             $.post(url_list, function(data) { $('.table tbody').html(data); miExpander(); });
                                             $.post(url_pager, function(data) { $('.miPager').html(data); });
                                         });

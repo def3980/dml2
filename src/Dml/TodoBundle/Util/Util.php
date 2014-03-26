@@ -32,7 +32,7 @@ class Util {
     }
     
     static public function getMyDumpSQL($strSQL) {
-        $html = '<textarea rows="5" cols="80">';
+        $html = '<textarea rows="8" cols="80">';
         $html .= $strSQL;
         $html .= '</textarea>';
         echo $html;

@@ -86,4 +86,24 @@ class Paginador extends Pager {
     public function getSqlQuery() {
         return $this->getCountQuery()->getQuery()->getSQL();
     }
+    
+    /**
+     * Obtiene la suma de un campo ecibido como parametro para esta consulta personalizada
+     * y es un adicional que se puede trabajar desde este paginador.
+     *
+     * @param string $field Campo que hace referencia a la BDD.
+     * @param string $where Condición sobre el cual se realiza la consulta.
+     * @param string $paramTxt Texto referenciado en la clausula where como parámetro.
+     * @param string|array $paramVal Valor para concatenar el parámetro.
+     * @return Doctrine_Collection|array
+     */
+    public function getSumQuery($field, $where, $paramTxt, $paramVal) {
+        $qb = $this->getCountQuery();
+        $alias = current($qb->getDQLPart('from'))->getAlias();
+        $qb = $qb->addSelect("SUM({$alias}.{$field}) as total".ucfirst($field)."")
+                 ->andWhere($alias.'.'.$where)
+                 ->setParameter($paramTxt, $paramVal);
+        return $qb->getQuery()->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY); // Debido a que la consulta devuelve un fila y varios campos.
+//        return $qb->getQuery()->getSQL(); // Debido a que la consulta devuelve un fila y varios campos.
+    }
 }

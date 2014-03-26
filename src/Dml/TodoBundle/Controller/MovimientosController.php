@@ -33,13 +33,11 @@ class MovimientosController extends Controller {
                    ->select($this->fields)
                    ->join('mo.ahorrosAh', 'ah')
                    ->andWhere('ah.ahId = :id');
-        if ($request->get('bMo') == NULL):
-//                   ->andWhere("MONTH(mo.moFecha) = MONTH(DATE_ADD(NOW(), :num, 'MONTH'))") // Funciona asi para el query builder
-            $repo = $repo->andWhere('MONTH(mo.moFecha) = MONTH(CURDATE())');
+        if ($request->get('bMoFecha') !== NULL):
+            $repo = $repo->andWhere('mo.moFecha LIKE :bMoFecha')
+                         ->setParameter('bMoFecha', "%{$request->get('bMoFecha')}%");
         else:
-//            $repo = $repo->andWhere("mo.moFecha LIKE '%{$request->get('bMo')}%'");
-            $repo = $repo->andWhere('mo.moFecha LIKE :bMo')
-                         ->setParameter('bMo', "%{$request->get('bMo')}%");            
+            $repo = $repo->andWhere('MONTH(mo.moFecha) = MONTH(CURDATE())');
         endif;
         $repo = $repo->setParameter('id', $request->get('id') != NULL ? $request->get('id') : 1);
         $this->pager = new Paginador('TodoBundle:Movimientos', $this->container->getParameter('dml.filas_x_pagina'));
@@ -57,8 +55,8 @@ class MovimientosController extends Controller {
     public function indexAction(Request $request) {
         $this->listaDMovimientos($request);
 //        $res = $this->pager;
-//        Util::getMyDumpSQL($res->getSqlQuery());
-//        Util::getMyDump($res->getResults());
+//        Util::getMyDumpSQL($res->getSumQuery('moMonto', 'moTipo <> :tipo', 'tipo', array('D')));
+//        Util::getMyDump($res->getSumQuery('moMonto', 'moTipo <> :tipo', 'tipo', array('D')));
         $ahorros = $this->cuentasDAhorros($request)->getQuery()->getArrayResult();
         return $this->render('TodoBundle:Movimientos:index.html.twig', array('pager' => $this->pager, 'ahorros' => $ahorros));
     }
