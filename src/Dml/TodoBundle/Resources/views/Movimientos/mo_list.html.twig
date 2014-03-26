@@ -16,14 +16,14 @@
                                         <td{% if mo.moSaldo <= 25 %} style="color: red"{% endif %}>{{ mo.moSaldo | moneyFormatOs }}</td>
                                     </tr>
 {%  endfor %}
-                                    <tr class="sinhover" style="border: none">
-                                        <th style="border: none"></th>
-                                        <td style="border: none"></td>
-                                        <td style="border: none"></td>
-                                        <td style="border: none"></td>
-                                        <td style="border: none"></td>
-                                        <td>s</td>
-                                        <td>st</td>
+                                    <tr>
+                                        <th style="background-color: transparent"></th>
+                                        <td style="background-color: transparent"></td>
+                                        <td style="background-color: transparent"></td>
+                                        <td style="background-color: transparent"></td>
+                                        <td style="background-color: transparent"></td>
+                                        <td style="border: 1px solid #ddd">s</td>
+                                        <td style="border: 1px solid #ddd">st</td>
                                     </tr>
 {% else %}
                                     <tr>

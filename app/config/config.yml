@@ -28,6 +28,8 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    globals:
+        filas_x_pagina: "%dml.filas_x_pagina%"
 
 # Assetic Configuration
 assetic:
@@ -74,3 +76,6 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+parameters:
+    dml.filas_x_pagina: '5'

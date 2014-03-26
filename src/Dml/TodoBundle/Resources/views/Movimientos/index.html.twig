@@ -47,9 +47,18 @@
             .table tbody td:nth-child(7) {
                 text-align: right;
             }
-            .sinhover td:hover {
-                opacity:1.0;
-                box-shadow:none;
+            .table tbody tr:last-child{% if filas_x_pagina is divisibleby(2) %}(even){% else %}(odd){% endif %}:hover th,
+            .table tbody tr:last-child{% if filas_x_pagina is divisibleby(2) %}(even){% else %}(odd){% endif %}:hover td {
+                background-color: transparent;
+            }
+            .table tbody tr:last-child th,
+            .table tbody tr:last-child td {
+                border: none;
+{% if filas_x_pagina is divisibleby(2) %}
+                background-color: #F9F9F9;
+{% else %}
+                background-color: transparent;
+{% endif %}
             }
         </style>
         <a class="sr-only" href="#content">Skip to main content</a>
