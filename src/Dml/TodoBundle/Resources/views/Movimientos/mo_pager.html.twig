@@ -27,6 +27,29 @@
                                     <li class="disabled"><a onclick="javascript:void(0)">&RightArrow;</a></li>
                                 </ul>
 {% endif %}
+{% if app.request.get('bMoConcepto') | length %}
+                                <style>
+                                    .table tbody tr:last-child{% if filas_x_pagina is divisibleby(2) %}(even){% else %}(odd){% endif %}:hover th,
+                                    .table tbody tr:last-child{% if filas_x_pagina is divisibleby(2) %}(even){% else %}(odd){% endif %}:hover td {
+                                        background-color: transparent;
+                                    }
+                                    .table tbody tr:last-child th,
+                                    .table tbody tr:last-child td {
+{%  if filas_x_pagina is divisibleby(2) %}
+                                        background-color: #F9F9F9;
+{%  else %}
+                                        background-color: transparent;
+{%  endif %}
+                                    }
+                                    .table tbody tr:nth-last-child(2):hover td { /*Cuento desde el ultimo al primero y me detengo en la posicion 2*/
+                                        background-color: transparent;
+                                    }
+                                    .table tbody tr:nth-last-child(2) {
+                                        height: {{ filas_x_pagina * 10 }}px;
+                                        border: none;
+                                    }
+                                </style>
+{% endif %}
                                 <script type="text/javascript">
                                     $(function() {
                                         miExpander();
@@ -61,7 +84,7 @@
                                                         url_pager = agregarParametroAURL(url_pager,'bMoConcepto',$('input#bMo').val());
                                                     break;
                                                     case "Por documento":
-                                                        url_list  = agregarParametroAURL(url_list,'bMoDcoumento',$('input#bMo').val());
+                                                        url_list  = agregarParametroAURL(url_list,'bMoDocumento',$('input#bMo').val());
                                                         url_pager = agregarParametroAURL(url_pager,'bMoDocumento',$('input#bMo').val());
                                                     break;
                                                 }

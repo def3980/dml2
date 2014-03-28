@@ -78,6 +78,9 @@ class MovimientosController extends Controller {
     
     public function moListAction(Request $request) {
         $this->listaDMovimientos($request);
+        $res = $this->pager;
+        Util::getMyDumpSQL($res->getSumQuery('moMonto'));
+//        Util::getMyDumpSQL($res->getSumQuery('moMonto', 'moTipo <> :tipo', 'tipo', array('C')));
         return $this->render('TodoBundle:Movimientos:mo_list.html.twig', array('pager' => $this->pager));
     }
     

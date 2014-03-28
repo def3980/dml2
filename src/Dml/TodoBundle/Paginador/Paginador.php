@@ -92,18 +92,45 @@ class Paginador extends Pager {
      * y es un adicional que se puede trabajar desde este paginador.
      *
      * @param string $field Campo que hace referencia a la BDD.
-     * @param string $where Condición sobre el cual se realiza la consulta.
-     * @param string $paramTxt Texto referenciado en la clausula where como parámetro.
-     * @param string|array $paramVal Valor para concatenar el parámetro.
      * @return Doctrine_Collection|array
      */
-    public function getSumQuery($field, $where, $paramTxt, $paramVal) {
+    public function getSumQuery($field) {
         $qb = $this->getCountQuery();
         $alias = current($qb->getDQLPart('from'))->getAlias();
         $qb = $qb->addSelect("SUM({$alias}.{$field}) as total".ucfirst($field)."")
-                 ->andWhere($alias.'.'.$where)
-                 ->setParameter($paramTxt, $paramVal);
-        return $qb->getQuery()->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY); // Debido a que la consulta devuelve un fila y varios campos.
-//        return $qb->getQuery()->getSQL(); // Debido a que la consulta devuelve un fila y varios campos.
+                 ->groupBy("{$alias}.moTipo")
+                 ->setFirstResult(0); // seteo el valor del offset ya que la suma no aplica con el valor > 0
+//        return $qb->getQuery()->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY); // Debido a que la consulta devuelve un fila y varios campos.
+        return $qb->getQuery()->getSQL(); // Debido a que la consulta devuelve un fila y varios campos.
+
+//        $qb = $this->getCountQuery();
+//        $alias = current($qb->getDQLPart('from'))->getAlias();
+//        $qb = $qb->addSelect("SUM({$alias}.{$field}) as total".ucfirst($field)."")
+////                 ->andWhere($alias.'.'.$where)
+////                 ->setParameter($paramTxt, $paramVal)
+//                 ->setFirstResult(0); // seteo el valor del offset ya que la suma no aplica con el valor > 0
+//        return $qb->getQuery()->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY); // Debido a que la consulta devuelve un fila y varios campos.
+////        return $qb->getQuery()->getSQL(); // Debido a que la consulta devuelve un fila y varios campos.
+//        SELECT 
+//	SUM(
+//        (
+//            SELECT SUM(mo.mo_monto)
+//            FROM MOVIMIENTOS mo
+//            INNER JOIN AHORROS ah ON mo.ahorros_ah_id = ah.ah_id 
+//            WHERE mo.mo_borrado_logico = 0 AND 
+//                  ah.ah_id = 1 AND 
+//                  mo.mo_concepto LIKE '%internet%' AND
+//                  mo.mo_tipo = 'C'
+//        ) - (
+//            SELECT SUM(mo.mo_monto)
+//            FROM MOVIMIENTOS mo
+//            INNER JOIN AHORROS ah ON mo.ahorros_ah_id = ah.ah_id 
+//            WHERE mo.mo_borrado_logico = 0 AND 
+//                  ah.ah_id = 1 AND 
+//                  mo.mo_concepto LIKE '%internet%' AND
+//                  mo.mo_tipo = 'D'
+//    	)
+//    )AS suma2 
+//FROM MOVIMIENTOS
     }
 }

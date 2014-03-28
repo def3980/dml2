@@ -12,21 +12,24 @@
                                         <td>{{ mo.moTipo }}</td>
                                         <td>{{ mo.moDocumento }}</td>
                                         <td><span class="expander">{{ mo.moOficina }}</span></td>
-                                        <td>{% if mo.moTipo == 'C' %}+{% else %}-{% endif %} <span{% if mo.moTipo == 'C' %} style="color: green"{% endif %}>{{ mo.moMonto | moneyFormatOs }}</span></td>
-                                        <td{% if mo.moSaldo <= 25 %} style="color: red"{% endif %}>{{ mo.moSaldo | moneyFormatOs }}</td>
+                                        <td>{% if mo.moTipo == 'C' %}+{% else %}-{% endif %} <span{% if mo.moTipo == 'C' %} style="color: green"{% else %} style="color: red"{% endif %}>{{ mo.moMonto | moneyFormatOs }}</span></td>
+                                        <td{% if mo.moSaldo <= 25 %} style="color: red"{% endif %}><strong>{{ mo.moSaldo | moneyFormatOs }}</strong></td>
                                     </tr>
 {%  endfor %}
-{#                                    <tr>
+{%  if app.request.get('bMoConcepto') | length %}
+                                    <tr>
                                         <td colspan="7">&nbsp;</td>
                                     </tr>                                    
                                     <tr>
-{% set monto = pager.getSumQuery('moMonto', 'moTipo <> :tipo', 'tipo', 'D') %}
-{% set saldo = pager.getSumQuery('moSaldo', 'moTipo <> :tipo', 'tipo', 'D') %}
+{#{%      set monto = pager.getSumQuery('moMonto') %}#}
                                         <td colspan="5">&nbsp;</td>
-                                        <td style="border: 1px solid #ddd; text-align: right">{{ monto[0].totalMoMonto | moneyFormatOs }}</td>
-                                        <td style="border: 1px solid #ddd; text-align: right">{{ saldo[0].totalMoSaldo | moneyFormatOs }}</td>
-                                    </tr>#}
+{#                                        <td style="border: 1px solid #ddd; text-align: right;">{% if monto[0].moTipo == 'C' %}+{% else %}-{% endif %} <span{% if monto[0].moTipo == 'C' %} style="color: green"{% else %} style="color: red"{% endif %}><strong>{{ monto[0].totalMoMonto | moneyFormatOs }}</strong></span></td>#}
+                                        <td style="border: 1px solid #ddd; text-align: right;">~~~</td>
+                                        <td style="border: 1px solid #ddd; text-align: right;">-</td>
+                                    </tr>
+{%  endif %}
 {% else %}
+{%  if app.request.get('bMoFecha') | length %}
                                     <tr>
                                         <td colspan="7">
                                             <div class="bs-callout bs-callout-warning" style="margin: 0">
@@ -35,4 +38,14 @@
                                             </div>
                                         </td>
                                     </tr>
+{%  elseif app.request.get('bMoConcepto') | length %}
+                                    <tr>
+                                        <td colspan="7">
+                                            <div class="bs-callout bs-callout-warning" style="margin: 0">
+                                                <h4>"{{ app.request.get('bMoConcepto') }}"</h4> 
+                                                <p><u>No</u> refleja ning&uacute;n resultado en la consulta actual.</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+{%  endif %}
 {% endif %}
