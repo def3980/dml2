@@ -287,7 +287,7 @@
                                 url_pager = agregarParametroAURL(url_pager,'bMoConcepto',$('input#bMo').val());
                             break;
                             case "Por documento":
-                                url_list  = agregarParametroAURL(url_list,'bMoDcoumento',$('input#bMo').val());
+                                url_list  = agregarParametroAURL(url_list,'bMoDocumento',$('input#bMo').val());
                                 url_pager = agregarParametroAURL(url_pager,'bMoDocumento',$('input#bMo').val());
                             break;
                         }
@@ -296,14 +296,36 @@
                     $.post(url_pager, function(data){ $('.miPager').html(data); });
                 });
                 $('ul.dropdown-menu li > a').css('cursor','pointer');
-                $('li.porFecha a:first').bind('click', function(){ busquedaPorFecha(); });
-                $('li.porConcepto a:first').bind('click', function(){ busquedaPorConcepto(); });
-                $('li.porDocumento a:first').bind('click', function(){ busquedaPorDocumento(); });
-                $('li.default a:first').bind('click', function(){ busquedaPorDefault(); });
+                $('li.porFecha a:first').bind('click', function(){ 
+                    $('div.accion button:first').text($(this).text());
+                    $('ul.dropdown-menu li > a span:first').remove();
+                    $('input#bMo').val('');
+                    $(this).html('<span/> '+$(this).text()).find('span').addClass('glyphicon glyphicon-ok');
+                });
+                $('li.porConcepto a:first').bind('click', function(){
+                    $('div.accion button:first').text($(this).text());
+                    $('ul.dropdown-menu li > a span:first').remove();
+                    $('input#bMo').val('');
+                    $(this).html('<span/> '+$(this).text()).find('span').addClass('glyphicon glyphicon-ok');
+                });
+                $('li.porDocumento a:first').bind('click', function(){
+                    $('div.accion button:first').text($(this).text());
+                    $('ul.dropdown-menu li > a span:first').remove();
+                    $('input#bMo').val('');
+                    $(this).html('<span/> '+$(this).text()).find('span').addClass('glyphicon glyphicon-ok');
+                });
+                $('li.default a:first').bind('click', function(){
+                    $('div.accion button:first').text($(this).text());
+                    $('ul.dropdown-menu li > a span:first').remove();
+                    $('input#bMo').val('');
+                    $(this).html('<span/> '+$(this).text()).find('span').addClass('glyphicon glyphicon-ok');
+                });
                 $('button.trigger').bind('click', function() {
                     switch ($.trim($(this).text())){
-                        case "Por fecha": busquedaPorFecha(); break;
-                        case "Default": busquedaPorDefault(); break;
+                        case "Por fecha":    busquedaPorFecha();    break;
+                        case "Por concepto": busquedaPorConcepto(); break;
+                        case "Por documento": busquedaPorDocumento(); break;
+                        default: busquedaPorDefault();
                     }
                 });
                 {# Funciona al cargar la página #}
@@ -334,11 +356,6 @@
                        + '=' + encodeURIComponent(value);
             }
             function busquedaPorFecha() {
-                var txtBtn = $('li.porFecha a:first').text();
-                $('div.accion button:first').text(txtBtn);
-                $('ul.dropdown-menu li > a span:first').remove();
-                $('li.porFecha a:first').html('<span/> ' + txtBtn);
-                $('li.porFecha a span:first').addClass('glyphicon glyphicon-ok');
                 var url_list  = '{{ path('todo_mo_list', { 'id': 'val', 'bMoFecha': 'val2' }) | raw }}',
                     url_list  = url_list.replace('val', $('select#ah').val()),
                     url_list  = url_list.replace('val2', $('input#bMo').val()),
@@ -349,45 +366,30 @@
                 $.post(url_pager, function(data){ $('.miPager').html(data); });
             }
             function busquedaPorConcepto() {
-                var txtBtn = $('li.porConcepto a:first').text();
-                $('div.accion button:first').text(txtBtn);
-                $('ul.dropdown-menu li > a span:first').remove();
-                $('li.porConcepto a:first').html('<span/> ' + txtBtn);
-                $('li.porConcepto a span:first').addClass('glyphicon glyphicon-ok');
-                var url_list  = '{{ path('todo_mo_list', { 'id': 'val', 'porConcepto': 'val2' }) | raw }}',
+                var url_list  = '{{ path('todo_mo_list', { 'id': 'val', 'bMoConcepto': 'val2' }) | raw }}',
                     url_list  = url_list.replace('val', $('select#ah').val()),
                     url_list  = url_list.replace('val2', $('input#bMo').val()),
-                    url_pager = '{{ path('todo_mo_pager', { 'id' : 'val', 'porConcepto' : 'val2' }) | raw }}',
+                    url_pager = '{{ path('todo_mo_pager', { 'id' : 'val', 'bMoConcepto' : 'val2' }) | raw }}',
                     url_pager = url_pager.replace('val', $('select#ah').val()),
                     url_pager = url_pager.replace('val2', $('input#bMo').val());
                 $.post(url_list, function(data){ $('.table tbody').html(data); miExpander(); });
                 $.post(url_pager, function(data){ $('.miPager').html(data); });
             }
             function busquedaPorDocumento() {
-                var txtBtn = $('li.porDocumento a:first').text();
-                $('div.accion button:first').text(txtBtn);
-                $('ul.dropdown-menu li > a span:first').remove();
-                $('li.porDocumento a:first').html('<span/> ' + txtBtn);
-                $('li.porDocumento a span:first').addClass('glyphicon glyphicon-ok');
-                var url_list  = '{{ path('todo_mo_list', { 'id': 'val', 'porDocumento': 'val2' }) | raw }}',
+                var url_list  = '{{ path('todo_mo_list', { 'id': 'val', 'bMoDocumento': 'val2' }) | raw }}',
                     url_list  = url_list.replace('val', $('select#ah').val()),
                     url_list  = url_list.replace('val2', $('input#bMo').val()),
-                    url_pager = '{{ path('todo_mo_pager', { 'id' : 'val', 'porDocumento' : 'val2' }) | raw }}',
+                    url_pager = '{{ path('todo_mo_pager', { 'id' : 'val', 'bMoDocumento' : 'val2' }) | raw }}',
                     url_pager = url_pager.replace('val', $('select#ah').val()),
                     url_pager = url_pager.replace('val2', $('input#bMo').val());
                 $.post(url_list, function(data){ $('.table tbody').html(data); miExpander(); });
                 $.post(url_pager, function(data){ $('.miPager').html(data); });
             }
             function busquedaPorDefault() {
-                var txtBtn   = $('li.default a:first').text(),
-                    url_list  = '{{ path('todo_mo_list', { 'page' : 1, 'id' : 'val' }) }}',
+                var url_list  = '{{ path('todo_mo_list', { 'page' : 1, 'id' : 'val' }) }}',
                     url_list  = url_list.replace('val', $('select#ah option:selected').val()),
                     url_pager = '{{ path('todo_mo_pager', { 'page' : 1, 'id' : 'val' }) }}',
                     url_pager = url_pager.replace('val', $('select#ah option:selected').val());
-                $('div.accion button:first').text(txtBtn);
-                $('ul.dropdown-menu li > a span:first').remove();
-                $('li.default a:first').html('<span/> ' + txtBtn);
-                $('li.default a span:first').addClass('glyphicon glyphicon-ok');
                 $('input#bMo').val('');
                 $.post(url_list, function(data) { $('.table tbody').html(data); miExpander(); });
                 $.post(url_pager, function(data) { $('.miPager').html(data); });

@@ -12,7 +12,7 @@
                                         <td>{{ mo.moTipo }}</td>
                                         <td>{{ mo.moDocumento }}</td>
                                         <td><span class="expander">{{ mo.moOficina }}</span></td>
-                                        <td>{% if mo.moTipo == 'C' %}+{% else %}-{% endif %} {{ mo.moMonto | moneyFormatOs }}</td>
+                                        <td>{% if mo.moTipo == 'C' %}+{% else %}-{% endif %} <span{% if mo.moTipo == 'C' %} style="color: green"{% endif %}>{{ mo.moMonto | moneyFormatOs }}</span></td>
                                         <td{% if mo.moSaldo <= 25 %} style="color: red"{% endif %}>{{ mo.moSaldo | moneyFormatOs }}</td>
                                     </tr>
 {%  endfor %}
