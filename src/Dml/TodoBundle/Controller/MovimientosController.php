@@ -35,13 +35,13 @@ class MovimientosController extends Controller {
                    ->andWhere('ah.ahId = :id');
         if ($request->get('bMoFecha') !== NULL):
             $repo = $repo->andWhere('mo.moFecha LIKE :bMoFecha')
-                         ->setParameter('bMoFecha', "%{$request->get('bMoFecha')}%");
+                         ->setParameter('bMoFecha', array("%{$request->get('bMoFecha')}%"));
         elseif ($request->get('bMoConcepto') !== NULL):
             $repo = $repo->andWhere('mo.moConcepto LIKE :bMoConcepto')
-                         ->setParameter('bMoConcepto', "%{$request->get('bMoConcepto')}%");
+                         ->setParameter('bMoConcepto', array("%{$request->get('bMoConcepto')}%"));
         elseif ($request->get('bMoDocumento') !== NULL):
             $repo = $repo->andWhere('mo.moDocumento LIKE :bMoDocumento')
-                         ->setParameter('bMoDocumento', "%{$request->get('bMoDocumento')}%");
+                         ->setParameter('bMoDocumento', array("%{$request->get('bMoDocumento')}%"));
         else:
             $repo = $repo->andWhere('MONTH(mo.moFecha) = MONTH(CURDATE())');
         endif;
@@ -78,8 +78,8 @@ class MovimientosController extends Controller {
     
     public function moListAction(Request $request) {
         $this->listaDMovimientos($request);
-        $res = $this->pager;
-        Util::getMyDumpSQL($res->getSumQuery('moMonto'));
+//        $res = $this->pager;
+//        Util::getMyDumpSQL($res->getSumQuery('moMonto'));
 //        Util::getMyDumpSQL($res->getSumQuery('moMonto', 'moTipo <> :tipo', 'tipo', array('C')));
         return $this->render('TodoBundle:Movimientos:mo_list.html.twig', array('pager' => $this->pager));
     }

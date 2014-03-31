@@ -9,3 +9,9 @@ services:
         class   : Dml\TodoBundle\Twig\DmlExtension
         tags    :
                     - { name: twig.extension }
+    todo.twig.dml_extension_queries:
+        class   : Dml\TodoBundle\Twig\DmlExtensionQueries
+        tags    :
+                    - { name: twig.extension }
+        arguments:
+            em  : "@doctrine.orm.entity_manager"

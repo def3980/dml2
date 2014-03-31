@@ -1,3 +1,20 @@
+{% set dql = 'SELECT SUM(mo.moMonto) '
+           ~ 'FROM TodoBundle:Movimientos mo '
+           ~ 'JOIN mo.ahorrosAh ah '
+           ~ 'WHERE ah.ahId = 1 AND '
+           ~ "mo.moConcepto LIKE '%internet%' AND "
+           ~ "mo.moTipo = 'C'" %}
+{#{% set dql = 'SELECT SUM(mo.moMonto) '
+           ~ 'FROM TodoBundle:Movimientos mo '
+           ~ 'JOIN mo.ahorrosAh ah '
+           ~ 'WHERE ah.ahId = :id AND '
+           ~ 'mo.moConcepto LIKE :criterio AND '
+           ~ 'mo.moTipo = :tipo' %}#}
+{% set param1 = { 'id' : 1, 'criterio' : '%internet%' , 'tipo' : 'C' } %}
+{% set param2 = { 'id' : 1, 'criterio' : '%internet%' , 'tipo' : 'D' } %}
+<pre>
+{{ dqlOs(dql) }}
+</pre>
 {% if pager.getResults() | length %}
 {%  for mo in pager.getResults() %}
                                     <tr>
