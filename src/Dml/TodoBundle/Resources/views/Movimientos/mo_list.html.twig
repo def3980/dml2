@@ -1,28 +1,13 @@
-{% set dql = 'SELECT SUM(mo.moMonto) '
-           ~ 'FROM TodoBundle:Movimientos mo '
-           ~ 'JOIN mo.ahorrosAh ah '
-           ~ 'WHERE ah.ahId = 1 AND '
-           ~ "mo.moConcepto LIKE '%internet%' AND "
-           ~ "mo.moTipo = 'C'" %}
-{#{% set dql = 'SELECT SUM(mo.moMonto) '
-           ~ 'FROM TodoBundle:Movimientos mo '
-           ~ 'JOIN mo.ahorrosAh ah '
-           ~ 'WHERE ah.ahId = :id AND '
-           ~ 'mo.moConcepto LIKE :criterio AND '
-           ~ 'mo.moTipo = :tipo' %}#}
-{% set param1 = { 'id' : 1, 'criterio' : '%internet%' , 'tipo' : 'C' } %}
-{% set param2 = { 'id' : 1, 'criterio' : '%internet%' , 'tipo' : 'D' } %}
-<pre>
-{{ dqlOs(dql) }}
-</pre>
 {% if pager.getResults() | length %}
 {%  for mo in pager.getResults() %}
                                     <tr>
                                         <th>
 {%      if ((mo.moFecha | date('Y-m-d')) == ('now' | date('Y-m-d'))) %}
-                                            <a onclick="javascript:void(0)" data-toggle="tooltip" title="Nuevo">{{ mo.moFecha | dateSpanishOs(false) }}</a>
+                                            <a onclick="javascript:void(0)" data-toggle="tooltip" title="Nuevo">{{ mo.moFecha | dateSpanishOs(false) | raw }}</a>
 {%      else %}
+{% autoescape false %}
                                             {{ mo.moFecha | dateSpanishOs(false) }}
+{% endautoescape %}
 {%      endif %}
                                         </th>
                                         <td><span class="expander">{{ mo.moConcepto }}</span></td>
@@ -30,7 +15,7 @@
                                         <td>{{ mo.moDocumento }}</td>
                                         <td><span class="expander">{{ mo.moOficina }}</span></td>
                                         <td>{% if mo.moTipo == 'C' %}+{% else %}-{% endif %} <span{% if mo.moTipo == 'C' %} style="color: green"{% else %} style="color: red"{% endif %}>{{ mo.moMonto | moneyFormatOs }}</span></td>
-                                        <td{% if mo.moSaldo <= 25 %} style="color: red"{% endif %}><strong>{{ mo.moSaldo | moneyFormatOs }}</strong></td>
+                                        <td{% if mo.moSaldo <= 25 %} style="color: red"{% else %} style="color: #3276B1"{% endif %}><strong>{{ mo.moSaldo | moneyFormatOs }}</strong></td>
                                     </tr>
 {%  endfor %}
 {%  if app.request.get('bMoConcepto') | length %}
@@ -38,10 +23,18 @@
                                         <td colspan="7">&nbsp;</td>
                                     </tr>                                    
                                     <tr>
-{#{%      set monto = pager.getSumQuery('moMonto') %}#}
+{% set dql = 'SELECT SUM(mo.moMonto) '
+           ~ 'FROM TodoBundle:Movimientos mo '
+           ~ 'JOIN mo.ahorrosAh ah '
+           ~ 'WHERE ah.ahId = :id AND '
+           ~ 'mo.moTipo = :tipo AND '
+           ~ 'mo.moConcepto LIKE :criterio' %}
+{% set param1 = { 'id' : app.request.get('id'), 'tipo' : 'C', 'criterio' : '%' ~ app.request.get('bMoConcepto') ~ '%' } %}
+{% set param2 = { 'id' : app.request.get('id'), 'tipo' : 'D', 'criterio' : '%' ~ app.request.get('bMoConcepto') ~ '%' } %}
+{% set s1 = dqlSingleOs(dql, param1) %}
+{% set s2 = dqlSingleOs(dql, param2) %}
                                         <td colspan="5">&nbsp;</td>
-{#                                        <td style="border: 1px solid #ddd; text-align: right;">{% if monto[0].moTipo == 'C' %}+{% else %}-{% endif %} <span{% if monto[0].moTipo == 'C' %} style="color: green"{% else %} style="color: red"{% endif %}><strong>{{ monto[0].totalMoMonto | moneyFormatOs }}</strong></span></td>#}
-                                        <td style="border: 1px solid #ddd; text-align: right;">~~~</td>
+                                        <td style="border: 1px solid #ddd; text-align: right;"><span style="color: brown"><strong>{{ (s1 - s2) | abs | moneyFormatOs }}</strong></span></td>
                                         <td style="border: 1px solid #ddd; text-align: right;">-</td>
                                     </tr>
 {%  endif %}
@@ -49,7 +42,7 @@
 {%  if app.request.get('bMoFecha') | length %}
                                     <tr>
                                         <td colspan="7">
-                                            <div class="bs-callout bs-callout-warning" style="margin: 0">
+                                            <div class="bs-callout bs-callout-danger" style="margin: 0">
                                                 <h4>{{ app.request.get('bMoFecha') | dateSpanishOs }}</h4> 
                                                 <p><u>No</u> refleja ning&uacute;n resultado en la consulta actual.</p>
                                             </div>
@@ -58,9 +51,27 @@
 {%  elseif app.request.get('bMoConcepto') | length %}
                                     <tr>
                                         <td colspan="7">
-                                            <div class="bs-callout bs-callout-warning" style="margin: 0">
+                                            <div class="bs-callout bs-callout-danger" style="margin: 0">
                                                 <h4>"{{ app.request.get('bMoConcepto') }}"</h4> 
                                                 <p><u>No</u> refleja ning&uacute;n resultado en la consulta actual.</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+{%  elseif app.request.get('bMoDocumento') | length %}
+                                    <tr>
+                                        <td colspan="7">
+                                            <div class="bs-callout bs-callout-danger" style="margin: 0">
+                                                <h4>"{{ app.request.get('bMoDocumento') }}"</h4> 
+                                                <p><u>No</u> refleja ning&uacute;n resultado en la consulta actual.</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+{%  else %}
+                                    <tr>
+                                        <td colspan="7">
+                                            <div class="bs-callout bs-callout-danger" style="margin: 0">
+                                                <h4>"Sin registros..."</h4> 
+                                                <p><u>No</u> existen movimientos en el mes de <strong><u>{{ 'now' | date('Y-m-d') | monthOs }}</u></strong>.</p>
                                             </div>
                                         </td>
                                     </tr>

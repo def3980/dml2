@@ -43,7 +43,7 @@ class DmlExtensionQueries extends \Twig_Extension {
      * @return instance Instacia con el nuevo nombre de la funcion ya referenciada.
      */
     public function getFunctions() {
-        return array('dqlOs' => new \Twig_Function_Method($this, 'dqlOsMethod'));
+        return array('dqlSingleOs' => new \Twig_Function_Method($this, 'dqlSingleOsMethod'));
     }
     
     /**
@@ -56,9 +56,11 @@ class DmlExtensionQueries extends \Twig_Extension {
      * @param array $param <p>Parametros que pueden estar asociados al dql. Default: null.</p>
      * @return array Un solo dato resultante.
      */
-    public function dqlOsMethod($dql, $param = null) {
+    public function dqlSingleOsMethod($dql, $param = null) {
         $q = $this->em->createQuery($dql);
-        if (is_array($param)) foreach ($param as $k => $v) $q->setParameter("'{$k}'", array("{$v}"));
+        if (is_array($param)) 
+            foreach ($param as $k => $v)
+                $q = $q->setParameter($k, $v);
         return $q->getSingleScalarResult();
     }
 

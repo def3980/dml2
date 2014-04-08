@@ -60,33 +60,27 @@ class MovimientosController extends Controller {
 
     public function indexAction(Request $request) {
         $this->listaDMovimientos($request);
-//        $res = $this->pager;
-//        Util::getMyDumpSQL($res->getSumQuery('moMonto', 'moTipo <> :tipo', 'tipo', array('D')));
-//        Util::getMyDump($res->getSumQuery('moMonto', 'moTipo <> :tipo', 'tipo', array('D')));
         $ahorros = $this->cuentasDAhorros($request)->getQuery()->getArrayResult();
         return $this->render('TodoBundle:Movimientos:index.html.twig', array('pager' => $this->pager, 'ahorros' => $ahorros));
     }
     
-//    public function cuentasAhorrosAction(Request $request) {
-//        $em = $this->getDoctrine();
-//        $q = $em->getRepository('TodoBundle:Ahorros')->ahTable()
-//                ->select('ah.ahId, ah.ahNumeroCuenta')
-//                ->getQuery()
-//                ->getArrayResult();
-//        return new Response(Util::getJSON($q));
-//    }
-    
     public function moListAction(Request $request) {
         $this->listaDMovimientos($request);
-//        $res = $this->pager;
-//        Util::getMyDumpSQL($res->getSumQuery('moMonto'));
-//        Util::getMyDumpSQL($res->getSumQuery('moMonto', 'moTipo <> :tipo', 'tipo', array('C')));
         return $this->render('TodoBundle:Movimientos:mo_list.html.twig', array('pager' => $this->pager));
     }
     
     public function moPagerAction(Request $request) {
         $this->listaDMovimientos($request);
         return $this->render('TodoBundle:Movimientos:mo_pager.html.twig', array('pager' => $this->pager));
+    }
+    
+    public function pasteAction(Request $request) {
+        $tmp = preg_split('/[\r\n]+/', $request->get('txta'), -1, PREG_SPLIT_NO_EMPTY);
+        foreach ($tmp as $k => $v):
+            $tmp = explode('D', $v);
+        endforeach;
+
+        return new Response(Util::getMyDump($tmp));
     }
     
 }

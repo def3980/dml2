@@ -21,7 +21,7 @@
             }
             .table thead th:nth-child(2),
             .table thead th:nth-child(5) {
-                width: 26%
+                width: 25.5%
             }
             .table thead th:nth-child(3) {
                 width: 5%
@@ -31,7 +31,7 @@
             }
             .table thead th:nth-child(6),
             .table thead th:nth-child(7) {
-                width: 9%
+                width: 9.5%
             }
             .table thead th:nth-child(1),
             .table thead th:nth-child(2),
@@ -164,6 +164,10 @@
                                 </div>
                             </div>
                         </div>
+                        <br />
+                        <textarea id="pegar" class="form-control" rows="3"></textarea>
+                        <br />
+                        <button class="btn btn-danger btn-paste">Acomodar</button>
                         <h3 id="overview-mobile">Mobile first</h3>
                         <p>With Bootstrap 2, we added optional mobile friendly styles for key aspects of the framework. With Bootstrap 3, we've rewritten the project to be mobile friendly from the start. Instead of adding on optional mobile styles, they're baked right into the core. In fact, <strong>Bootstrap is mobile first</strong>. Mobile first styles can be found throughout the entire library instead of in separate files.</p>
                         <p>To ensure proper rendering and touch zooming, <strong>add the viewport meta tag</strong> to your <code>&lt;head&gt;</code>.</p>
@@ -303,13 +307,13 @@
                 });
                 $('button.trigger').bind('click', function() {
                     switch ($.trim($(this).text())){
-                        case "Por fecha":    busquedaPorFecha();    break;
-                        case "Por concepto": busquedaPorConcepto(); break;
+                        case "Por fecha":     busquedaPorFecha();     break;
+                        case "Por concepto":  busquedaPorConcepto();  break;
                         case "Por documento": busquedaPorDocumento(); break;
                         default: busquedaPorDefault();
                     }
                 });
-                {# Funciona al cargar la página #}
+{# Funciona al cargar la página #}
                 setTimeout(function(){
                     $('a[data-toggle^="tool"]').tooltip({ placement : 'left' });
                     $('a[data-toggle^="tool"]').tooltip('show');
@@ -317,6 +321,17 @@
                         $('a[data-toggle^="tool"]').tooltip('hide');
                     },1300);
                 },500);
+                
+                $('.btn-paste').bind('click', function(){ 
+                    {#var lines = $('textarea[id="pegar"]').val().split('\n');
+                    $.each(lines, function(){
+                        alert(this);
+                    });#}
+                    $.post('{{ path('todo_mo_paste') }}', { txta : $('textarea[id="pegar"]').val() })
+                     .done(function(data) {
+                         alert(data);
+                     });
+                });
             });
             function miExpander() {
                 $('span.expander').expander({
