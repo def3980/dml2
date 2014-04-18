@@ -10,6 +10,7 @@
         <script src="{{ asset('bundles/todo/js/bootstrap3-typeahead/bootstrap3-typeahead.js') }}"></script>
         <script src="{{ asset('bundles/todo/js/mis-javascripts/dump.js') }}"></script>
         <script src="{{ asset('bundles/todo/js/jquery-zclip/jquery.zclip.js') }}"></script>
+        <script src="{{ asset('bundles/todo/js/mis-javascripts/validators.js') }}"></script>
 {% endblock %}
 {% block body %}
         <style>
@@ -94,7 +95,27 @@
                         <h3 id="overview-ahorros">Cuentas de ahorros</h3>
                         <p>Aqui encontramos de forma de tallada las cuentas de ahorros que tiene el usuario ordenados del &uacute;ltimo al primero.</p>
                         <div class="row" style="padding-bottom: 1%">
-                            <div class="col-md-3">
+                            <div class="col-md-4">
+                                <div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="margin-top: 1px">&times;</button>
+                                                <h4 class="modal-title" id="myModalLabel">Ingreso movimientos bancarios</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <label for="insercion">Inserci&oacute;n : <span id="msj-insercion" style="display: none"></span></label>
+                                                    <textarea id="pegar" class="form-control" rows="7" style="resize: none"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer" style="margin-top: 0">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary btn-paste">Save changes</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="form-inline">
                                     <div class="form-group cp">
                                         <button class="btn btn-default" data-toggle="tooltip" title="Copiado">
@@ -102,15 +123,20 @@
                                         </button>
                                     </div>
                                     <div class="form-group">
+                                        <button class="btn btn-default" data-toggle="modal" data-target="#myModal">
+                                            <span class="glyphicon glyphicon glyphicon-floppy-open" style="top: 3px"></span>
+                                        </button>
+                                    </div>
+                                    <div class="form-group">
                                         <select id="ah" class="form-control">
 {% for ah in ahorros %}
-                                            <option value="{{ ah.ahId }}">{{ ah.ahNumeroCuenta }}</option>
+                                            <option value="{{ ah.ahId }}"{% if loop.index == 1 %} selected="selected"{% endif %}>{{ ah.ahNumeroCuenta }}</option>
 {% endfor %}
                                         </select>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-9">
+                            <div class="col-md-8">
                                 <div class="form-inline" style="text-align: right">
                                     <input type="text" class="form-control" id="bMo" placeholder="Movimientos" style="width: 70%">
                                     <div class="btn-group accion" style="text-align: left">
@@ -164,10 +190,6 @@
                                 </div>
                             </div>
                         </div>
-                        <br />
-                        <textarea id="pegar" class="form-control" rows="3"></textarea>
-                        <br />
-                        <button class="btn btn-danger btn-paste">Acomodar</button>
                         <h3 id="overview-mobile">Mobile first</h3>
                         <p>With Bootstrap 2, we added optional mobile friendly styles for key aspects of the framework. With Bootstrap 3, we've rewritten the project to be mobile friendly from the start. Instead of adding on optional mobile styles, they're baked right into the core. In fact, <strong>Bootstrap is mobile first</strong>. Mobile first styles can be found throughout the entire library instead of in separate files.</p>
                         <p>To ensure proper rendering and touch zooming, <strong>add the viewport meta tag</strong> to your <code>&lt;head&gt;</code>.</p>
@@ -322,15 +344,32 @@
                     },1300);
                 },500);
                 
-                $('.btn-paste').bind('click', function(){ 
-                    {#var lines = $('textarea[id="pegar"]').val().split('\n');
-                    $.each(lines, function(){
-                        alert(this);
-                    });#}
-                    $.post('{{ path('todo_mo_paste') }}', { txta : $('textarea[id="pegar"]').val() })
+                $('.btn-paste').bind('click', function(){
+                    {#$.post('{{ path('todo_mo_paste') }}', { txta : $('textarea[id="pegar"]').val(), ica : $('select#ah option:selected').val() }) //id_cuenta_ahorros = ica
                      .done(function(data) {
                          alert(data);
-                     });
+                     });#}
+                    if ($('#pegar').val().length <= 9) {
+                        $('#pegar').focus();
+                        $('#msj-insercion').addClass('label label-danger');
+                        $('#msj-insercion').text('Contenido incompleto').fadeIn('slow');
+                        setTimeout(function(){ $('#msj-insercion').fadeOut('fast'); },1500);
+                    } else {
+                        $.get('{{ path('todo_mo_paste') }}', { txta : $('textarea[id="pegar"]').val(), ica : $('select#ah option:selected').val() }, function(data){
+                            if (data.msj) {
+                                $('#msj-insercion').removeClass('label label-danger');
+                                $('#msj-insercion').addClass('label label-success');
+                                $('#msj-insercion').text('Insercion completa').fadeIn('slow');
+                                $('#pegar').attr('disabled', true);
+                                setTimeout(function(){ 
+                                    $('#msj-insercion').fadeOut('fast');
+                                    $('#pegar').removeAttr('disabled');
+                                    $('#myModal').modal('hide');
+                                    busquedaPorDefault();
+                                }, 1500);
+                            }
+                        }, 'json');
+                    }
                 });
             });
             function miExpander() {

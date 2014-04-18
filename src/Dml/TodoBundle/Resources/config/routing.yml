@@ -1,5 +1,5 @@
 todo_homepage:
-    pattern:  /index
+    pattern:  /index.html
     defaults: { _controller: TodoBundle:Movimientos:index }
 
 todo_combo_cuentas:

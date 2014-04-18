@@ -15,16 +15,16 @@ class MovimientosController extends Controller {
     
     protected 
         $fields = array(
-                    'mo.moId',
-                    'mo.moFecha',
-                    'mo.moConcepto',
-                    'mo.moTipo',
-                    'mo.moDocumento',
-                    'mo.moOficina',
-                    'mo.moMonto',
-                    'mo.moSaldo',
-                    'ah.ahNumeroCuenta'
-                   );
+                        'mo.moId',
+                        'mo.moFecha',
+                        'mo.moConcepto',
+                        'mo.moTipo',
+                        'mo.moDocumento',
+                        'mo.moOficina',
+                        'mo.moMonto',
+                        'mo.moSaldo',
+                        'ah.ahNumeroCuenta'
+                       );
 
     private function listaDMovimientos(Request $request) {
         $em = $this->getDoctrine();
@@ -75,12 +75,25 @@ class MovimientosController extends Controller {
     }
     
     public function pasteAction(Request $request) {
-        $tmp = preg_split('/[\r\n]+/', $request->get('txta'), -1, PREG_SPLIT_NO_EMPTY);
-        foreach ($tmp as $k => $v):
-            $tmp = explode('D', $v);
+        foreach (preg_split('/[\r\n]+/', $request->get('txta'), -1, PREG_SPLIT_NO_EMPTY) as $k => $v):
+            $field = explode('|', $v);
+            $campos = array(
+                            'mo_fecha'     => implode('-', array_reverse(explode('/', trim($field[0])))),
+                            'mo_concepto'  => trim($field[1]),
+                            'mo_tipo'      => trim($field[2]),
+                            'mo_documento' => trim($field[3]),
+                            'mo_oficina'   => trim($field[4]),
+                            'mo_monto'     => trim($field[5]),
+                            'mo_saldo'     => trim($field[6]),
+                           );
+            $contenedor[] = $campos;
         endforeach;
+        array_push($contenedor, $request->get('ica')); // id_cuenta_ahorros = ica        
+        $repo = $this->getDoctrine()
+                     ->getRepository('TodoBundle:Movimientos')
+                     ->moInsert($contenedor);
 
-        return new Response(Util::getMyDump($tmp));
+        return new Response(Util::getJSON($repo));
     }
     
 }
