@@ -40,6 +40,8 @@ class LoadAhorros extends AbstractFixture implements OrderedFixtureInterface, Co
                             'ah_quien_crea' => 1,
                             'ah_fecha_modifica' => NULL,
                             'ah_quien_modifica' => NULL,
+                            'ah_fecha_borrado' => NULL,
+                            'ah_quien_borra' => NULL,
                             'ah_borrado_logico' => false
                         ),
                         array(
@@ -51,6 +53,8 @@ class LoadAhorros extends AbstractFixture implements OrderedFixtureInterface, Co
                             'ah_quien_crea' => 1,
                             'ah_fecha_modifica' => NULL,
                             'ah_quien_modifica' => NULL,
+                            'ah_fecha_borrado' => NULL,
+                            'ah_quien_borra' => NULL,
                             'ah_borrado_logico' => false
                         ),
                         array(
@@ -62,6 +66,8 @@ class LoadAhorros extends AbstractFixture implements OrderedFixtureInterface, Co
                             'ah_quien_crea' => 1,
                             'ah_fecha_modifica' => NULL,
                             'ah_quien_modifica' => NULL,
+                            'ah_fecha_borrado' => NULL,
+                            'ah_quien_borra' => NULL,
                             'ah_borrado_logico' => false
                         ),
                     );
@@ -75,6 +81,8 @@ class LoadAhorros extends AbstractFixture implements OrderedFixtureInterface, Co
                         $ah->setAhQuienCrea($ahorro['ah_quien_crea']);
                         $ah->setAhFechaModifica($ahorro['ah_fecha_modifica']);
                         $ah->setAhQuienModifica($ahorro['ah_quien_modifica']);
+                        $ah->setAhFechaBorrado($ahorro['ah_fecha_borrado']);
+                        $ah->setAhQuienBorra($ahorro['ah_quien_borra']);
                         $ah->setAhBorradoLogico($ahorro['ah_borrado_logico']);
                         $ah->setContratarBCb($c_b);
                         $ah->setTipoCuentaTc($TipoCuenta);

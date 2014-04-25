@@ -86,6 +86,17 @@ Dml\TodoBundle\Entity\Movimientos:
             unsigned: false
             comment: ''
             column: mo_quien_modifica
+        moFechaBorrado:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: mo_fecha_borrado
+        moQuienBorra:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: mo_quien_borra
         moBorradoLogico:
             type: boolean
             nullable: true

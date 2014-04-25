@@ -82,6 +82,17 @@ Dml\TodoBundle\Entity\Persona:
             unsigned: false
             comment: ''
             column: pe_quien_modifica
+        peFechaBorrado:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: pe_fecha_borrado
+        peQuienBorra:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: pe_quien_borra
         peBorradoLogico:
             type: boolean
             nullable: true

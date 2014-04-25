@@ -42,6 +42,17 @@ Dml\TodoBundle\Entity\TipoCuenta:
             unsigned: false
             comment: ''
             column: tc_quien_modifica
+        tcFechaBorrado:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: tc_fecha_borrado
+        tcQuienBorra:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: tc_quien_borra
         tcBorradoLogico:
             type: boolean
             nullable: true

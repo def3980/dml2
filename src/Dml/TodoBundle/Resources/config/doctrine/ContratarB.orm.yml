@@ -47,6 +47,17 @@ Dml\TodoBundle\Entity\ContratarB:
             unsigned: false
             comment: ''
             column: cb_quien_modifica
+        cbFechaBorrado:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: cb_fecha_borrado
+        cbQuienBorra:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: cb_quien_borra
         cbBorradoLogico:
             type: boolean
             nullable: true

@@ -64,6 +64,20 @@ class TipoConsumo
     private $tcQuienModifica;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="tc_fecha_borrado", type="datetime", nullable=true)
+     */
+    private $tcFechaBorrado;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="tc_quien_borra", type="integer", nullable=true)
+     */
+    private $tcQuienBorra;
+
+    /**
      * @var boolean
      *
      * @ORM\Column(name="tc_borrado_logico", type="boolean", nullable=true)
@@ -218,6 +232,52 @@ class TipoConsumo
     public function getTcQuienModifica()
     {
         return $this->tcQuienModifica;
+    }
+
+    /**
+     * Set tcFechaBorrado
+     *
+     * @param \DateTime $tcFechaBorrado
+     * @return TipoConsumo
+     */
+    public function setTcFechaBorrado($tcFechaBorrado)
+    {
+        $this->tcFechaBorrado = $tcFechaBorrado;
+    
+        return $this;
+    }
+
+    /**
+     * Get tcFechaBorrado
+     *
+     * @return \DateTime 
+     */
+    public function getTcFechaBorrado()
+    {
+        return $this->tcFechaBorrado;
+    }
+
+    /**
+     * Set tcQuienBorra
+     *
+     * @param integer $tcQuienBorra
+     * @return TipoConsumo
+     */
+    public function setTcQuienBorra($tcQuienBorra)
+    {
+        $this->tcQuienBorra = $tcQuienBorra;
+    
+        return $this;
+    }
+
+    /**
+     * Get tcQuienBorra
+     *
+     * @return integer 
+     */
+    public function getTcQuienBorra()
+    {
+        return $this->tcQuienBorra;
     }
 
     /**

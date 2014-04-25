@@ -85,6 +85,20 @@ class Binarios
     private $biQuienModifica;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="bi_fecha_borrdado", type="datetime", nullable=true)
+     */
+    private $biFechaBorrdado;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="bi_quien_borra", type="integer", nullable=true)
+     */
+    private $biQuienBorra;
+
+    /**
      * @var boolean
      *
      * @ORM\Column(name="bi_borrado_logico", type="boolean", nullable=true)
@@ -368,6 +382,52 @@ class Binarios
     public function getBiQuienModifica()
     {
         return $this->biQuienModifica;
+    }
+
+    /**
+     * Set biFechaBorrdado
+     *
+     * @param \DateTime $biFechaBorrdado
+     * @return Binarios
+     */
+    public function setBiFechaBorrdado($biFechaBorrdado)
+    {
+        $this->biFechaBorrdado = $biFechaBorrdado;
+    
+        return $this;
+    }
+
+    /**
+     * Get biFechaBorrdado
+     *
+     * @return \DateTime 
+     */
+    public function getBiFechaBorrdado()
+    {
+        return $this->biFechaBorrdado;
+    }
+
+    /**
+     * Set biQuienBorra
+     *
+     * @param integer $biQuienBorra
+     * @return Binarios
+     */
+    public function setBiQuienBorra($biQuienBorra)
+    {
+        $this->biQuienBorra = $biQuienBorra;
+    
+        return $this;
+    }
+
+    /**
+     * Get biQuienBorra
+     *
+     * @return integer 
+     */
+    public function getBiQuienBorra()
+    {
+        return $this->biQuienBorra;
     }
 
     /**

@@ -99,6 +99,20 @@ class Persona
     private $peQuienModifica;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="pe_fecha_borrado", type="datetime", nullable=true)
+     */
+    private $peFechaBorrado;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="pe_quien_borra", type="integer", nullable=true)
+     */
+    private $peQuienBorra;
+
+    /**
      * @var boolean
      *
      * @ORM\Column(name="pe_borrado_logico", type="boolean", nullable=true)
@@ -368,6 +382,52 @@ class Persona
     public function getPeQuienModifica()
     {
         return $this->peQuienModifica;
+    }
+
+    /**
+     * Set peFechaBorrado
+     *
+     * @param \DateTime $peFechaBorrado
+     * @return Persona
+     */
+    public function setPeFechaBorrado($peFechaBorrado)
+    {
+        $this->peFechaBorrado = $peFechaBorrado;
+    
+        return $this;
+    }
+
+    /**
+     * Get peFechaBorrado
+     *
+     * @return \DateTime 
+     */
+    public function getPeFechaBorrado()
+    {
+        return $this->peFechaBorrado;
+    }
+
+    /**
+     * Set peQuienBorra
+     *
+     * @param integer $peQuienBorra
+     * @return Persona
+     */
+    public function setPeQuienBorra($peQuienBorra)
+    {
+        $this->peQuienBorra = $peQuienBorra;
+    
+        return $this;
+    }
+
+    /**
+     * Get peQuienBorra
+     *
+     * @return integer 
+     */
+    public function getPeQuienBorra()
+    {
+        return $this->peQuienBorra;
     }
 
     /**

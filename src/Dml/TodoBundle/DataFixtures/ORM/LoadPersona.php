@@ -38,6 +38,8 @@ class LoadPersona extends AbstractFixture implements OrderedFixtureInterface, Co
                 'pe_quien_crea' => 1,
                 'pe_fecha_modifica' => NULL,
                 'pe_quien_modifica' => NULL,
+                'pe_fecha_borrado' => NULL,
+                'pe_quien_borra' => NULL,
                 'pe_borrado_logico' => false
             ),
             array(
@@ -52,6 +54,8 @@ class LoadPersona extends AbstractFixture implements OrderedFixtureInterface, Co
                 'pe_quien_crea' => 1,
                 'pe_fecha_modifica' => NULL,
                 'pe_quien_modifica' => NULL,
+                'pe_fecha_borrado' => NULL,
+                'pe_quien_borra' => NULL,
                 'pe_borrado_logico' => false
             ),
         );
@@ -69,6 +73,8 @@ class LoadPersona extends AbstractFixture implements OrderedFixtureInterface, Co
             $pe->setPeQuienCrea($persona['pe_quien_crea']);
             $pe->setPeFechaModifica($persona['pe_fecha_modifica']);
             $pe->setPeQuienModifica($persona['pe_quien_modifica']);
+            $pe->setPeFechaBorrado($persona['pe_fecha_borrado']);
+            $pe->setPeQuienBorra($persona['pe_quien_borra']);
             $pe->setPeBorradoLogico($persona['pe_borrado_logico']);
             $manager->persist($pe);
         endforeach;

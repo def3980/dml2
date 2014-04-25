@@ -47,6 +47,8 @@ class LoadEntidadSbbip extends AbstractFixture implements OrderedFixtureInterfac
                 'es_quien_crea' => 1,
                 'es_fecha_modifica' => NULL,
                 'es_quien_modifica' => NULL,
+                'es_fecha_borrado' => NULL,
+                'es_quien_borra' => NULL,
                 'es_borrado_logico' => false
             ),
             array(
@@ -61,6 +63,8 @@ class LoadEntidadSbbip extends AbstractFixture implements OrderedFixtureInterfac
                 'es_quien_crea' => 1,
                 'es_fecha_modifica' => NULL,
                 'es_quien_modifica' => NULL,
+                'es_fecha_borrado' => NULL,
+                'es_quien_borra' => NULL,
                 'es_borrado_logico' => false
             ),
             array(
@@ -75,6 +79,8 @@ class LoadEntidadSbbip extends AbstractFixture implements OrderedFixtureInterfac
                 'es_quien_crea' => 1,
                 'es_fecha_modifica' => NULL,
                 'es_quien_modifica' => NULL,
+                'es_fecha_borrado' => NULL,
+                'es_quien_borra' => NULL,
                 'es_borrado_logico' => false
             ),
             array(
@@ -89,6 +95,8 @@ class LoadEntidadSbbip extends AbstractFixture implements OrderedFixtureInterfac
                 'es_quien_crea' => 1,
                 'es_fecha_modifica' => NULL,
                 'es_quien_modifica' => NULL,
+                'es_fecha_borrado' => NULL,
+                'es_quien_borra' => NULL,
                 'es_borrado_logico' => false
             ),
             array(
@@ -103,6 +111,8 @@ class LoadEntidadSbbip extends AbstractFixture implements OrderedFixtureInterfac
                 'es_quien_crea' => 1,
                 'es_fecha_modifica' => NULL,
                 'es_quien_modifica' => NULL,
+                'es_fecha_borrado' => NULL,
+                'es_quien_borra' => NULL,
                 'es_borrado_logico' => false
             ),
             array(
@@ -117,6 +127,8 @@ class LoadEntidadSbbip extends AbstractFixture implements OrderedFixtureInterfac
                 'es_quien_crea' => 1,
                 'es_fecha_modifica' => NULL,
                 'es_quien_modifica' => NULL,
+                'es_fecha_borrado' => NULL,
+                'es_quien_borra' => NULL,
                 'es_borrado_logico' => false
             ),
             /**
@@ -138,6 +150,8 @@ class LoadEntidadSbbip extends AbstractFixture implements OrderedFixtureInterfac
                 'es_quien_crea' => 1,
                 'es_fecha_modifica' => NULL,
                 'es_quien_modifica' => NULL,
+                'es_fecha_borrado' => NULL,
+                'es_quien_borra' => NULL,
                 'es_borrado_logico' => false
             ),
             array(
@@ -152,6 +166,8 @@ class LoadEntidadSbbip extends AbstractFixture implements OrderedFixtureInterfac
                 'es_quien_crea' => 1,
                 'es_fecha_modifica' => NULL,
                 'es_quien_modifica' => NULL,
+                'es_fecha_borrado' => NULL,
+                'es_quien_borra' => NULL,
                 'es_borrado_logico' => false
             ),
             array(
@@ -166,6 +182,8 @@ class LoadEntidadSbbip extends AbstractFixture implements OrderedFixtureInterfac
                 'es_quien_crea' => 1,
                 'es_fecha_modifica' => NULL,
                 'es_quien_modifica' => NULL,
+                'es_fecha_borrado' => NULL,
+                'es_quien_borra' => NULL,
                 'es_borrado_logico' => false
             ),
             /**
@@ -187,6 +205,8 @@ class LoadEntidadSbbip extends AbstractFixture implements OrderedFixtureInterfac
                 'es_quien_crea' => 1,
                 'es_fecha_modifica' => NULL,
                 'es_quien_modifica' => NULL,
+                'es_fecha_borrado' => NULL,
+                'es_quien_borra' => NULL,
                 'es_borrado_logico' => false
             ),
             array(
@@ -201,6 +221,8 @@ class LoadEntidadSbbip extends AbstractFixture implements OrderedFixtureInterfac
                 'es_quien_crea' => 1,
                 'es_fecha_modifica' => NULL,
                 'es_quien_modifica' => NULL,
+                'es_fecha_borrado' => NULL,
+                'es_quien_borra' => NULL,
                 'es_borrado_logico' => false
             ),
             array(
@@ -215,6 +237,8 @@ class LoadEntidadSbbip extends AbstractFixture implements OrderedFixtureInterfac
                 'es_quien_crea' => 1,
                 'es_fecha_modifica' => NULL,
                 'es_quien_modifica' => NULL,
+                'es_fecha_borrado' => NULL,
+                'es_quien_borra' => NULL,
                 'es_borrado_logico' => false
             ),
             /**
@@ -234,6 +258,8 @@ class LoadEntidadSbbip extends AbstractFixture implements OrderedFixtureInterfac
             $e_sbbip->setEsQuienCrea($e['es_quien_crea']);
             $e_sbbip->setEsFechaModifica($e['es_fecha_modifica']);
             $e_sbbip->setEsQuienModifica($e['es_quien_modifica']);
+            $e_sbbip->setEsFechaBorrado($e['es_fecha_borrado']);
+            $e_sbbip->setEsQuienBorra($e['es_quien_borra']);
             $e_sbbip->setEsBorradoLogico($e['es_borrado_logico']);
             $manager->persist($e_sbbip);
         endforeach;

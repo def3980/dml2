@@ -64,6 +64,17 @@ Dml\TodoBundle\Entity\Ahorros:
             unsigned: false
             comment: ''
             column: ah_quien_modifica
+        ahFechaBorrado:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: ah_fecha_borrado
+        ahQuienBorra:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: ah_quien_borra
         ahBorradoLogico:
             type: boolean
             nullable: true

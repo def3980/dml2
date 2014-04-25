@@ -78,6 +78,20 @@ class Ahorros
     private $ahQuienModifica;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="ah_fecha_borrado", type="datetime", nullable=true)
+     */
+    private $ahFechaBorrado;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="ah_quien_borra", type="integer", nullable=true)
+     */
+    private $ahQuienBorra;
+
+    /**
      * @var boolean
      *
      * @ORM\Column(name="ah_borrado_logico", type="boolean", nullable=true)
@@ -298,6 +312,52 @@ class Ahorros
     public function getAhQuienModifica()
     {
         return $this->ahQuienModifica;
+    }
+
+    /**
+     * Set ahFechaBorrado
+     *
+     * @param \DateTime $ahFechaBorrado
+     * @return Ahorros
+     */
+    public function setAhFechaBorrado($ahFechaBorrado)
+    {
+        $this->ahFechaBorrado = $ahFechaBorrado;
+    
+        return $this;
+    }
+
+    /**
+     * Get ahFechaBorrado
+     *
+     * @return \DateTime 
+     */
+    public function getAhFechaBorrado()
+    {
+        return $this->ahFechaBorrado;
+    }
+
+    /**
+     * Set ahQuienBorra
+     *
+     * @param integer $ahQuienBorra
+     * @return Ahorros
+     */
+    public function setAhQuienBorra($ahQuienBorra)
+    {
+        $this->ahQuienBorra = $ahQuienBorra;
+    
+        return $this;
+    }
+
+    /**
+     * Get ahQuienBorra
+     *
+     * @return integer 
+     */
+    public function getAhQuienBorra()
+    {
+        return $this->ahQuienBorra;
     }
 
     /**

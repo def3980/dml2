@@ -70,6 +70,27 @@ class Remuneracion
      */
     private $reQuienModifica;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="re_fecha_borrado", type="datetime", nullable=true)
+     */
+    private $reFechaBorrado;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="re_quien_borra", type="integer", nullable=true)
+     */
+    private $reQuienBorra;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="re_borrado_logico", type="boolean", nullable=true)
+     */
+    private $reBorradoLogico;
+
 
 
     /**
@@ -241,5 +262,74 @@ class Remuneracion
     public function getReQuienModifica()
     {
         return $this->reQuienModifica;
+    }
+
+    /**
+     * Set reFechaBorrado
+     *
+     * @param \DateTime $reFechaBorrado
+     * @return Remuneracion
+     */
+    public function setReFechaBorrado($reFechaBorrado)
+    {
+        $this->reFechaBorrado = $reFechaBorrado;
+    
+        return $this;
+    }
+
+    /**
+     * Get reFechaBorrado
+     *
+     * @return \DateTime 
+     */
+    public function getReFechaBorrado()
+    {
+        return $this->reFechaBorrado;
+    }
+
+    /**
+     * Set reQuienBorra
+     *
+     * @param integer $reQuienBorra
+     * @return Remuneracion
+     */
+    public function setReQuienBorra($reQuienBorra)
+    {
+        $this->reQuienBorra = $reQuienBorra;
+    
+        return $this;
+    }
+
+    /**
+     * Get reQuienBorra
+     *
+     * @return integer 
+     */
+    public function getReQuienBorra()
+    {
+        return $this->reQuienBorra;
+    }
+
+    /**
+     * Set reBorradoLogico
+     *
+     * @param boolean $reBorradoLogico
+     * @return Remuneracion
+     */
+    public function setReBorradoLogico($reBorradoLogico)
+    {
+        $this->reBorradoLogico = $reBorradoLogico;
+    
+        return $this;
+    }
+
+    /**
+     * Get reBorradoLogico
+     *
+     * @return boolean 
+     */
+    public function getReBorradoLogico()
+    {
+        return $this->reBorradoLogico;
     }
 }

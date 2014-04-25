@@ -99,6 +99,20 @@ class Pagos
     private $paQuienModifica;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="pa_fecha_borrado", type="datetime", nullable=true)
+     */
+    private $paFechaBorrado;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="pa_quien_borra", type="integer", nullable=true)
+     */
+    private $paQuienBorra;
+
+    /**
      * @var boolean
      *
      * @ORM\Column(name="pa_borrado_logico", type="boolean", nullable=true)
@@ -388,6 +402,52 @@ class Pagos
     public function getPaQuienModifica()
     {
         return $this->paQuienModifica;
+    }
+
+    /**
+     * Set paFechaBorrado
+     *
+     * @param \DateTime $paFechaBorrado
+     * @return Pagos
+     */
+    public function setPaFechaBorrado($paFechaBorrado)
+    {
+        $this->paFechaBorrado = $paFechaBorrado;
+    
+        return $this;
+    }
+
+    /**
+     * Get paFechaBorrado
+     *
+     * @return \DateTime 
+     */
+    public function getPaFechaBorrado()
+    {
+        return $this->paFechaBorrado;
+    }
+
+    /**
+     * Set paQuienBorra
+     *
+     * @param integer $paQuienBorra
+     * @return Pagos
+     */
+    public function setPaQuienBorra($paQuienBorra)
+    {
+        $this->paQuienBorra = $paQuienBorra;
+    
+        return $this;
+    }
+
+    /**
+     * Get paQuienBorra
+     *
+     * @return integer 
+     */
+    public function getPaQuienBorra()
+    {
+        return $this->paQuienBorra;
     }
 
     /**

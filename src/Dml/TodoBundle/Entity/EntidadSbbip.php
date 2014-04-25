@@ -99,6 +99,20 @@ class EntidadSbbip
     private $esQuienModifica;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="es_fecha_borrado", type="datetime", nullable=true)
+     */
+    private $esFechaBorrado;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="es_quien_borra", type="integer", nullable=true)
+     */
+    private $esQuienBorra;
+
+    /**
      * @var boolean
      *
      * @ORM\Column(name="es_borrado_logico", type="boolean", nullable=true)
@@ -368,6 +382,52 @@ class EntidadSbbip
     public function getEsQuienModifica()
     {
         return $this->esQuienModifica;
+    }
+
+    /**
+     * Set esFechaBorrado
+     *
+     * @param \DateTime $esFechaBorrado
+     * @return EntidadSbbip
+     */
+    public function setEsFechaBorrado($esFechaBorrado)
+    {
+        $this->esFechaBorrado = $esFechaBorrado;
+    
+        return $this;
+    }
+
+    /**
+     * Get esFechaBorrado
+     *
+     * @return \DateTime 
+     */
+    public function getEsFechaBorrado()
+    {
+        return $this->esFechaBorrado;
+    }
+
+    /**
+     * Set esQuienBorra
+     *
+     * @param integer $esQuienBorra
+     * @return EntidadSbbip
+     */
+    public function setEsQuienBorra($esQuienBorra)
+    {
+        $this->esQuienBorra = $esQuienBorra;
+    
+        return $this;
+    }
+
+    /**
+     * Get esQuienBorra
+     *
+     * @return integer 
+     */
+    public function getEsQuienBorra()
+    {
+        return $this->esQuienBorra;
     }
 
     /**

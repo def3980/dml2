@@ -84,6 +84,17 @@ Dml\TodoBundle\Entity\EntidadSbbip:
             unsigned: false
             comment: ''
             column: es_quien_modifica
+        esFechaBorrado:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: es_fecha_borrado
+        esQuienBorra:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: es_quien_borra
         esBorradoLogico:
             type: boolean
             nullable: true

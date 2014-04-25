@@ -57,6 +57,20 @@ class ContratarB
     private $cbQuienModifica;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="cb_fecha_borrado", type="datetime", nullable=true)
+     */
+    private $cbFechaBorrado;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="cb_quien_borra", type="integer", nullable=true)
+     */
+    private $cbQuienBorra;
+
+    /**
      * @var boolean
      *
      * @ORM\Column(name="cb_borrado_logico", type="boolean", nullable=true)
@@ -208,6 +222,52 @@ class ContratarB
     public function getCbQuienModifica()
     {
         return $this->cbQuienModifica;
+    }
+
+    /**
+     * Set cbFechaBorrado
+     *
+     * @param \DateTime $cbFechaBorrado
+     * @return ContratarB
+     */
+    public function setCbFechaBorrado($cbFechaBorrado)
+    {
+        $this->cbFechaBorrado = $cbFechaBorrado;
+    
+        return $this;
+    }
+
+    /**
+     * Get cbFechaBorrado
+     *
+     * @return \DateTime 
+     */
+    public function getCbFechaBorrado()
+    {
+        return $this->cbFechaBorrado;
+    }
+
+    /**
+     * Set cbQuienBorra
+     *
+     * @param integer $cbQuienBorra
+     * @return ContratarB
+     */
+    public function setCbQuienBorra($cbQuienBorra)
+    {
+        $this->cbQuienBorra = $cbQuienBorra;
+    
+        return $this;
+    }
+
+    /**
+     * Get cbQuienBorra
+     *
+     * @return integer 
+     */
+    public function getCbQuienBorra()
+    {
+        return $this->cbQuienBorra;
     }
 
     /**

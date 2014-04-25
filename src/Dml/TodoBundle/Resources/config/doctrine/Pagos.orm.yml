@@ -89,6 +89,17 @@ Dml\TodoBundle\Entity\Pagos:
             unsigned: false
             comment: ''
             column: pa_quien_modifica
+        paFechaBorrado:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: pa_fecha_borrado
+        paQuienBorra:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: pa_quien_borra
         paBorradoLogico:
             type: boolean
             nullable: true

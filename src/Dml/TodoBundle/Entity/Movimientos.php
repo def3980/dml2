@@ -99,6 +99,20 @@ class Movimientos
     private $moQuienModifica;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="mo_fecha_borrado", type="datetime", nullable=true)
+     */
+    private $moFechaBorrado;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="mo_quien_borra", type="integer", nullable=true)
+     */
+    private $moQuienBorra;
+
+    /**
      * @var boolean
      *
      * @ORM\Column(name="mo_borrado_logico", type="boolean", nullable=true)
@@ -378,6 +392,52 @@ class Movimientos
     public function getMoQuienModifica()
     {
         return $this->moQuienModifica;
+    }
+
+    /**
+     * Set moFechaBorrado
+     *
+     * @param \DateTime $moFechaBorrado
+     * @return Movimientos
+     */
+    public function setMoFechaBorrado($moFechaBorrado)
+    {
+        $this->moFechaBorrado = $moFechaBorrado;
+    
+        return $this;
+    }
+
+    /**
+     * Get moFechaBorrado
+     *
+     * @return \DateTime 
+     */
+    public function getMoFechaBorrado()
+    {
+        return $this->moFechaBorrado;
+    }
+
+    /**
+     * Set moQuienBorra
+     *
+     * @param integer $moQuienBorra
+     * @return Movimientos
+     */
+    public function setMoQuienBorra($moQuienBorra)
+    {
+        $this->moQuienBorra = $moQuienBorra;
+    
+        return $this;
+    }
+
+    /**
+     * Get moQuienBorra
+     *
+     * @return integer 
+     */
+    public function getMoQuienBorra()
+    {
+        return $this->moQuienBorra;
     }
 
     /**

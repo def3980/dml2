@@ -87,6 +87,17 @@ Dml\TodoBundle\Entity\Binarios:
             unsigned: false
             comment: ''
             column: bi_quien_modifica
+        biFechaBorrdado:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: bi_fecha_borrdado
+        biQuienBorra:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: bi_quien_borra
         biBorradoLogico:
             type: boolean
             nullable: true

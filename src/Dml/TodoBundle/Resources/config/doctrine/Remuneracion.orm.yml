@@ -56,4 +56,20 @@ Dml\TodoBundle\Entity\Remuneracion:
             unsigned: false
             comment: ''
             column: re_quien_modifica
+        reFechaBorrado:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: re_fecha_borrado
+        reQuienBorra:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: re_quien_borra
+        reBorradoLogico:
+            type: boolean
+            nullable: true
+            comment: ''
+            column: re_borrado_logico
     lifecycleCallbacks: {  }

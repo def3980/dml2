@@ -36,6 +36,8 @@ class LoadTipoCuenta extends AbstractFixture implements OrderedFixtureInterface,
                 'tc_quien_crea' => 1,
                 'tc_fecha_modifica' => NULL,
                 'tc_quien_modifica' => NULL,
+                'tc_fecha_borrado' => NULL,
+                'tc_quien_borra' => NULL,
                 'tc_borrado_logico' => false
             ),
             array(
@@ -44,6 +46,8 @@ class LoadTipoCuenta extends AbstractFixture implements OrderedFixtureInterface,
                 'tc_quien_crea' => 1,
                 'tc_fecha_modifica' => NULL,
                 'tc_quien_modifica' => NULL,
+                'tc_fecha_borrado' => NULL,
+                'tc_quien_borra' => NULL,
                 'tc_borrado_logico' => false
             ),
         );
@@ -54,6 +58,8 @@ class LoadTipoCuenta extends AbstractFixture implements OrderedFixtureInterface,
             $tc->setTcQuienCrea($t_c['tc_quien_crea']);
             $tc->setTcFechaModifica($t_c['tc_fecha_modifica']);
             $tc->setTcQuienModifica($t_c['tc_quien_modifica']);
+            $tc->setTcFechaBorrado($t_c['tc_fecha_borrado']);
+            $tc->setTcQuienBorra($t_c['tc_quien_borra']);
             $tc->setTcBorradoLogico($t_c['tc_borrado_logico']);
             $manager->persist($tc);
         endforeach;
