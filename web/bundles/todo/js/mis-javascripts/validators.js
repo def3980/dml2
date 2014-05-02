@@ -1,12 +1,14 @@
 /**
  * UTILIZADO PARA MENSAJES DE VALIDACIÓN DE FORMULARIOS
  */
-function validador(obj,msj,objTxt) {
+function validador(obj,msj,objTxt,classes) {
     obj.focus();
+    objTxt.removeClass(classes);
+    objTxt.addClass(classes);
     objTxt.text(msj).fadeIn('slow');
     setTimeout(function(){
         objTxt.fadeOut('fast');
-    },1200);
+    },1500);
 }
 
 /**
