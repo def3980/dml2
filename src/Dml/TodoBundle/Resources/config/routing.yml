@@ -21,3 +21,13 @@ todo_mo_pager:
 todo_mo_paste:
     pattern: /pegar
     defaults: { _controller: TodoBundle:Movimientos:paste }
+
+todo_login:
+    pattern: /login
+    defaults: { _controller: TodoBundle:Security:login }
+
+todo_login_check:
+    path: /login_check
+
+todo_logout:
+    path: /logout

@@ -39,13 +39,12 @@ Dml\TodoBundle\Entity\Persona:
             nullable: true
             comment: ''
             column: pe_fecha_nacimiento
-        peEmail:
+        email:
             type: string
             nullable: true
-            length: 100
+            length: 255
             fixed: false
             comment: ''
-            column: pe_email
         peUsr:
             type: string
             nullable: true
@@ -53,13 +52,23 @@ Dml\TodoBundle\Entity\Persona:
             fixed: false
             comment: ''
             column: pe_usr
-        pePwd:
+        salt:
             type: string
             nullable: true
-            length: 50
+            length: 255
+            fixed: false
+            comment: 'Valor aleatorio que sirve para generar la contraseña codificada.'
+        password:
+            type: string
+            nullable: true
+            length: 255
             fixed: false
             comment: ''
-            column: pe_pwd
+        peUltimoIngreso:
+            type: datetime
+            nullable: true
+            comment: 'Fecha y hora del último ingreso del usuario logueado'
+            column: pe_ultimo_ingreso
         peFechaCrea:
             type: datetime
             nullable: true

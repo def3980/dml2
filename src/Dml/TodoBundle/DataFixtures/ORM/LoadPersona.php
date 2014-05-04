@@ -31,9 +31,11 @@ class LoadPersona extends AbstractFixture implements OrderedFixtureInterface, Co
                 'pe_nombres' => 'Oswaldo Ramiro',
                 'pe_apellidos' => 'Rojas Cevallos',
                 'pe_fecha_nacimiento' => new \DateTime('1981-02-21'),
-                'pe_email' => 'def.3980@gmail.com',
+                'email' => 'def.3980@gmail.com',
                 'pe_usr' => 'def_3980',
-                'pe_pwd' => '39801981',
+                'salt' => NULL,
+                'password' => '39801981',
+                'pe_ultimo_ingreso' => NULL,
                 'pe_fecha_crea' => new \DateTime('2014-02-01 00:00:01'),
                 'pe_quien_crea' => 1,
                 'pe_fecha_modifica' => NULL,
@@ -47,9 +49,11 @@ class LoadPersona extends AbstractFixture implements OrderedFixtureInterface, Co
                 'pe_nombres' => 'Susana Tamara',
                 'pe_apellidos' => 'Andy Cerda',
                 'pe_fecha_nacimiento' => new \DateTime('1983-09-20'),
-                'pe_email' => 'susanatamara@hotmail.com',
+                'email' => 'susanatamara@hotmail.com',
                 'pe_usr' => 'tamara',
-                'pe_pwd' => '123456',
+                'salt' => NULL,
+                'password' => '123456',
+                'pe_ultimo_ingreso' => NULL,
                 'pe_fecha_crea' => new \DateTime('2014-02-01 00:00:01'),
                 'pe_quien_crea' => 1,
                 'pe_fecha_modifica' => NULL,
@@ -65,9 +69,11 @@ class LoadPersona extends AbstractFixture implements OrderedFixtureInterface, Co
             $pe->setPeNombres($persona['pe_nombres']);
             $pe->setPeApellidos($persona['pe_apellidos']);
             $pe->setPeFechaNacimiento($persona['pe_fecha_nacimiento']);
-            $pe->setPeEmail($persona['pe_email']);
-            $pe->setPeUsr($persona['pe_usr']);
-            $pe->setPePwd($persona['pe_pwd']);
+            $pe->setEmail($persona['email']);
+            $pe->setPeUsr($persona['password']);
+            $pe->setSalt($persona['salt']);
+            $pe->setPassword($persona['password']);
+            $pe->setPeUltimoIngreso($persona['pe_ultimo_ingreso']);
 //            $pe->setPePwd(\sha1($persona['pe_usr']));
             $pe->setPeFechaCrea($persona['pe_fecha_crea']);
             $pe->setPeQuienCrea($persona['pe_quien_crea']);

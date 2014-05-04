@@ -2,6 +2,7 @@
 
 namespace Dml\TodoBundle\Entity;
 
+use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="PERSONA")
  * @ORM\Entity(repositoryClass="Dml\TodoBundle\Entity\PersonaRepository")
  */
-class Persona
+class Persona implements UserInterface
 {
     /**
      * @var integer
@@ -52,9 +53,9 @@ class Persona
     /**
      * @var string
      *
-     * @ORM\Column(name="pe_email", type="string", length=100, nullable=true)
+     * @ORM\Column(name="email", type="string", length=255, nullable=true)
      */
-    private $peEmail;
+    private $email;
 
     /**
      * @var string
@@ -66,9 +67,23 @@ class Persona
     /**
      * @var string
      *
-     * @ORM\Column(name="pe_pwd", type="string", length=50, nullable=true)
+     * @ORM\Column(name="salt", type="string", length=255, nullable=true)
      */
-    private $pePwd;
+    private $salt;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="password", type="string", length=255, nullable=true)
+     */
+    private $password;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="pe_ultimo_ingreso", type="datetime", nullable=true)
+     */
+    private $peUltimoIngreso;
 
     /**
      * @var \DateTime
@@ -119,6 +134,24 @@ class Persona
      */
     private $peBorradoLogico;
 
+
+    /**
+     * Funciones para ser usados en el login
+     */
+    function eraseCredentials()
+    {
+    }
+
+    function getRoles()
+    {
+        return array('ROLE_USUARIO');
+    }
+
+    function getUsername()
+    {
+        return $this->getEmail();
+    }
+    /* ---------------------------------- */
 
 
     /**
@@ -224,26 +257,26 @@ class Persona
     }
 
     /**
-     * Set peEmail
+     * Set email
      *
-     * @param string $peEmail
+     * @param string $email
      * @return Persona
      */
-    public function setPeEmail($peEmail)
+    public function setEmail($email)
     {
-        $this->peEmail = $peEmail;
+        $this->email = $email;
     
         return $this;
     }
 
     /**
-     * Get peEmail
+     * Get email
      *
      * @return string 
      */
-    public function getPeEmail()
+    public function getEmail()
     {
-        return $this->peEmail;
+        return $this->email;
     }
 
     /**
@@ -270,26 +303,72 @@ class Persona
     }
 
     /**
-     * Set pePwd
+     * Set salt
      *
-     * @param string $pePwd
+     * @param string $salt
      * @return Persona
      */
-    public function setPePwd($pePwd)
+    public function setSalt($salt)
     {
-        $this->pePwd = $pePwd;
+        $this->salt = $salt;
     
         return $this;
     }
 
     /**
-     * Get pePwd
+     * Get salt
      *
      * @return string 
      */
-    public function getPePwd()
+    public function getSalt()
     {
-        return $this->pePwd;
+        return $this->salt;
+    }
+
+    /**
+     * Set password
+     *
+     * @param string $password
+     * @return Persona
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    
+        return $this;
+    }
+
+    /**
+     * Get password
+     *
+     * @return string 
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * Set peUltimoIngreso
+     *
+     * @param \DateTime $peUltimoIngreso
+     * @return Persona
+     */
+    public function setPeUltimoIngreso($peUltimoIngreso)
+    {
+        $this->peUltimoIngreso = $peUltimoIngreso;
+    
+        return $this;
+    }
+
+    /**
+     * Get peUltimoIngreso
+     *
+     * @return \DateTime 
+     */
+    public function getPeUltimoIngreso()
+    {
+        return $this->peUltimoIngreso;
     }
 
     /**
