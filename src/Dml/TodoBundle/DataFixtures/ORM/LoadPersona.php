@@ -70,7 +70,7 @@ class LoadPersona extends AbstractFixture implements OrderedFixtureInterface, Co
             $pe->setPeApellidos($persona['pe_apellidos']);
             $pe->setPeFechaNacimiento($persona['pe_fecha_nacimiento']);
             $pe->setEmail($persona['email']);
-            $pe->setPeUsr($persona['password']);
+            $pe->setPeUsr($persona['pe_usr']);
             $pe->setSalt($persona['salt']);
             $pe->setPassword($persona['password']);
             $pe->setPeUltimoIngreso($persona['pe_ultimo_ingreso']);

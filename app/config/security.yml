@@ -10,6 +10,7 @@ security:
                 always_use_default_target_path: true
             logout:
                 path: todo_logout
+                success_handler: todo.logout_listener
                 # invalidate_session ayuda a saltar el error para versionas de php <= 5.4.7
                 # ya que es un bug que existe en estas versiones, sólo corregidas a partir
                 # de la version 5.5
