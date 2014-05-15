@@ -3,6 +3,7 @@
 namespace Dml\TodoBundle\Listener;
 
 use Symfony\Component\Security\Http\Logout\LogoutSuccessHandlerInterface;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,14 +26,12 @@ class LogoutListener implements LogoutSuccessHandlerInterface {
     public function onLogoutSuccess(Request $request) {
         $persona = $this->security->getToken()->getUser();
 //        $persona = new Persona();
-        $persona->setPeApellidos($persona->getPeUltimoIngreso()->format('Y-m-d H:i:s'));
+//        $persona->setPeApellidos($persona->getPeUltimoIngreso()->format('Y-m-d H:i:s'));
         $persona->setPeUltimoIngreso(new \DateTime());
         $this->em->persist($persona);
         $this->em->flush();
         
         return new RedirectResponse('login');
-
-//        return new RedirectResponse('login');
     }
 
 }
