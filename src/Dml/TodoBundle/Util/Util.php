@@ -90,5 +90,25 @@ class Util {
         endforeach;
         return $html;
     }
+
+    /**
+     * <b>Por Oswaldo Rojas, realizado el Vie 16 May 2014 22:19:48</b>
+     * 
+     * Funcion que calcula el tiempo en segundos, minutos y horas de ser necesarios
+     * para tener conocimiento de cuanto tiempo el usuario estuvo utilizando la sesion
+     * en el sistema.
+     * 
+     * @param type $datetime <p>
+     * Recibe una fecha registrada como la fecha y hora de entrada en sesion en la aplicacion
+     * </p>
+     * @return int Tiempo en segundos sobre la sesion usada
+     */
+    static public function sessionTimeCalculation($datetime) {
+        // la resta me da como resultado en segundos
+        // div para 60 y obtengo minutos
+        // div para 60 de nuevo y obtengo horas
+        // div para 24 y obtengo dias
+        return intval(strtotime($datetime) - strtotime('NOW'));
+    }
     
 }

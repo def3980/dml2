@@ -9,6 +9,7 @@ use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\HttpFoundation\Request;
 use Dml\TodoBundle\Entity\Persona;
 use Doctrine\ORM\EntityManager;
+use Dml\TodoBundle\Util\Util;
 
 /**
  * Description of LogoutListener
@@ -25,9 +26,9 @@ class LogoutListener implements LogoutSuccessHandlerInterface {
 
     public function onLogoutSuccess(Request $request) {
         $persona = $this->security->getToken()->getUser();
-//        $persona = new Persona();
-//        $persona->setPeApellidos($persona->getPeUltimoIngreso()->format('Y-m-d H:i:s'));
-        $persona->setPeUltimoIngreso(new \DateTime());
+        $persona->setPeFinSesion(new \DateTime('NOW'));
+        $formatoFecha = $persona->getPeInicioSesion();
+        $persona->setPeDuracionSesion(abs(Util::sessionTimeCalculation($formatoFecha->format('Y-m-d H:i:s'))));
         $this->em->persist($persona);
         $this->em->flush();
         

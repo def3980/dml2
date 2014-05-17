@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * UsoTc
  *
  * @ORM\Table(name="USO_TC", indexes={@ORM\Index(name="fk_uso_tc_tarjetas_cd1_idx", columns={"tarjetas_cd_tcd_id"})})
- * @ORM\Entity(repositoryClass="Dml\TodoBundle\Entity\UsoTcRepository")
+ * @ORM\Entity(repositoryClass="Dml\TodoBundle\Entity\Repositories\UsoTcRepository")
  */
 class UsoTc
 {

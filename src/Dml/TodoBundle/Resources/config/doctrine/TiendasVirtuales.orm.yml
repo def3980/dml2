@@ -1,7 +1,7 @@
 Dml\TodoBundle\Entity\TiendasVirtuales:
     type: entity
     table: TIENDAS_VIRTUALES
-    repositoryClass: Dml\TodoBundle\Entity\TiendasVirtualesRepository
+    repositoryClass: Dml\TodoBundle\Entity\Repositories\TiendasVirtualesRepository
     id:
         tvId:
             type: integer

@@ -1,13 +1,13 @@
 Dml\TodoBundle\Entity\Persona:
     type: entity
     table: PERSONA
-    repositoryClass: Dml\TodoBundle\Entity\PersonaRepository
+    repositoryClass: Dml\TodoBundle\Entity\Repositories\PersonaRepository
     id:
         peId:
             type: integer
             nullable: false
             unsigned: false
-            comment: ''
+            comment: 'Identificador unico y primario de cada fila con informacion del usuario.'
             id: true
             column: pe_id
             generator:
@@ -18,93 +18,98 @@ Dml\TodoBundle\Entity\Persona:
             nullable: true
             length: 100
             fixed: false
-            comment: ''
+            comment: 'Registro de la cedula del usuario del sistema'
             column: pe_cedula
         peNombres:
             type: string
             nullable: true
             length: 100
             fixed: false
-            comment: ''
+            comment: 'Nombre(s) del usuario del sistema'
             column: pe_nombres
         peApellidos:
             type: string
             nullable: true
             length: 100
             fixed: false
-            comment: ''
+            comment: 'Apellido(s) del usuario del sistema'
             column: pe_apellidos
         peFechaNacimiento:
             type: date
             nullable: true
-            comment: ''
+            comment: 'Fecha de nacimiento del usuario del sistema'
             column: pe_fecha_nacimiento
         email:
             type: string
             nullable: true
             length: 255
             fixed: false
-            comment: ''
-        peUsr:
-            type: string
-            nullable: true
-            length: 100
-            fixed: false
-            comment: ''
-            column: pe_usr
+            comment: 'Correo electronico del usuario que servira tambien para el iniciar sesion en la aplicacion'
         salt:
             type: string
             nullable: true
             length: 255
             fixed: false
-            comment: 'Valor aleatorio que sirve para generar la contraseña codificada.'
+            comment: 'Cadena valor aleatorio que sirve para generar la contraseña codificada.'
         password:
             type: string
             nullable: true
             length: 255
             fixed: false
-            comment: ''
-        peUltimoIngreso:
+            comment: 'Contraseña para iniciar sesion en la aplicacion. Dicha clave va en cpdificacion sa1'
+        peInicioSesion:
             type: datetime
             nullable: true
-            comment: 'Fecha y hora del último ingreso del usuario logueado'
-            column: pe_ultimo_ingreso
+            comment: 'Fecha y hora de inicio de sesion del usuario, es decir la hora en que comienza a usar la aplicacion.'
+            column: pe_inicio_sesion
+        peFinSesion:
+            type: datetime
+            nullable: true
+            comment: 'Fecha y hora de final de sesion del usuario, es decir la hora en que dejo de usar la aplicacion.'
+            column: pe_fin_sesion
+        peDuracionSesion:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: 'Duracion en segundos de lo que el usuario ha usado el sistema.'
+            column: pe_duracion_sesion
         peFechaCrea:
             type: datetime
             nullable: true
-            comment: ''
+            comment: 'Fecha de creacipon del usuario en el sistema.'
             column: pe_fecha_crea
         peQuienCrea:
             type: integer
             nullable: true
             unsigned: false
-            comment: ''
+            comment: 'Identificador de la persona que crea el usuario. Puede ser si misma o un administrador del sistema.'
             column: pe_quien_crea
         peFechaModifica:
             type: datetime
             nullable: true
-            comment: ''
+            comment: 'Fecha y hora de modificacion de la informacion de la tabla persona.'
             column: pe_fecha_modifica
         peQuienModifica:
             type: integer
             nullable: true
             unsigned: false
-            comment: ''
+            comment: 'Identificador de quien modificacion de la informacion de la tabla persona.'
             column: pe_quien_modifica
         peFechaBorrado:
             type: datetime
             nullable: true
-            comment: ''
+            comment: 'Fecha y hora de eliminacion de toda la informacion de la tabla persona.'
             column: pe_fecha_borrado
         peQuienBorra:
             type: integer
             nullable: true
             unsigned: false
-            comment: ''
+            comment: 'Identificador de quien elimina de toda la informacion de la tabla persona.'
             column: pe_quien_borra
         peBorradoLogico:
             type: boolean
             nullable: true
-            comment: ''
+            comment: 'Estado de la eliminacion. Se aplica la logica booleana para no perder lainformacion.'
             column: pe_borrado_logico
     lifecycleCallbacks: {  }

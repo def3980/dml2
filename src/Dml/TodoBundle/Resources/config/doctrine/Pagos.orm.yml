@@ -1,7 +1,7 @@
 Dml\TodoBundle\Entity\Pagos:
     type: entity
     table: PAGOS
-    repositoryClass: Dml\TodoBundle\Entity\PagosRepository
+    repositoryClass: Dml\TodoBundle\Entity\Repositories\PagosRepository
     indexes:
         fk_pagos_persona1_idx:
             columns:

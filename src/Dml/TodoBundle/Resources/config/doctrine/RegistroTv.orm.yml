@@ -1,7 +1,7 @@
 Dml\TodoBundle\Entity\RegistroTv:
     type: entity
     table: REGISTRO_TV
-    repositoryClass: Dml\TodoBundle\Entity\RegistroTvRepository
+    repositoryClass: Dml\TodoBundle\Entity\Repositories\RegistroTvRepository
     indexes:
         fk_registro_tv_persona1_idx:
             columns:

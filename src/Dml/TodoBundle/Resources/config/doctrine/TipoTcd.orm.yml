@@ -1,7 +1,7 @@
 Dml\TodoBundle\Entity\TipoTcd:
     type: entity
     table: TIPO_TCD
-    repositoryClass: Dml\TodoBundle\Entity\TipoTcdRepository
+    repositoryClass: Dml\TodoBundle\Entity\Repositories\TipoTcdRepository
     id:
         ttcdId:
             type: integer

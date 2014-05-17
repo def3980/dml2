@@ -1,7 +1,7 @@
 Dml\TodoBundle\Entity\IngresoMonetario:
     type: entity
     table: INGRESO_MONETARIO
-    repositoryClass: Dml\TodoBundle\Entity\IngresoMonetarioRepository
+    repositoryClass: Dml\TodoBundle\Entity\Repositories\IngresoMonetarioRepository
     indexes:
         fk_ingreso_monetario_persona_idx:
             columns:

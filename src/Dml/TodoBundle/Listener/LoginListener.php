@@ -23,8 +23,7 @@ class LoginListener {
 
     public function onSecurityInteractiveLogin(InteractiveLoginEvent $event) {
         $persona = $event->getAuthenticationToken()->getUser();
-//        $persona->setPeApellidos('Rojas Cevallos');
-        $persona->setPeUltimoIngreso(new \DateTime());
+        $persona->setPeInicioSesion(new \DateTime('NOW'));
         $this->em->persist($persona);
         $this->em->flush();
         $this->email = $persona->getEmail();

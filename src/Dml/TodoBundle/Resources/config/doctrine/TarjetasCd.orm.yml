@@ -1,7 +1,7 @@
 Dml\TodoBundle\Entity\TarjetasCd:
     type: entity
     table: TARJETAS_CD
-    repositoryClass: Dml\TodoBundle\Entity\TarjetasCdRepository
+    repositoryClass: Dml\TodoBundle\Entity\Repositories\TarjetasCdRepository
     indexes:
         fk_tarjetas_cd_contratar_b1_idx:
             columns:

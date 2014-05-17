@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Binarios
  *
  * @ORM\Table(name="BINARIOS", indexes={@ORM\Index(name="fk_binarios_persona1_idx", columns={"persona_pe_id"}), @ORM\Index(name="fk_binarios_contrato_ip1_idx", columns={"contrato_ip_cip_id"}), @ORM\Index(name="fk_binarios_pagos1_idx", columns={"pagos_pa_id"}), @ORM\Index(name="fk_binarios_hijos1_idx", columns={"hijos_hi_id"}), @ORM\Index(name="fk_binarios_enfermedades1_idx", columns={"enfermedades_en_id"}), @ORM\Index(name="fk_binarios_tarjetas_cd1_idx", columns={"tarjetas_cd_tcd_id"})})
- * @ORM\Entity(repositoryClass="Dml\TodoBundle\Entity\BinariosRepository")
+ * @ORM\Entity(repositoryClass="Dml\TodoBundle\Entity\Repositories\BinariosRepository")
  */
 class Binarios
 {

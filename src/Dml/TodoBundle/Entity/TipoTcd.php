@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * TipoTcd
  *
  * @ORM\Table(name="TIPO_TCD")
- * @ORM\Entity(repositoryClass="Dml\TodoBundle\Entity\TipoTcdRepository")
+ * @ORM\Entity(repositoryClass="Dml\TodoBundle\Entity\Repositories\TipoTcdRepository")
  */
 class TipoTcd
 {

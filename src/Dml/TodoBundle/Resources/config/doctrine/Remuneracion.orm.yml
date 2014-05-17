@@ -1,7 +1,7 @@
 Dml\TodoBundle\Entity\Remuneracion:
     type: entity
     table: REMUNERACION
-    repositoryClass: Dml\TodoBundle\Entity\RemuneracionRepository
+    repositoryClass: Dml\TodoBundle\Entity\Repositories\RemuneracionRepository
     id:
         reId:
             type: integer

@@ -1,7 +1,7 @@
 Dml\TodoBundle\Entity\ContratoIp:
     type: entity
     table: CONTRATO_IP
-    repositoryClass: Dml\TodoBundle\Entity\ContratoIpRepository
+    repositoryClass: Dml\TodoBundle\Entity\Repositories\ContratoIpRepository
     indexes:
         fk_contrato_ip_persona1_idx:
             columns:

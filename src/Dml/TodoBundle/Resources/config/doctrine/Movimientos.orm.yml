@@ -1,7 +1,7 @@
 Dml\TodoBundle\Entity\Movimientos:
     type: entity
     table: MOVIMIENTOS
-    repositoryClass: Dml\TodoBundle\Entity\MovimientosRepository
+    repositoryClass: Dml\TodoBundle\Entity\Repositories\MovimientosRepository
     indexes:
         fk_movimientos_ahorros1_idx:
             columns:

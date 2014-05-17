@@ -1,7 +1,7 @@
 Dml\TodoBundle\Entity\ContratarSb:
     type: entity
     table: CONTRATAR_SB
-    repositoryClass: Dml\TodoBundle\Entity\ContratarSbRepository
+    repositoryClass: Dml\TodoBundle\Entity\Repositories\ContratarSbRepository
     indexes:
         fk_contratar_sb_persona1_idx:
             columns:

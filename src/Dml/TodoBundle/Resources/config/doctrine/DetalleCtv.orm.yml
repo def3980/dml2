@@ -1,7 +1,7 @@
 Dml\TodoBundle\Entity\DetalleCtv:
     type: entity
     table: DETALLE_CTV
-    repositoryClass: Dml\TodoBundle\Entity\DetalleCtvRepository
+    repositoryClass: Dml\TodoBundle\Entity\Repositories\DetalleCtvRepository
     indexes:
         fk_detalle_ctv_compras_tv1_idx:
             columns:

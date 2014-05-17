@@ -1,7 +1,7 @@
 Dml\TodoBundle\Entity\Enfermedades:
     type: entity
     table: ENFERMEDADES
-    repositoryClass: Dml\TodoBundle\Entity\EnfermedadesRepository
+    repositoryClass: Dml\TodoBundle\Entity\Repositories\EnfermedadesRepository
     indexes:
         fk_enfermedades_hijos1_idx:
             columns:

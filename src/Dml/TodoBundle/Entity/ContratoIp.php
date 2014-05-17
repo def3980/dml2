@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * ContratoIp
  *
  * @ORM\Table(name="CONTRATO_IP", indexes={@ORM\Index(name="fk_contrato_ip_persona1_idx", columns={"persona_pe_id"}), @ORM\Index(name="fk_contrato_ip_entidad_sbbip1_idx", columns={"entidad_sbbip_es_id"}), @ORM\Index(name="fk_contrato_ip_remuneracion1_idx", columns={"remuneracion_re_id"})})
- * @ORM\Entity(repositoryClass="Dml\TodoBundle\Entity\ContratoIpRepository")
+ * @ORM\Entity(repositoryClass="Dml\TodoBundle\Entity\Repositories\ContratoIpRepository")
  */
 class ContratoIp
 {

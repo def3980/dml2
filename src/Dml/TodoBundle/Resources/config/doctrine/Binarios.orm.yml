@@ -1,7 +1,7 @@
 Dml\TodoBundle\Entity\Binarios:
     type: entity
     table: BINARIOS
-    repositoryClass: Dml\TodoBundle\Entity\BinariosRepository
+    repositoryClass: Dml\TodoBundle\Entity\Repositories\BinariosRepository
     indexes:
         fk_binarios_persona1_idx:
             columns:

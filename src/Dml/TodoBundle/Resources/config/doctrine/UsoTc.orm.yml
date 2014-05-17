@@ -1,7 +1,7 @@
 Dml\TodoBundle\Entity\UsoTc:
     type: entity
     table: USO_TC
-    repositoryClass: Dml\TodoBundle\Entity\UsoTcRepository
+    repositoryClass: Dml\TodoBundle\Entity\Repositories\UsoTcRepository
     indexes:
         fk_uso_tc_tarjetas_cd1_idx:
             columns:

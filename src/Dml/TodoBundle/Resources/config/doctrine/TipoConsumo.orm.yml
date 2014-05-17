@@ -1,7 +1,7 @@
 Dml\TodoBundle\Entity\TipoConsumo:
     type: entity
     table: TIPO_CONSUMO
-    repositoryClass: Dml\TodoBundle\Entity\TipoConsumoRepository
+    repositoryClass: Dml\TodoBundle\Entity\Repositories\TipoConsumoRepository
     id:
         tcId:
             type: integer

@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * TarjetasCd
  *
  * @ORM\Table(name="TARJETAS_CD", indexes={@ORM\Index(name="fk_tarjetas_cd_contratar_b1_idx", columns={"contratar_b_cb_id"}), @ORM\Index(name="fk_tarjetas_cd_tipo_tcd1_idx", columns={"tipo_tcd_ttcd_id"})})
- * @ORM\Entity(repositoryClass="Dml\TodoBundle\Entity\TarjetasCdRepository")
+ * @ORM\Entity(repositoryClass="Dml\TodoBundle\Entity\Repositories\TarjetasCdRepository")
  */
 class TarjetasCd
 {

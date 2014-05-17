@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Persona
  *
  * @ORM\Table(name="PERSONA")
- * @ORM\Entity(repositoryClass="Dml\TodoBundle\Entity\PersonaRepository")
+ * @ORM\Entity(repositoryClass="Dml\TodoBundle\Entity\Repositories\PersonaRepository")
  */
 class Persona implements UserInterface
 {
@@ -60,13 +60,6 @@ class Persona implements UserInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="pe_usr", type="string", length=100, nullable=true)
-     */
-    private $peUsr;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="salt", type="string", length=255, nullable=true)
      */
     private $salt;
@@ -81,9 +74,23 @@ class Persona implements UserInterface
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="pe_ultimo_ingreso", type="datetime", nullable=true)
+     * @ORM\Column(name="pe_inicio_sesion", type="datetime", nullable=true)
      */
-    private $peUltimoIngreso;
+    private $peInicioSesion;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="pe_fin_sesion", type="datetime", nullable=true)
+     */
+    private $peFinSesion;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pe_duracion_sesion", type="string", length=50, nullable=true)
+     */
+    private $peDuracionSesion;
 
     /**
      * @var \DateTime
@@ -280,29 +287,6 @@ class Persona implements UserInterface
     }
 
     /**
-     * Set peUsr
-     *
-     * @param string $peUsr
-     * @return Persona
-     */
-    public function setPeUsr($peUsr)
-    {
-        $this->peUsr = $peUsr;
-    
-        return $this;
-    }
-
-    /**
-     * Get peUsr
-     *
-     * @return string 
-     */
-    public function getPeUsr()
-    {
-        return $this->peUsr;
-    }
-
-    /**
      * Set salt
      *
      * @param string $salt
@@ -349,26 +333,72 @@ class Persona implements UserInterface
     }
 
     /**
-     * Set peUltimoIngreso
+     * Set peInicioSesion
      *
-     * @param \DateTime $peUltimoIngreso
+     * @param \DateTime $peInicioSesion
      * @return Persona
      */
-    public function setPeUltimoIngreso($peUltimoIngreso)
+    public function setPeInicioSesion($peInicioSesion)
     {
-        $this->peUltimoIngreso = $peUltimoIngreso;
+        $this->peInicioSesion = $peInicioSesion;
     
         return $this;
     }
 
     /**
-     * Get peUltimoIngreso
+     * Get peInicioSesion
      *
      * @return \DateTime 
      */
-    public function getPeUltimoIngreso()
+    public function getPeInicioSesion()
     {
-        return $this->peUltimoIngreso;
+        return $this->peInicioSesion;
+    }
+
+    /**
+     * Set peFinSesion
+     *
+     * @param \DateTime $peFinSesion
+     * @return Persona
+     */
+    public function setPeFinSesion($peFinSesion)
+    {
+        $this->peFinSesion = $peFinSesion;
+    
+        return $this;
+    }
+
+    /**
+     * Get peFinSesion
+     *
+     * @return \DateTime 
+     */
+    public function getPeFinSesion()
+    {
+        return $this->peFinSesion;
+    }
+
+    /**
+     * Set peDuracionSesion
+     *
+     * @param string $peDuracionSesion
+     * @return Persona
+     */
+    public function setPeDuracionSesion($peDuracionSesion)
+    {
+        $this->peDuracionSesion = $peDuracionSesion;
+    
+        return $this;
+    }
+
+    /**
+     * Get peDuracionSesion
+     *
+     * @return string 
+     */
+    public function getPeDuracionSesion()
+    {
+        return $this->peDuracionSesion;
     }
 
     /**

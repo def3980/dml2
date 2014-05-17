@@ -1,7 +1,7 @@
 Dml\TodoBundle\Entity\EntidadSbbip:
     type: entity
     table: ENTIDAD_SBBIP
-    repositoryClass: Dml\TodoBundle\Entity\EntidadSbbipRepository
+    repositoryClass: Dml\TodoBundle\Entity\Repositories\EntidadSbbipRepository
     id:
         esId:
             type: integer

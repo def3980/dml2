@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * ContratarSb
  *
  * @ORM\Table(name="CONTRATAR_SB", indexes={@ORM\Index(name="fk_contratar_sb_persona1_idx", columns={"persona_pe_id"}), @ORM\Index(name="fk_contratar_sb_entidad_sbbip1_idx", columns={"entidad_sbbip_es_id"})})
- * @ORM\Entity(repositoryClass="Dml\TodoBundle\Entity\ContratarSbRepository")
+ * @ORM\Entity(repositoryClass="Dml\TodoBundle\Entity\Repositories\ContratarSbRepository")
  */
 class ContratarSb
 {

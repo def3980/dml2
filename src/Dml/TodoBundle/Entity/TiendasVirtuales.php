@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * TiendasVirtuales
  *
  * @ORM\Table(name="TIENDAS_VIRTUALES")
- * @ORM\Entity(repositoryClass="Dml\TodoBundle\Entity\TiendasVirtualesRepository")
+ * @ORM\Entity(repositoryClass="Dml\TodoBundle\Entity\Repositories\TiendasVirtualesRepository")
  */
 class TiendasVirtuales
 {
