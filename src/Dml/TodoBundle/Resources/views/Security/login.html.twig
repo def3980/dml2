@@ -1,12 +1,74 @@
-{% if error %}
+{% extends '::base.html.twig' %}
+
+{% block title %}Detalle gastos{% endblock %}
+{% block incluir_css %}
+        <link href="{{ asset('bundles/todo/css/jquery_ui_css.css') }}" media="all" rel="stylesheet" />
+        <link href="{{ asset('bundles/todo/css/print.css') }}" media="print" rel="stylesheet" />
+{% endblock %}
+{% block clases_internas %} ui_basic login-page{% endblock %}
+{% block body %}
+        <div class="container">
+            <div class="content">
+                <center>
+                    <h1>Dml</h1>
+                    <p class="light">
+                        Mi vida en detalle. Detail My Life.
+                        <br />
+                        Registro de todos los movimientos y gastos de una personas en su vida diaria.
+                    </p>
+                </center>
+            </div>
+        </div>
+        <hr />
+        <div class="container">
+            <div class="content">
+                <div class="login-box">
+                    <h3 class="page-title">Ingresar</h3>
+                    <form autocomplete="off" action="{{ path('todo_login_check') }}" class="new_user" id="new_user" method="post">
+                        <input autofocus="autofocus" class="form-control top" id="user_login" name="_username" placeholder="Email" type="text" value="def.3980@gmail.com" />
+                        <input class="form-control bottom" id="user_password" name="_password" placeholder="Password" type="password" value="39801981" />
+                        <div>
+                            <input class="btn-create btn" name="commit" type="submit" value="Entrar">
+                            <div class="pull-right">
+                                <a class="btn" href="#">Forgot your password?</a>
+                            </div>
+                        </div>
+                    </form>
+                    <hr />
+                    <div data-no-turbolink="data-no-turbolink">
+                        <span>Sign in with: &nbsp;</span>                        
+                    </div>
+                    <hr />
+                    <p>
+                        <span class="light">
+                            Don't have an account?
+                        </span>
+                        <strong>
+                            <a href="#">Sign up</a>
+                        </strong>
+                    </p>
+                    <p>
+                        <span class="light">Did not receive confirmation email?</span>
+                        <a href="#">Send again</a>
+                    </p>
+                    <hr />
+                    <h5 id="learn-more-about-gitlab-cloud">
+                        <a href="#">Learn more about Gitlab Cloud</a>
+                        <a href="#"></a>
+                    </h5>
+                </div>
+            </div>
+        </div>
+{% endblock %}
+{#{% if error %}
 <div>{{ error.message }}</div>
 <br />
 {% endif %}
 <form action="{{ path('todo_login_check') }}" method="post" autocomplete="off">
     <label for="username">Usuario:</label>
-{#    <input type="text" id="username" name="_username" value="{{ last_username }}" />#}
+    <!--<input type="text" id="username" name="_username" value="{{ last_username }}" />-->
     <input type="text" id="username" name="_username" value="def.3980@gmail.com" />
     <label for="password">Contraseña:</label>
     <input type="password" id="password" name="_password" value="39801981" />
     <input type="submit" name="login" value="Acceder" />
-</form>
+</form>#}
