@@ -34,6 +34,7 @@ class LoadPersona extends AbstractFixture implements OrderedFixtureInterface, Co
                 'email'                 => 'def.3980@gmail.com',
                 'salt'                  => NULL,
                 'password'              => '39801981',
+                'pe_online'             => NULL,
                 'pe_inicio_sesion'      => NULL,
                 'pe_fin_sesion'         => NULL,
                 'pe_duracion_sesion'    => NULL,
@@ -53,6 +54,7 @@ class LoadPersona extends AbstractFixture implements OrderedFixtureInterface, Co
                 'email'                 => 'susanatamara@hotmail.com',
                 'salt'                  => NULL,
                 'password'              => '123456',
+                'pe_online'             => NULL,
                 'pe_inicio_sesion'      => NULL,
                 'pe_fin_sesion'         => NULL,
                 'pe_duracion_sesion'    => NULL,
@@ -75,6 +77,7 @@ class LoadPersona extends AbstractFixture implements OrderedFixtureInterface, Co
             $pe->setSalt($persona['salt']);
             $pe->setPassword($persona['password']);
 //            $pe->setPassword(\sha1($persona['password']));
+            $pe->setPeOnline($persona['pe_online']);
             $pe->setPeInicioSesion($persona['pe_inicio_sesion']);
             $pe->setPeFinSesion($persona['pe_fin_sesion']);
             $pe->setPeDuracionSesion($persona['pe_duracion_sesion']);

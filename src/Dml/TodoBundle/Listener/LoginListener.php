@@ -23,6 +23,7 @@ class LoginListener {
 
     public function onSecurityInteractiveLogin(InteractiveLoginEvent $event) {
         $persona = $event->getAuthenticationToken()->getUser();
+        $persona->setPeOnline(TRUE);
         $persona->setPeInicioSesion(new \DateTime('NOW'));
         $this->em->persist($persona);
         $this->em->flush();

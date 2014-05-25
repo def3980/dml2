@@ -72,6 +72,13 @@ class Persona implements UserInterface
     private $password;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="pe_online", type="boolean", nullable=true)
+     */
+    private $peOnline;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="pe_inicio_sesion", type="datetime", nullable=true)
@@ -330,6 +337,29 @@ class Persona implements UserInterface
     public function getPassword()
     {
         return $this->password;
+    }
+
+    /**
+     * Set peOnline
+     *
+     * @param boolean $peOnline
+     * @return Persona
+     */
+    public function setPeOnline($peOnline)
+    {
+        $this->peOnline = $peOnline;
+    
+        return $this;
+    }
+
+    /**
+     * Get peOnline
+     *
+     * @return boolean 
+     */
+    public function getPeOnline()
+    {
+        return $this->peOnline;
     }
 
     /**

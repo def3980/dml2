@@ -70,7 +70,7 @@ class MovimientosRepository extends EntityRepository {
         $ah = $this->getEntityManager()->getRepository('TodoBundle:Ahorros')->find(end($id));
         array_pop($fields);
         foreach (array_reverse($fields) as $movimiento):
-            $mo = new \Dml\TodoBundle\Entity\Movimientos(); // Llamo de esta maner a la clase por que se reubico los repositorios
+            $mo = new \Dml\TodoBundle\Entity\Movimientos(); // Llamo de esta manera a la clase por que se reubico los repositorios
             $mo->setMoFecha(new \DateTime($movimiento['mo_fecha'])); // 2014-04-09
             $mo->setMoConcepto($movimiento['mo_concepto']);
             $mo->setMoTipo($movimiento['mo_tipo']);

@@ -56,7 +56,12 @@ Dml\TodoBundle\Entity\Persona:
             nullable: true
             length: 255
             fixed: false
-            comment: 'Contraseña para iniciar sesion en la aplicacion. Dicha clave va en cpdificacion sa1'
+            comment: 'Contraseña para iniciar sesion en la aplicacion. Dicha clave va en codificación sha1.'
+        peOnline:
+            type: boolean
+            nullable: true
+            comment: 'Estado que nos indica si el usuario se encuentra conectado al sistema.'
+            column: pe_online
         peInicioSesion:
             type: datetime
             nullable: true

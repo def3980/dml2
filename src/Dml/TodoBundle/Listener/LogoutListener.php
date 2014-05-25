@@ -26,6 +26,7 @@ class LogoutListener implements LogoutSuccessHandlerInterface {
 
     public function onLogoutSuccess(Request $request) {
         $persona = $this->security->getToken()->getUser();
+        $persona->setPeOnline(FALSE);
         $persona->setPeFinSesion(new \DateTime('NOW'));
         $formatoFecha = $persona->getPeInicioSesion();
         $persona->setPeDuracionSesion(abs(Util::sessionTimeCalculation($formatoFecha->format('Y-m-d H:i:s'))));
