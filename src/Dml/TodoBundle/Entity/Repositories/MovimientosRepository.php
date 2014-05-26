@@ -2,6 +2,7 @@
 
 namespace Dml\TodoBundle\Entity\Repositories;
 
+use Symfony\Component\Security\Core\SecurityContext;
 use Doctrine\ORM\Query\ResultSetMappingBuilder;
 use Doctrine\ORM\EntityRepository;
 
@@ -62,13 +63,13 @@ class MovimientosRepository extends EntityRepository {
      * @param array $fields <p>
      * Campos con información a ser guardada en la tabla de la BDD.
      * </p>
-     * @return boolean Verdadero, confirmando la inserciónd e datos.
+     * @return boolean Verdadero, confirmando la inserción de datos.
      */
     public function moInsert($fields) {
         $id = $fields;
         $em = $this->getEntityManager();
         $ah = $this->getEntityManager()->getRepository('TodoBundle:Ahorros')->find(end($id));
-        array_pop($fields);
+        array_pop($fields); // quito del array el ultimo elemento
         foreach (array_reverse($fields) as $movimiento):
             $mo = new \Dml\TodoBundle\Entity\Movimientos(); // Llamo de esta manera a la clase por que se reubico los repositorios
             $mo->setMoFecha(new \DateTime($movimiento['mo_fecha'])); // 2014-04-09
@@ -79,7 +80,7 @@ class MovimientosRepository extends EntityRepository {
             $mo->setMoMonto($movimiento['mo_monto']);
             $mo->setMoSaldo($movimiento['mo_saldo']);
             $mo->setMoFechaCrea(new \DateTime('NOW'));
-            $mo->setMoQuienCrea(1);
+            $mo->setMoQuienCrea($movimiento['mo_quien_crea']);
             $mo->setMoFechaModifica(null);
             $mo->setMoQuienModifica(null);
             $mo->setMoBorradoLogico(false);

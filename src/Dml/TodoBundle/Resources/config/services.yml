@@ -9,6 +9,12 @@ services:
         class   : Dml\TodoBundle\Twig\DmlExtension
         tags    :
                     - { name: twig.extension }
+
+    todo.twig.dml_extension_functions:
+        class   : Dml\TodoBundle\Twig\DmlExtensionFunctions
+        tags    :
+                    - { name: twig.extension }
+
     todo.twig.dml_extension_queries:
         class   : Dml\TodoBundle\Twig\DmlExtensionQueries
         tags    :

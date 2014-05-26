@@ -75,20 +75,22 @@ class MovimientosController extends Controller {
     }
     
     public function pasteAction(Request $request) {
+        $persona = $this->get('security.context')->getToken()->getUser(); // obtengo la info. de la clase Persona que esta asociada a la sesion
         foreach (preg_split('/[\r\n]+/', $request->get('txta'), -1, PREG_SPLIT_NO_EMPTY) as $k => $v):
             $field = explode('|', $v);
             $campos = array(
-                            'mo_fecha'     => implode('-', array_reverse(explode('/', trim($field[0])))),
-                            'mo_concepto'  => trim($field[1]),
-                            'mo_tipo'      => trim($field[2]),
-                            'mo_documento' => trim($field[3]),
-                            'mo_oficina'   => trim($field[4]),
-                            'mo_monto'     => trim($field[5]),
-                            'mo_saldo'     => trim($field[6]),
+                            'mo_fecha'      => implode('-', array_reverse(explode('/', trim($field[0])))),
+                            'mo_concepto'   => trim($field[1]),
+                            'mo_tipo'       => trim($field[2]),
+                            'mo_documento'  => trim($field[3]),
+                            'mo_oficina'    => trim($field[4]),
+                            'mo_monto'      => trim($field[5]),
+                            'mo_saldo'      => trim($field[6]),
+                            'mo_quien_crea' => $persona->getPeId()
                            );
             $contenedor[] = $campos;
         endforeach;
-        array_push($contenedor, $request->get('ica')); // id_cuenta_ahorros = ica        
+        array_push($contenedor, $request->get('ica')); // id_cuenta_ahorros = ica
         $repo = $this->getDoctrine()
                      ->getRepository('TodoBundle:Movimientos')
                      ->moInsert($contenedor);
