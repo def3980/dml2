@@ -3,3 +3,4 @@
 !app/cache/.gitkeep
 !app/logs/.gitkeep
 /nbeans/dml2/nbproject/private/
+/app/config/parameters.yml
