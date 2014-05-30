@@ -32,7 +32,7 @@ class LogoutListener implements LogoutSuccessHandlerInterface {
         $persona->setPeDuracionSesion(abs(Util::sessionTimeCalculation($formatoFecha->format('Y-m-d H:i:s'))));
         $this->em->persist($persona);
         $this->em->flush();
-        
+
         return new RedirectResponse('login');
     }
 

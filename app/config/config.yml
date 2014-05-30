@@ -78,4 +78,4 @@ swiftmailer:
     spool:     { type: memory }
 
 parameters:
-    dml.filas_x_pagina: '5'
+    dml.filas_x_pagina: '10'
