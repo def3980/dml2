@@ -370,7 +370,7 @@
                                 txta : $('textarea[id="pegar"]').val(), 
                                 ica  : $('select#ah option:selected').val() 
                             }
-                        $.get('{{ path('todo_mo_paste') }}', array, function(data){
+                        $.post('{{ path('todo_mo_paste') }}', array, function(data){
                             if (data.msj) {
                                 $('#msj-insercion').removeClass('label label-danger');
                                 $('#msj-insercion').addClass('label label-success');
