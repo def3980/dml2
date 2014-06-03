@@ -3,7 +3,7 @@
 ::c:\xampp\php\php.exe c:\xampp\htdocs\dml2\app\console doctrine:schema:create
 ::c:\xampp\php\php.exe c:\xampp\htdocs\dml2\app\console doctrine:fixtures:load --no-interaction
 @echo off
-set ruta=%cd%
+set ruta=%cd ..%
 set exec="\app\console"
 echo.
 php %ruta%%exec% doctrine:database:drop --force
