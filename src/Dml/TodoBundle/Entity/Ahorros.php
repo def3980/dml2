@@ -31,7 +31,7 @@ class Ahorros
     /**
      * @var string
      *
-     * @ORM\Column(name="ah_numero_cuenta", type="string", length=10, nullable=true)
+     * @ORM\Column(name="ah_numero_cuenta", type="string", length=11, nullable=true)
      */
     private $ahNumeroCuenta;
 
@@ -139,7 +139,7 @@ class Ahorros
     public function setAhFechaCreacion($ahFechaCreacion)
     {
         $this->ahFechaCreacion = $ahFechaCreacion;
-    
+
         return $this;
     }
 
@@ -162,7 +162,7 @@ class Ahorros
     public function setAhNumeroCuenta($ahNumeroCuenta)
     {
         $this->ahNumeroCuenta = $ahNumeroCuenta;
-    
+
         return $this;
     }
 
@@ -185,7 +185,7 @@ class Ahorros
     public function setAhFechaEliminacion($ahFechaEliminacion)
     {
         $this->ahFechaEliminacion = $ahFechaEliminacion;
-    
+
         return $this;
     }
 
@@ -208,7 +208,7 @@ class Ahorros
     public function setAhEstado($ahEstado)
     {
         $this->ahEstado = $ahEstado;
-    
+
         return $this;
     }
 
@@ -231,7 +231,7 @@ class Ahorros
     public function setAhFechaCrea($ahFechaCrea)
     {
         $this->ahFechaCrea = $ahFechaCrea;
-    
+
         return $this;
     }
 
@@ -254,7 +254,7 @@ class Ahorros
     public function setAhQuienCrea($ahQuienCrea)
     {
         $this->ahQuienCrea = $ahQuienCrea;
-    
+
         return $this;
     }
 
@@ -277,7 +277,7 @@ class Ahorros
     public function setAhFechaModifica($ahFechaModifica)
     {
         $this->ahFechaModifica = $ahFechaModifica;
-    
+
         return $this;
     }
 
@@ -300,7 +300,7 @@ class Ahorros
     public function setAhQuienModifica($ahQuienModifica)
     {
         $this->ahQuienModifica = $ahQuienModifica;
-    
+
         return $this;
     }
 
@@ -323,7 +323,7 @@ class Ahorros
     public function setAhFechaBorrado($ahFechaBorrado)
     {
         $this->ahFechaBorrado = $ahFechaBorrado;
-    
+
         return $this;
     }
 
@@ -346,7 +346,7 @@ class Ahorros
     public function setAhQuienBorra($ahQuienBorra)
     {
         $this->ahQuienBorra = $ahQuienBorra;
-    
+
         return $this;
     }
 
@@ -369,7 +369,7 @@ class Ahorros
     public function setAhBorradoLogico($ahBorradoLogico)
     {
         $this->ahBorradoLogico = $ahBorradoLogico;
-    
+
         return $this;
     }
 
@@ -392,7 +392,7 @@ class Ahorros
     public function setContratarBCb(\Dml\TodoBundle\Entity\ContratarB $contratarBCb = null)
     {
         $this->contratarBCb = $contratarBCb;
-    
+
         return $this;
     }
 
@@ -415,7 +415,7 @@ class Ahorros
     public function setTipoCuentaTc(\Dml\TodoBundle\Entity\TipoCuenta $tipoCuentaTc = null)
     {
         $this->tipoCuentaTc = $tipoCuentaTc;
-    
+
         return $this;
     }
 

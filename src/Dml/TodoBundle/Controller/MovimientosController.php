@@ -55,10 +55,16 @@ class MovimientosController extends Controller {
     private function cuentasDAhorros(Request $request) {
         $em = $this->getDoctrine();
         return $em->getRepository('TodoBundle:Ahorros')->ahTable()
-                  ->select('ah.ahId, ah.ahNumeroCuenta');
+//                  ->select('ah.ahId, ah.ahNumeroCuenta')
+                  ->select('ah.ahId, ah.ahNumeroCuenta, sbbip.esId, sbbip.esAlias')
+                    ->join('ah.contratarBCb', 'cb')
+                    ->join('cb.entidadSbbipEs', 'sbbip')
+//                ->groupBy('sbbip.esAlias')
+                    ;
     }
 
     public function indexAction(Request $request) {
+//        Util::getMyDump($this->cuentasDAhorros($request)->getQuery()->getScalarResult());
         $this->listaDMovimientos($request);
         $ahorros = $this->cuentasDAhorros($request)->getQuery()->getArrayResult();
         return $this->render('TodoBundle:Movimientos:index.html.twig', array('pager' => $this->pager, 'ahorros' => $ahorros));

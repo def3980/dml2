@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ContratarSb
  *
- * @ORM\Table(name="CONTRATAR_SB", indexes={@ORM\Index(name="fk_contratar_sb_persona1_idx", columns={"persona_pe_id"}), @ORM\Index(name="fk_contratar_sb_entidad_sbbip1_idx", columns={"entidad_sbbip_es_id"})})
+ * @ORM\Table(name="CONTRATAR_SB", indexes={@ORM\Index(name="fk_contratar_sb_persona1_idx", columns={"persona_pe_id"}), @ORM\Index(name="fk_contratar_sb_entidades1_idx", columns={"entidades_es_id"})})
  * @ORM\Entity(repositoryClass="Dml\TodoBundle\Entity\Repositories\ContratarSbRepository")
  */
 class ContratarSb
@@ -46,14 +46,14 @@ class ContratarSb
     private $personaPe;
 
     /**
-     * @var \Dml\TodoBundle\Entity\EntidadSbbip
+     * @var \Dml\TodoBundle\Entity\Entidades
      *
-     * @ORM\ManyToOne(targetEntity="Dml\TodoBundle\Entity\EntidadSbbip")
+     * @ORM\ManyToOne(targetEntity="Dml\TodoBundle\Entity\Entidades")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="entidad_sbbip_es_id", referencedColumnName="es_id")
+     *   @ORM\JoinColumn(name="entidades_es_id", referencedColumnName="es_id")
      * })
      */
-    private $entidadSbbipEs;
+    private $entidadesEs;
 
 
 
@@ -76,7 +76,7 @@ class ContratarSb
     public function setCsbIdentificacion($csbIdentificacion)
     {
         $this->csbIdentificacion = $csbIdentificacion;
-    
+
         return $this;
     }
 
@@ -99,7 +99,7 @@ class ContratarSb
     public function setCsbFecha($csbFecha)
     {
         $this->csbFecha = $csbFecha;
-    
+
         return $this;
     }
 
@@ -122,7 +122,7 @@ class ContratarSb
     public function setPersonaPe(\Dml\TodoBundle\Entity\Persona $personaPe = null)
     {
         $this->personaPe = $personaPe;
-    
+
         return $this;
     }
 
@@ -137,25 +137,25 @@ class ContratarSb
     }
 
     /**
-     * Set entidadSbbipEs
+     * Set entidadesEs
      *
-     * @param \Dml\TodoBundle\Entity\EntidadSbbip $entidadSbbipEs
+     * @param \Dml\TodoBundle\Entity\Entidades $entidadesEs
      * @return ContratarSb
      */
-    public function setEntidadSbbipEs(\Dml\TodoBundle\Entity\EntidadSbbip $entidadSbbipEs = null)
+    public function setEntidadesEs(\Dml\TodoBundle\Entity\Entidades $entidadesEs = null)
     {
-        $this->entidadSbbipEs = $entidadSbbipEs;
-    
+        $this->entidadesEs = $entidadesEs;
+
         return $this;
     }
 
     /**
-     * Get entidadSbbipEs
+     * Get entidadesEs
      *
-     * @return \Dml\TodoBundle\Entity\EntidadSbbip 
+     * @return \Dml\TodoBundle\Entity\Entidades 
      */
-    public function getEntidadSbbipEs()
+    public function getEntidadesEs()
     {
-        return $this->entidadSbbipEs;
+        return $this->entidadesEs;
     }
 }

@@ -1,7 +1,7 @@
-Dml\TodoBundle\Entity\EntidadSbbip:
+Dml\TodoBundle\Entity\Entidades:
     type: entity
-    table: ENTIDAD_SBBIP
-    repositoryClass: Dml\TodoBundle\Entity\Repositories\EntidadSbbipRepository
+    table: ENTIDADES
+    repositoryClass: Dml\TodoBundle\Entity\Repositories\EntidadesRepository
     id:
         esId:
             type: integer
@@ -18,60 +18,67 @@ Dml\TodoBundle\Entity\EntidadSbbip:
             nullable: true
             length: 100
             fixed: false
-            comment: ''
+            comment: 'Nombre del organismo sobre el cual el usuario puede tener un contrato establecido y este presta un servicio que es cobrado.'
             column: es_entidad
         esAlias:
             type: string
             nullable: true
             length: 50
             fixed: false
-            comment: ''
+            comment: 'Nombre corto del nombre del la institucion u organismo.'
             column: es_alias
         esDireccion:
             type: text
             nullable: true
             length: null
             fixed: false
-            comment: ''
+            comment: 'Dirección de la entidad u organismo.'
             column: es_direccion
         esTlf1:
             type: string
             nullable: true
             length: 9
             fixed: true
-            comment: ''
+            comment: 'Teléfono de contacto.'
             column: es_tlf1
+        esExt1:
+            type: string
+            nullable: true
+            length: 5
+            fixed: true
+            comment: 'Extensión del teléfono de contacto.'
+            column: es_ext1
         esTlf2:
             type: string
             nullable: true
             length: 9
             fixed: true
-            comment: ''
+            comment: 'Teléfono de contacto.'
             column: es_tlf2
-        esExt:
+        esExt2:
             type: string
             nullable: true
             length: 5
             fixed: true
-            comment: ''
-            column: es_ext
+            comment: 'Extensión del teléfono de contacto.'
+            column: es_ext2
         esSitioWeb:
             type: string
             nullable: true
             length: 100
             fixed: false
-            comment: ''
+            comment: 'Dirección web oficial de la entidad.'
             column: es_sitio_web
         esFechaCrea:
             type: datetime
             nullable: true
-            comment: ''
+            comment: 'Fecha de creación del usuario en el sistema.'
             column: es_fecha_crea
         esQuienCrea:
             type: integer
             nullable: true
             unsigned: false
-            comment: ''
+            comment: 'Identificador de la persona que crea el usuario. Puede ser si misma o un administrador del sistema.'
             column: es_quien_crea
         esFechaModifica:
             type: datetime
@@ -82,22 +89,22 @@ Dml\TodoBundle\Entity\EntidadSbbip:
             type: integer
             nullable: true
             unsigned: false
-            comment: ''
+            comment: 'Identificador de quien modificacion de la informacion de la tabla persona.'
             column: es_quien_modifica
         esFechaBorrado:
             type: datetime
             nullable: true
-            comment: ''
+            comment: 'Fecha y hora de eliminacion de toda la informacion de la tabla persona.'
             column: es_fecha_borrado
         esQuienBorra:
             type: integer
             nullable: true
             unsigned: false
-            comment: ''
+            comment: 'Identificador de quien elimina de toda la informacion de la tabla persona.'
             column: es_quien_borra
         esBorradoLogico:
             type: boolean
             nullable: true
-            comment: ''
+            comment: 'Estado de la eliminacion. Se aplica la logica booleana para no perder lainformacion.'
             column: es_borrado_logico
     lifecycleCallbacks: {  }

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ContratarB
  *
- * @ORM\Table(name="CONTRATAR_B", indexes={@ORM\Index(name="fk_contratar_b_persona1_idx", columns={"persona_pe_id"}), @ORM\Index(name="fk_contratar_b_entidad_sbbip1_idx", columns={"entidad_sbbip_es_id"})})
+ * @ORM\Table(name="CONTRATAR_B", indexes={@ORM\Index(name="fk_contratar_b_persona1_idx", columns={"persona_pe_id"}), @ORM\Index(name="fk_contratar_b_entidades1_idx", columns={"entidades_es_id"})})
  * @ORM\Entity(repositoryClass="Dml\TodoBundle\Entity\Repositories\ContratarBRepository")
  */
 class ContratarB
@@ -88,14 +88,14 @@ class ContratarB
     private $personaPe;
 
     /**
-     * @var \Dml\TodoBundle\Entity\EntidadSbbip
+     * @var \Dml\TodoBundle\Entity\Entidades
      *
-     * @ORM\ManyToOne(targetEntity="Dml\TodoBundle\Entity\EntidadSbbip")
+     * @ORM\ManyToOne(targetEntity="Dml\TodoBundle\Entity\Entidades")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="entidad_sbbip_es_id", referencedColumnName="es_id")
+     *   @ORM\JoinColumn(name="entidades_es_id", referencedColumnName="es_id")
      * })
      */
-    private $entidadSbbipEs;
+    private $entidadesEs;
 
 
 
@@ -118,7 +118,7 @@ class ContratarB
     public function setCbFechaContrato($cbFechaContrato)
     {
         $this->cbFechaContrato = $cbFechaContrato;
-    
+
         return $this;
     }
 
@@ -141,7 +141,7 @@ class ContratarB
     public function setCbFechaCrea($cbFechaCrea)
     {
         $this->cbFechaCrea = $cbFechaCrea;
-    
+
         return $this;
     }
 
@@ -164,7 +164,7 @@ class ContratarB
     public function setCbQuienCrea($cbQuienCrea)
     {
         $this->cbQuienCrea = $cbQuienCrea;
-    
+
         return $this;
     }
 
@@ -187,7 +187,7 @@ class ContratarB
     public function setCbFechaModifica($cbFechaModifica)
     {
         $this->cbFechaModifica = $cbFechaModifica;
-    
+
         return $this;
     }
 
@@ -210,7 +210,7 @@ class ContratarB
     public function setCbQuienModifica($cbQuienModifica)
     {
         $this->cbQuienModifica = $cbQuienModifica;
-    
+
         return $this;
     }
 
@@ -233,7 +233,7 @@ class ContratarB
     public function setCbFechaBorrado($cbFechaBorrado)
     {
         $this->cbFechaBorrado = $cbFechaBorrado;
-    
+
         return $this;
     }
 
@@ -256,7 +256,7 @@ class ContratarB
     public function setCbQuienBorra($cbQuienBorra)
     {
         $this->cbQuienBorra = $cbQuienBorra;
-    
+
         return $this;
     }
 
@@ -279,7 +279,7 @@ class ContratarB
     public function setCbBorradoLogico($cbBorradoLogico)
     {
         $this->cbBorradoLogico = $cbBorradoLogico;
-    
+
         return $this;
     }
 
@@ -302,7 +302,7 @@ class ContratarB
     public function setPersonaPe(\Dml\TodoBundle\Entity\Persona $personaPe = null)
     {
         $this->personaPe = $personaPe;
-    
+
         return $this;
     }
 
@@ -317,25 +317,25 @@ class ContratarB
     }
 
     /**
-     * Set entidadSbbipEs
+     * Set entidadesEs
      *
-     * @param \Dml\TodoBundle\Entity\EntidadSbbip $entidadSbbipEs
+     * @param \Dml\TodoBundle\Entity\Entidades $entidadesEs
      * @return ContratarB
      */
-    public function setEntidadSbbipEs(\Dml\TodoBundle\Entity\EntidadSbbip $entidadSbbipEs = null)
+    public function setEntidadesEs(\Dml\TodoBundle\Entity\Entidades $entidadesEs = null)
     {
-        $this->entidadSbbipEs = $entidadSbbipEs;
-    
+        $this->entidadesEs = $entidadesEs;
+
         return $this;
     }
 
     /**
-     * Get entidadSbbipEs
+     * Get entidadesEs
      *
-     * @return \Dml\TodoBundle\Entity\EntidadSbbip 
+     * @return \Dml\TodoBundle\Entity\Entidades 
      */
-    public function getEntidadSbbipEs()
+    public function getEntidadesEs()
     {
-        return $this->entidadSbbipEs;
+        return $this->entidadesEs;
     }
 }

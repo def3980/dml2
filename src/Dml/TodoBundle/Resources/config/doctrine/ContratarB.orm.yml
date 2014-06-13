@@ -6,9 +6,9 @@ Dml\TodoBundle\Entity\ContratarB:
         fk_contratar_b_persona1_idx:
             columns:
                 - persona_pe_id
-        fk_contratar_b_entidad_sbbip1_idx:
+        fk_contratar_b_entidades1_idx:
             columns:
-                - entidad_sbbip_es_id
+                - entidades_es_id
     id:
         cbId:
             type: integer
@@ -73,13 +73,13 @@ Dml\TodoBundle\Entity\ContratarB:
                 persona_pe_id:
                     referencedColumnName: pe_id
             orphanRemoval: false
-        entidadSbbipEs:
-            targetEntity: EntidadSbbip
+        entidadesEs:
+            targetEntity: Entidades
             cascade: {  }
             mappedBy: null
             inversedBy: null
             joinColumns:
-                entidad_sbbip_es_id:
+                entidades_es_id:
                     referencedColumnName: es_id
             orphanRemoval: false
     lifecycleCallbacks: {  }

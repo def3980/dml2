@@ -29,7 +29,7 @@ class LoadAhorros extends AbstractFixture implements OrderedFixtureInterface, Co
         $TipoCuenta = $manager->getRepository('TodoBundle:TipoCuenta')->find(1);
         foreach ($ContratarB as $c_b):
             switch ($c_b->getCbId()):
-                case 7:
+                case 1:
                     $Ahorros = array(
                         array(
                             'ah_fecha_creacion' => new \DateTime('2000-02-26'),
@@ -63,6 +63,40 @@ class LoadAhorros extends AbstractFixture implements OrderedFixtureInterface, Co
                             'ah_fecha_eliminacion' => NULL,
                             'ah_estado' => true,
                             'ah_fecha_crea' => new \DateTime('2014-02-01 00:00:01'),
+                            'ah_quien_crea' => 1,
+                            'ah_fecha_modifica' => NULL,
+                            'ah_quien_modifica' => NULL,
+                            'ah_fecha_borrado' => NULL,
+                            'ah_quien_borra' => NULL,
+                            'ah_borrado_logico' => false
+                        ),
+                    );
+                    foreach ($Ahorros as $ahorro):
+                        $ah = new Ahorros();
+                        $ah->setAhFechaCreacion($ahorro['ah_fecha_creacion']);
+                        $ah->setAhNumeroCuenta($ahorro['ah_numero_cuenta']);
+                        $ah->setAhFechaEliminacion($ahorro['ah_fecha_eliminacion']);
+                        $ah->setAhEstado($ahorro['ah_estado']);
+                        $ah->setAhFechaCrea($ahorro['ah_fecha_crea']);
+                        $ah->setAhQuienCrea($ahorro['ah_quien_crea']);
+                        $ah->setAhFechaModifica($ahorro['ah_fecha_modifica']);
+                        $ah->setAhQuienModifica($ahorro['ah_quien_modifica']);
+                        $ah->setAhFechaBorrado($ahorro['ah_fecha_borrado']);
+                        $ah->setAhQuienBorra($ahorro['ah_quien_borra']);
+                        $ah->setAhBorradoLogico($ahorro['ah_borrado_logico']);
+                        $ah->setContratarBCb($c_b);
+                        $ah->setTipoCuentaTc($TipoCuenta);
+                        $manager->persist($ah);
+                    endforeach;
+                break;
+                case 3:
+                    $Ahorros = array(
+                        array(
+                            'ah_fecha_creacion' => new \DateTime('2014-06-06'),
+                            'ah_numero_cuenta' => '12196038826',
+                            'ah_fecha_eliminacion' => NULL,
+                            'ah_estado' => true,
+                            'ah_fecha_crea' => new \DateTime('2014-06-07 14:38:23'),
                             'ah_quien_crea' => 1,
                             'ah_fecha_modifica' => NULL,
                             'ah_quien_modifica' => NULL,

@@ -28,7 +28,7 @@ Dml\TodoBundle\Entity\Ahorros:
         ahNumeroCuenta:
             type: string
             nullable: true
-            length: 10
+            length: 11
             fixed: true
             comment: ''
             column: ah_numero_cuenta

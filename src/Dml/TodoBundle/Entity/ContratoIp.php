@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ContratoIp
  *
- * @ORM\Table(name="CONTRATO_IP", indexes={@ORM\Index(name="fk_contrato_ip_persona1_idx", columns={"persona_pe_id"}), @ORM\Index(name="fk_contrato_ip_entidad_sbbip1_idx", columns={"entidad_sbbip_es_id"}), @ORM\Index(name="fk_contrato_ip_remuneracion1_idx", columns={"remuneracion_re_id"})})
+ * @ORM\Table(name="CONTRATO_IP", indexes={@ORM\Index(name="fk_contrato_ip_persona1_idx", columns={"persona_pe_id"}), @ORM\Index(name="fk_contrato_ip_remuneracion1_idx", columns={"remuneracion_re_id"}), @ORM\Index(name="fk_contrato_ip_entidades1_idx", columns={"entidades_es_id"})})
  * @ORM\Entity(repositoryClass="Dml\TodoBundle\Entity\Repositories\ContratoIpRepository")
  */
 class ContratoIp
@@ -67,16 +67,6 @@ class ContratoIp
     private $personaPe;
 
     /**
-     * @var \Dml\TodoBundle\Entity\EntidadSbbip
-     *
-     * @ORM\ManyToOne(targetEntity="Dml\TodoBundle\Entity\EntidadSbbip")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="entidad_sbbip_es_id", referencedColumnName="es_id")
-     * })
-     */
-    private $entidadSbbipEs;
-
-    /**
      * @var \Dml\TodoBundle\Entity\Remuneracion
      *
      * @ORM\ManyToOne(targetEntity="Dml\TodoBundle\Entity\Remuneracion")
@@ -85,6 +75,16 @@ class ContratoIp
      * })
      */
     private $remuneracionRe;
+
+    /**
+     * @var \Dml\TodoBundle\Entity\Entidades
+     *
+     * @ORM\ManyToOne(targetEntity="Dml\TodoBundle\Entity\Entidades")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="entidades_es_id", referencedColumnName="es_id")
+     * })
+     */
+    private $entidadesEs;
 
 
 
@@ -107,7 +107,7 @@ class ContratoIp
     public function setCipFechaIngreso($cipFechaIngreso)
     {
         $this->cipFechaIngreso = $cipFechaIngreso;
-    
+
         return $this;
     }
 
@@ -130,7 +130,7 @@ class ContratoIp
     public function setCipFechaSalida($cipFechaSalida)
     {
         $this->cipFechaSalida = $cipFechaSalida;
-    
+
         return $this;
     }
 
@@ -153,7 +153,7 @@ class ContratoIp
     public function setCipMotivosSalida($cipMotivosSalida)
     {
         $this->cipMotivosSalida = $cipMotivosSalida;
-    
+
         return $this;
     }
 
@@ -176,7 +176,7 @@ class ContratoIp
     public function setCipActividadDesarrollada($cipActividadDesarrollada)
     {
         $this->cipActividadDesarrollada = $cipActividadDesarrollada;
-    
+
         return $this;
     }
 
@@ -199,7 +199,7 @@ class ContratoIp
     public function setCipActivo($cipActivo)
     {
         $this->cipActivo = $cipActivo;
-    
+
         return $this;
     }
 
@@ -222,7 +222,7 @@ class ContratoIp
     public function setPersonaPe(\Dml\TodoBundle\Entity\Persona $personaPe = null)
     {
         $this->personaPe = $personaPe;
-    
+
         return $this;
     }
 
@@ -237,29 +237,6 @@ class ContratoIp
     }
 
     /**
-     * Set entidadSbbipEs
-     *
-     * @param \Dml\TodoBundle\Entity\EntidadSbbip $entidadSbbipEs
-     * @return ContratoIp
-     */
-    public function setEntidadSbbipEs(\Dml\TodoBundle\Entity\EntidadSbbip $entidadSbbipEs = null)
-    {
-        $this->entidadSbbipEs = $entidadSbbipEs;
-    
-        return $this;
-    }
-
-    /**
-     * Get entidadSbbipEs
-     *
-     * @return \Dml\TodoBundle\Entity\EntidadSbbip 
-     */
-    public function getEntidadSbbipEs()
-    {
-        return $this->entidadSbbipEs;
-    }
-
-    /**
      * Set remuneracionRe
      *
      * @param \Dml\TodoBundle\Entity\Remuneracion $remuneracionRe
@@ -268,7 +245,7 @@ class ContratoIp
     public function setRemuneracionRe(\Dml\TodoBundle\Entity\Remuneracion $remuneracionRe = null)
     {
         $this->remuneracionRe = $remuneracionRe;
-    
+
         return $this;
     }
 
@@ -280,5 +257,28 @@ class ContratoIp
     public function getRemuneracionRe()
     {
         return $this->remuneracionRe;
+    }
+
+    /**
+     * Set entidadesEs
+     *
+     * @param \Dml\TodoBundle\Entity\Entidades $entidadesEs
+     * @return ContratoIp
+     */
+    public function setEntidadesEs(\Dml\TodoBundle\Entity\Entidades $entidadesEs = null)
+    {
+        $this->entidadesEs = $entidadesEs;
+
+        return $this;
+    }
+
+    /**
+     * Get entidadesEs
+     *
+     * @return \Dml\TodoBundle\Entity\Entidades 
+     */
+    public function getEntidadesEs()
+    {
+        return $this->entidadesEs;
     }
 }

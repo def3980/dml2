@@ -43,13 +43,16 @@ class DmlExtensionQueries extends \Twig_Extension {
      * @return instance Instacia con el nuevo nombre de la funcion ya referenciada.
      */
     public function getFunctions() {
-        return array('dqlSingleOs' => new \Twig_Function_Method($this, 'dqlSingleOsMethod'));
+        return array(
+                    'dqlSingleOs' => new \Twig_Function_Method($this, 'dqlSingleOsMethod'),
+                    'dqlArrayOs' => new \Twig_Function_Method($this, 'dqlArrayOsMethod'),
+                    );
     }
     
     /**
      * <b>Por Oswaldo Rojas, realizado el Dom 30 Mar 2014 14:33:29</b>
      * 
-     * Función que devuelve la consulta DQL ejecutada para porder ser usada en la
+     * Función que devuelve la consulta DQL ejecutada para poder ser usada en la
      * vista del twig
      * 
      * @param string $dql <p>String que contiene la consulta en formato DQL.</p>
@@ -62,6 +65,24 @@ class DmlExtensionQueries extends \Twig_Extension {
             foreach ($param as $k => $v)
                 $q = $q->setParameter($k, $v);
         return $q->getSingleScalarResult();
+    }
+    
+    /**
+     * <b>Por Oswaldo Rojas, realizado el Dom 08 Jun 2014 13:33:54</b>
+     * 
+     * Función que devuelve la consulta DQL ejecutada para poder ser usada en la
+     * vista del twig
+     * 
+     * @param string $dql <p>String que contiene la consulta en formato DQL.</p>
+     * @param array $param <p>Parametros que pueden estar asociados al dql. Default: null.</p>
+     * @return array Varios resultados dentro de un arreglo.
+     */
+    public function dqlArrayOsMethod($dql, $param = null) {
+        $q = $this->em->createQuery($dql);
+        if (is_array($param))
+            foreach ($param as $k => $v)
+                $q = $q->setParameter($k, $v);
+        return $q->getArrayResult();
     }
 
     /**

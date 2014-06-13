@@ -5,12 +5,12 @@ namespace Dml\TodoBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * EntidadSbbip
+ * Entidades
  *
- * @ORM\Table(name="ENTIDAD_SBBIP")
- * @ORM\Entity(repositoryClass="Dml\TodoBundle\Entity\Repositories\EntidadSbbipRepository")
+ * @ORM\Table(name="ENTIDADES")
+ * @ORM\Entity(repositoryClass="Dml\TodoBundle\Entity\Repositories\EntidadesRepository")
  */
-class EntidadSbbip
+class Entidades
 {
     /**
      * @var integer
@@ -52,6 +52,13 @@ class EntidadSbbip
     /**
      * @var string
      *
+     * @ORM\Column(name="es_ext1", type="string", length=5, nullable=true)
+     */
+    private $esExt1;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="es_tlf2", type="string", length=9, nullable=true)
      */
     private $esTlf2;
@@ -59,9 +66,9 @@ class EntidadSbbip
     /**
      * @var string
      *
-     * @ORM\Column(name="es_ext", type="string", length=5, nullable=true)
+     * @ORM\Column(name="es_ext2", type="string", length=5, nullable=true)
      */
-    private $esExt;
+    private $esExt2;
 
     /**
      * @var string
@@ -135,12 +142,12 @@ class EntidadSbbip
      * Set esEntidad
      *
      * @param string $esEntidad
-     * @return EntidadSbbip
+     * @return Entidades
      */
     public function setEsEntidad($esEntidad)
     {
         $this->esEntidad = $esEntidad;
-    
+
         return $this;
     }
 
@@ -158,12 +165,12 @@ class EntidadSbbip
      * Set esAlias
      *
      * @param string $esAlias
-     * @return EntidadSbbip
+     * @return Entidades
      */
     public function setEsAlias($esAlias)
     {
         $this->esAlias = $esAlias;
-    
+
         return $this;
     }
 
@@ -181,12 +188,12 @@ class EntidadSbbip
      * Set esDireccion
      *
      * @param string $esDireccion
-     * @return EntidadSbbip
+     * @return Entidades
      */
     public function setEsDireccion($esDireccion)
     {
         $this->esDireccion = $esDireccion;
-    
+
         return $this;
     }
 
@@ -204,12 +211,12 @@ class EntidadSbbip
      * Set esTlf1
      *
      * @param string $esTlf1
-     * @return EntidadSbbip
+     * @return Entidades
      */
     public function setEsTlf1($esTlf1)
     {
         $this->esTlf1 = $esTlf1;
-    
+
         return $this;
     }
 
@@ -224,15 +231,38 @@ class EntidadSbbip
     }
 
     /**
+     * Set esExt1
+     *
+     * @param string $esExt1
+     * @return Entidades
+     */
+    public function setEsExt1($esExt1)
+    {
+        $this->esExt1 = $esExt1;
+
+        return $this;
+    }
+
+    /**
+     * Get esExt1
+     *
+     * @return string 
+     */
+    public function getEsExt1()
+    {
+        return $this->esExt1;
+    }
+
+    /**
      * Set esTlf2
      *
      * @param string $esTlf2
-     * @return EntidadSbbip
+     * @return Entidades
      */
     public function setEsTlf2($esTlf2)
     {
         $this->esTlf2 = $esTlf2;
-    
+
         return $this;
     }
 
@@ -247,38 +277,38 @@ class EntidadSbbip
     }
 
     /**
-     * Set esExt
+     * Set esExt2
      *
-     * @param string $esExt
-     * @return EntidadSbbip
+     * @param string $esExt2
+     * @return Entidades
      */
-    public function setEsExt($esExt)
+    public function setEsExt2($esExt2)
     {
-        $this->esExt = $esExt;
-    
+        $this->esExt2 = $esExt2;
+
         return $this;
     }
 
     /**
-     * Get esExt
+     * Get esExt2
      *
      * @return string 
      */
-    public function getEsExt()
+    public function getEsExt2()
     {
-        return $this->esExt;
+        return $this->esExt2;
     }
 
     /**
      * Set esSitioWeb
      *
      * @param string $esSitioWeb
-     * @return EntidadSbbip
+     * @return Entidades
      */
     public function setEsSitioWeb($esSitioWeb)
     {
         $this->esSitioWeb = $esSitioWeb;
-    
+
         return $this;
     }
 
@@ -296,12 +326,12 @@ class EntidadSbbip
      * Set esFechaCrea
      *
      * @param \DateTime $esFechaCrea
-     * @return EntidadSbbip
+     * @return Entidades
      */
     public function setEsFechaCrea($esFechaCrea)
     {
         $this->esFechaCrea = $esFechaCrea;
-    
+
         return $this;
     }
 
@@ -319,12 +349,12 @@ class EntidadSbbip
      * Set esQuienCrea
      *
      * @param integer $esQuienCrea
-     * @return EntidadSbbip
+     * @return Entidades
      */
     public function setEsQuienCrea($esQuienCrea)
     {
         $this->esQuienCrea = $esQuienCrea;
-    
+
         return $this;
     }
 
@@ -342,12 +372,12 @@ class EntidadSbbip
      * Set esFechaModifica
      *
      * @param \DateTime $esFechaModifica
-     * @return EntidadSbbip
+     * @return Entidades
      */
     public function setEsFechaModifica($esFechaModifica)
     {
         $this->esFechaModifica = $esFechaModifica;
-    
+
         return $this;
     }
 
@@ -365,12 +395,12 @@ class EntidadSbbip
      * Set esQuienModifica
      *
      * @param integer $esQuienModifica
-     * @return EntidadSbbip
+     * @return Entidades
      */
     public function setEsQuienModifica($esQuienModifica)
     {
         $this->esQuienModifica = $esQuienModifica;
-    
+
         return $this;
     }
 
@@ -388,12 +418,12 @@ class EntidadSbbip
      * Set esFechaBorrado
      *
      * @param \DateTime $esFechaBorrado
-     * @return EntidadSbbip
+     * @return Entidades
      */
     public function setEsFechaBorrado($esFechaBorrado)
     {
         $this->esFechaBorrado = $esFechaBorrado;
-    
+
         return $this;
     }
 
@@ -411,12 +441,12 @@ class EntidadSbbip
      * Set esQuienBorra
      *
      * @param integer $esQuienBorra
-     * @return EntidadSbbip
+     * @return Entidades
      */
     public function setEsQuienBorra($esQuienBorra)
     {
         $this->esQuienBorra = $esQuienBorra;
-    
+
         return $this;
     }
 
@@ -434,12 +464,12 @@ class EntidadSbbip
      * Set esBorradoLogico
      *
      * @param boolean $esBorradoLogico
-     * @return EntidadSbbip
+     * @return Entidades
      */
     public function setEsBorradoLogico($esBorradoLogico)
     {
         $this->esBorradoLogico = $esBorradoLogico;
-    
+
         return $this;
     }
 

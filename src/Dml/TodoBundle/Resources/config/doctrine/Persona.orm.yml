@@ -1,7 +1,6 @@
 Dml\TodoBundle\Entity\Persona:
     type: entity
     table: PERSONA
-    repositoryClass: Dml\TodoBundle\Entity\Repositories\PersonaRepository
     id:
         peId:
             type: integer
@@ -82,7 +81,7 @@ Dml\TodoBundle\Entity\Persona:
         peFechaCrea:
             type: datetime
             nullable: true
-            comment: 'Fecha de creacipon del usuario en el sistema.'
+            comment: 'Fecha de creación del usuario en el sistema.'
             column: pe_fecha_crea
         peQuienCrea:
             type: integer
@@ -93,7 +92,7 @@ Dml\TodoBundle\Entity\Persona:
         peFechaModifica:
             type: datetime
             nullable: true
-            comment: 'Fecha y hora de modificacion de la informacion de la tabla persona.'
+            comment: 'Fecha y hora de modificacion de la información de la tabla persona.'
             column: pe_fecha_modifica
         peQuienModifica:
             type: integer

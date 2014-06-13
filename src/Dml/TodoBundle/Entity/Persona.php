@@ -2,16 +2,15 @@
 
 namespace Dml\TodoBundle\Entity;
 
-use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Persona
  *
  * @ORM\Table(name="PERSONA")
- * @ORM\Entity(repositoryClass="Dml\TodoBundle\Entity\Repositories\PersonaRepository")
+ * @ORM\Entity
  */
-class Persona implements UserInterface
+class Persona
 {
     /**
      * @var integer
@@ -149,24 +148,6 @@ class Persona implements UserInterface
     private $peBorradoLogico;
 
 
-    /**
-     * Funciones para ser usados en el login
-     */
-    function eraseCredentials()
-    {
-    }
-
-    function getRoles()
-    {
-        return array('ROLE_USUARIO');
-    }
-
-    function getUsername()
-    {
-        return $this->getEmail();
-    }
-    /* ---------------------------------- */
-
 
     /**
      * Get peId
@@ -187,7 +168,7 @@ class Persona implements UserInterface
     public function setPeCedula($peCedula)
     {
         $this->peCedula = $peCedula;
-    
+
         return $this;
     }
 
@@ -210,7 +191,7 @@ class Persona implements UserInterface
     public function setPeNombres($peNombres)
     {
         $this->peNombres = $peNombres;
-    
+
         return $this;
     }
 
@@ -233,7 +214,7 @@ class Persona implements UserInterface
     public function setPeApellidos($peApellidos)
     {
         $this->peApellidos = $peApellidos;
-    
+
         return $this;
     }
 
@@ -256,7 +237,7 @@ class Persona implements UserInterface
     public function setPeFechaNacimiento($peFechaNacimiento)
     {
         $this->peFechaNacimiento = $peFechaNacimiento;
-    
+
         return $this;
     }
 
@@ -279,7 +260,7 @@ class Persona implements UserInterface
     public function setEmail($email)
     {
         $this->email = $email;
-    
+
         return $this;
     }
 
@@ -302,7 +283,7 @@ class Persona implements UserInterface
     public function setSalt($salt)
     {
         $this->salt = $salt;
-    
+
         return $this;
     }
 
@@ -325,7 +306,7 @@ class Persona implements UserInterface
     public function setPassword($password)
     {
         $this->password = $password;
-    
+
         return $this;
     }
 
@@ -348,7 +329,7 @@ class Persona implements UserInterface
     public function setPeOnline($peOnline)
     {
         $this->peOnline = $peOnline;
-    
+
         return $this;
     }
 
@@ -371,7 +352,7 @@ class Persona implements UserInterface
     public function setPeInicioSesion($peInicioSesion)
     {
         $this->peInicioSesion = $peInicioSesion;
-    
+
         return $this;
     }
 
@@ -394,7 +375,7 @@ class Persona implements UserInterface
     public function setPeFinSesion($peFinSesion)
     {
         $this->peFinSesion = $peFinSesion;
-    
+
         return $this;
     }
 
@@ -417,7 +398,7 @@ class Persona implements UserInterface
     public function setPeDuracionSesion($peDuracionSesion)
     {
         $this->peDuracionSesion = $peDuracionSesion;
-    
+
         return $this;
     }
 
@@ -440,7 +421,7 @@ class Persona implements UserInterface
     public function setPeFechaCrea($peFechaCrea)
     {
         $this->peFechaCrea = $peFechaCrea;
-    
+
         return $this;
     }
 
@@ -463,7 +444,7 @@ class Persona implements UserInterface
     public function setPeQuienCrea($peQuienCrea)
     {
         $this->peQuienCrea = $peQuienCrea;
-    
+
         return $this;
     }
 
@@ -486,7 +467,7 @@ class Persona implements UserInterface
     public function setPeFechaModifica($peFechaModifica)
     {
         $this->peFechaModifica = $peFechaModifica;
-    
+
         return $this;
     }
 
@@ -509,7 +490,7 @@ class Persona implements UserInterface
     public function setPeQuienModifica($peQuienModifica)
     {
         $this->peQuienModifica = $peQuienModifica;
-    
+
         return $this;
     }
 
@@ -532,7 +513,7 @@ class Persona implements UserInterface
     public function setPeFechaBorrado($peFechaBorrado)
     {
         $this->peFechaBorrado = $peFechaBorrado;
-    
+
         return $this;
     }
 
@@ -555,7 +536,7 @@ class Persona implements UserInterface
     public function setPeQuienBorra($peQuienBorra)
     {
         $this->peQuienBorra = $peQuienBorra;
-    
+
         return $this;
     }
 
@@ -578,7 +559,7 @@ class Persona implements UserInterface
     public function setPeBorradoLogico($peBorradoLogico)
     {
         $this->peBorradoLogico = $peBorradoLogico;
-    
+
         return $this;
     }
 
