@@ -2,15 +2,16 @@
 
 namespace Dml\TodoBundle\Entity;
 
+use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Persona
  *
  * @ORM\Table(name="PERSONA")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Dml\TodoBundle\Entity\Repositories\PersonaRepository")
  */
-class Persona
+class Persona implements UserInterface
 {
     /**
      * @var integer
@@ -147,7 +148,23 @@ class Persona
      */
     private $peBorradoLogico;
 
+    /**
+     * Funciones para ser usados en el login
+     */
+    function eraseCredentials()
+    {
+    }
 
+    function getRoles()
+    {
+        return array('ROLE_USUARIO');
+    }
+
+    function getUsername()
+    {
+        return $this->getEmail();
+    }
+    /* ---------------------------------- */
 
     /**
      * Get peId

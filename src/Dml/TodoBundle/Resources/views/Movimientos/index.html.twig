@@ -103,65 +103,30 @@
                                     </div>
                                 </div>
                             </div>
-                            {#<div class="form-inline">
-                                <div class="form-group cp">
+                            <div class="form-inline">
+                                {#<div class="form-group cp">
                                     <button class="btn btn-default" data-toggle="tooltip" title="Copiado">
                                         <span class="glyphicon glyphicon-paperclip" style="top: 3px"></span>
                                     </button>
-                                </div>
-                                <div class="form-group">
+                                </div>#}
+                                {#<div class="form-group">
                                     <button class="btn btn-default" data-toggle="modal" data-target="#myModal">
                                         <span class="glyphicon glyphicon glyphicon-floppy-open" style="top: 3px"></span>
                                     </button>
-                                </div>
-                                <div class="form-group">#}
-                            <pre>
-{% set dql = 'SELECT ah.ahId, ah.ahNumeroCuenta, sbbip.esId, sbbip.esAlias '
-           ~ 'FROM TodoBundle:Ahorros ah '
-           ~ 'JOIN ah.contratarBCb cb '
-           ~ 'JOIN cb.entidadSbbipEs sbbip '
-           ~ 'GROUP BY sbbip.esAlias' %}
-{% set q = dqlArrayOs(dql) %}
-{#{% for group in q %}
-                                     {{ group.esAlias }}
-{%  set dql1 = 'SELECT ah.ahId, ah.ahNumeroCuenta '
-             ~ 'FROM TodoBundle:Ahorros ah '
-             ~ 'WHERE ah.ahId = :criterio' %}
-{%  set param = { 'criterio' : group.ahId } %}
-{%  set q1 = dqlArrayOs(dql1, param) %}
-{%  for option in q1 %}
-                                      {{ dump(q1) }}
+                                </div>#}
+                                <div class="form-group">
+                                        <select id="ah" class="selectpicker show-tick show-menu-arrow" data-style="btn-inverse" data-width="auto" data-size="5" data-show-subtext="true">
+{% for con in ahorros %}
+{%  for ah in con.cuentas %}
+                                                <option data-subtext=":: {{ con.banco }}" value="{{ ah.ahId }}"{% if ah.ahId == 1 %} selected="selected"{% endif %}>{{ ah.ahNumeroCuenta }}</option>
 {%  endfor %}
-{% endfor %}#}
-</pre>
-{#                                <select id="ah" class="selectpicker" {#class="form-control"#}>#}
-
-{#{% for ah in ahorros %}
-                                    <optgroup label="{{ ah.esAlias }}">
-                                    <option value="{{ ah.ahId }}"{% if loop.index == 1 %} selected="selected"{% endif %}>{{ ah.ahNumeroCuenta }}</option>
-                                    </optgroup>
-{% endfor %}#}
-{#{% set dql = 'SELECT ah.ahId, ah.ahNumeroCuenta, sbbip.esId, sbbip.esAlias '
-           ~ 'FROM TodoBundle:Ahorros ah '
-           ~ 'JOIN ah.contratarBCb cb '
-           ~ 'JOIN cb.entidadSbbipEs sbbip '
-           ~ 'GROUP BY sbbip.esAlias' %}
-{% set q = dqlArrayOs(dql) %}
-{% for group in q %}
-                                    <optgroup label="{{ group.esAlias }}">
-{%  set dql1 = 'SELECT ah.ahId, ah.ahNumeroCuenta '
-             ~ 'FROM TodoBundle:Ahorros ah '
-             ~ 'WHERE ah.ahId = :criterio' %}
-{%  set param = { 'criterio' : group.ahId } %}
-{%  set q1 = dqlArrayOs(dql1, param) %}
-{%  for option in q1 %}
-                                        <option>{{ dump(q1) }}</option>
-{%  endfor %}
-                                    </optgroup>
+{%  if not loop.last %}
+                                            <option data-divider="true"></option>
+{%  endif %}
 {% endfor %}
-                                    </select>#}
-                                {#</div>
-                            </div>#}
+                                        </select>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-md-8">
                             <div class="form-inline" style="text-align: right">

@@ -55,18 +55,35 @@ class MovimientosController extends Controller {
     private function cuentasDAhorros(Request $request) {
         $em = $this->getDoctrine();
         return $em->getRepository('TodoBundle:Ahorros')->ahTable()
-//                  ->select('ah.ahId, ah.ahNumeroCuenta')
-                  ->select('ah.ahId, ah.ahNumeroCuenta, sbbip.esId, sbbip.esAlias')
-                    ->join('ah.contratarBCb', 'cb')
-                    ->join('cb.entidadSbbipEs', 'sbbip')
-//                ->groupBy('sbbip.esAlias')
-                    ;
+                  ->select('ah.ahId, ah.ahNumeroCuenta');
     }
 
     public function indexAction(Request $request) {
+        /* @var $em \Doctrine\ORM\EntityManager */ // Para que funcione el autocompletar en NetBeans >= 7.0. (OJO: Siempre en una sola linea)
+        $q1 = $this->cuentasDAhorros($request)
+                   ->addSelect('cb.cbId, cb.cbFechaContrato, es.esAlias')
+                   ->join('ah.contratarBCb', 'cb')
+                   ->join('cb.entidadesEs', 'es')
+                   ->groupBy('es.esAlias')
+                   ->getQuery();
+        $contenedor = array(); $entidadBCuentas = array();
+        foreach ($q1->getArrayResult() as $ahCbEs):
+            $entidadBCuentas['banco'] = $ahCbEs['esAlias'];
+            $q2 = $this->cuentasDAhorros($request)
+                   ->join('ah.contratarBCb', 'cb')
+                   ->join('cb.entidadesEs', 'es')
+                    ->andWhere("ah.contratarBCb = {$ahCbEs['cbId']}")
+                        ->getQuery();
+            $cuentas = array();
+            foreach($q2->getArrayResult() as $ah):
+                $cuentas[] = array('ahId' => $ah['ahId'], 'ahNumeroCuenta' => $ah['ahNumeroCuenta']);
+            endforeach;
+            $entidadBCuentas['cuentas'] = $cuentas;
+            $contenedor[] = $entidadBCuentas;
+        endforeach;
 //        Util::getMyDump($this->cuentasDAhorros($request)->getQuery()->getScalarResult());
         $this->listaDMovimientos($request);
-        $ahorros = $this->cuentasDAhorros($request)->getQuery()->getArrayResult();
+        $ahorros = $contenedor;
         return $this->render('TodoBundle:Movimientos:index.html.twig', array('pager' => $this->pager, 'ahorros' => $ahorros));
     }
     
