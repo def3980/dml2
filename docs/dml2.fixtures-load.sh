@@ -1,4 +1,5 @@
 #!/bin/sh
+cd ..
 ruta=`pwd`
 php $ruta/app/console doctrine:database:drop --force
 php $ruta/app/console doctrine:database:create
