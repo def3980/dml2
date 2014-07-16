@@ -1,6 +1,7 @@
 Dml\TodoBundle\Entity\Persona:
     type: entity
     table: PERSONA
+    repositoryClass: Dml\TodoBundle\Entity\Repositories\PersonaRepository
     id:
         peId:
             type: integer

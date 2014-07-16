@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Hijos
  *
  * @ORM\Table(name="HIJOS", indexes={@ORM\Index(name="fk_hijos_persona1_idx", columns={"persona_pe_id"})})
- * @ORM\Entity(repositoryClass="Dml\TodoBundle\Repositories\Entity\HijosRepository")
+ * @ORM\Entity(repositoryClass="Dml\TodoBundle\Entity\Repositories\HijosRepository")
  */
 class Hijos
 {
@@ -73,7 +73,7 @@ class Hijos
     public function setHiFechaNacimiento($hiFechaNacimiento)
     {
         $this->hiFechaNacimiento = $hiFechaNacimiento;
-    
+
         return $this;
     }
 
@@ -96,7 +96,7 @@ class Hijos
     public function setHiNombres($hiNombres)
     {
         $this->hiNombres = $hiNombres;
-    
+
         return $this;
     }
 
@@ -119,7 +119,7 @@ class Hijos
     public function setHiApellidos($hiApellidos)
     {
         $this->hiApellidos = $hiApellidos;
-    
+
         return $this;
     }
 
@@ -142,7 +142,7 @@ class Hijos
     public function setPersonaPe(\Dml\TodoBundle\Entity\Persona $personaPe = null)
     {
         $this->personaPe = $personaPe;
-    
+
         return $this;
     }
 

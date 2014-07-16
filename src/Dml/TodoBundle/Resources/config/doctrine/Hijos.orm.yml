@@ -1,7 +1,7 @@
 Dml\TodoBundle\Entity\Hijos:
     type: entity
     table: HIJOS
-    repositoryClass: Dml\TodoBundle\Repositories\Entity\HijosRepository
+    repositoryClass: Dml\TodoBundle\Entity\Repositories\HijosRepository
     indexes:
         fk_hijos_persona1_idx:
             columns:

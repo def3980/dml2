@@ -39,7 +39,7 @@ Dml\TodoBundle\Entity\Movimientos:
         moDocumento:
             type: string
             nullable: true
-            length: 10
+            length: 12
             fixed: true
             comment: ''
             column: mo_documento

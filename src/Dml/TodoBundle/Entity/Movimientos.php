@@ -45,7 +45,7 @@ class Movimientos
     /**
      * @var string
      *
-     * @ORM\Column(name="mo_documento", type="string", length=10, nullable=true)
+     * @ORM\Column(name="mo_documento", type="string", length=12, nullable=true)
      */
     private $moDocumento;
 
@@ -150,7 +150,7 @@ class Movimientos
     public function setMoFecha($moFecha)
     {
         $this->moFecha = $moFecha;
-    
+
         return $this;
     }
 
@@ -173,7 +173,7 @@ class Movimientos
     public function setMoConcepto($moConcepto)
     {
         $this->moConcepto = $moConcepto;
-    
+
         return $this;
     }
 
@@ -196,7 +196,7 @@ class Movimientos
     public function setMoTipo($moTipo)
     {
         $this->moTipo = $moTipo;
-    
+
         return $this;
     }
 
@@ -219,7 +219,7 @@ class Movimientos
     public function setMoDocumento($moDocumento)
     {
         $this->moDocumento = $moDocumento;
-    
+
         return $this;
     }
 
@@ -242,7 +242,7 @@ class Movimientos
     public function setMoOficina($moOficina)
     {
         $this->moOficina = $moOficina;
-    
+
         return $this;
     }
 
@@ -265,7 +265,7 @@ class Movimientos
     public function setMoMonto($moMonto)
     {
         $this->moMonto = $moMonto;
-    
+
         return $this;
     }
 
@@ -288,7 +288,7 @@ class Movimientos
     public function setMoSaldo($moSaldo)
     {
         $this->moSaldo = $moSaldo;
-    
+
         return $this;
     }
 
@@ -311,7 +311,7 @@ class Movimientos
     public function setMoFechaCrea($moFechaCrea)
     {
         $this->moFechaCrea = $moFechaCrea;
-    
+
         return $this;
     }
 
@@ -334,7 +334,7 @@ class Movimientos
     public function setMoQuienCrea($moQuienCrea)
     {
         $this->moQuienCrea = $moQuienCrea;
-    
+
         return $this;
     }
 
@@ -357,7 +357,7 @@ class Movimientos
     public function setMoFechaModifica($moFechaModifica)
     {
         $this->moFechaModifica = $moFechaModifica;
-    
+
         return $this;
     }
 
@@ -380,7 +380,7 @@ class Movimientos
     public function setMoQuienModifica($moQuienModifica)
     {
         $this->moQuienModifica = $moQuienModifica;
-    
+
         return $this;
     }
 
@@ -403,7 +403,7 @@ class Movimientos
     public function setMoFechaBorrado($moFechaBorrado)
     {
         $this->moFechaBorrado = $moFechaBorrado;
-    
+
         return $this;
     }
 
@@ -426,7 +426,7 @@ class Movimientos
     public function setMoQuienBorra($moQuienBorra)
     {
         $this->moQuienBorra = $moQuienBorra;
-    
+
         return $this;
     }
 
@@ -449,7 +449,7 @@ class Movimientos
     public function setMoBorradoLogico($moBorradoLogico)
     {
         $this->moBorradoLogico = $moBorradoLogico;
-    
+
         return $this;
     }
 
@@ -472,7 +472,7 @@ class Movimientos
     public function setAhorrosAh(\Dml\TodoBundle\Entity\Ahorros $ahorrosAh = null)
     {
         $this->ahorrosAh = $ahorrosAh;
-    
+
         return $this;
     }
 
