@@ -293,25 +293,7 @@ class LoadMovimientos extends AbstractFixture implements OrderedFixtureInterface
                         array('mo_fecha' => new \DateTime('2014-01-09'), 'mo_concepto' => '12912261-MOVISTAR -CB-7872717', 'mo_tipo' => 'D', 'mo_documento' => '0006722146', 'mo_oficina' => 'CENTRO DE SERVIC. OPERAT. SS.', 'mo_monto' => 10.02, 'mo_saldo' => 0.00, 'mo_fecha_crea' => new \DateTime('2014-02-01 00:00:01'), 'mo_quien_crea' => 1, 'mo_fecha_modifica' => NULL, 'mo_quien_modifica' => NULL, 'mo_fecha_borrado' => NULL, 'mo_quien_borra' => NULL, 'mo_borrado_logico' => false),
                         array('mo_fecha' => new \DateTime('2014-01-09'), 'mo_concepto' => 'TRANSFERENCIA INTERNET', 'mo_tipo' => 'C', 'mo_documento' => '0004565335', 'mo_oficina' => 'AG. NORTE', 'mo_monto' => 10.00, 'mo_saldo' => 10.02, 'mo_fecha_crea' => new \DateTime('2014-02-01 00:00:01'), 'mo_quien_crea' => 1, 'mo_fecha_modifica' => NULL, 'mo_quien_modifica' => NULL, 'mo_fecha_borrado' => NULL, 'mo_quien_borra' => NULL, 'mo_borrado_logico' => false),
                     );
-                    foreach (array_reverse($movimientos) as $movimiento):
-                        $mo = new Movimientos();
-                        $mo->setMoFecha($movimiento['mo_fecha']);
-                        $mo->setMoConcepto($movimiento['mo_concepto']);
-                        $mo->setMoTipo($movimiento['mo_tipo']);
-                        $mo->setMoDocumento($movimiento['mo_documento']);
-                        $mo->setMoOficina($movimiento['mo_oficina']);
-                        $mo->setMoMonto($movimiento['mo_monto']);
-                        $mo->setMoSaldo($movimiento['mo_saldo']);
-                        $mo->setMoFechaCrea($movimiento['mo_fecha_crea']);
-                        $mo->setMoQuienCrea($movimiento['mo_quien_crea']);
-                        $mo->setMoFechaModifica($movimiento['mo_fecha_modifica']);
-                        $mo->setMoQuienModifica($movimiento['mo_quien_modifica']);
-                        $mo->setMoFechaBorrado($movimiento['mo_fecha_borrado']);
-                        $mo->setMoQuienBorra($movimiento['mo_quien_borra']);
-                        $mo->setMoBorradoLogico($movimiento['mo_borrado_logico']);
-                        $mo->setAhorrosAh($ah);
-                        $manager->persist($mo);
-                    endforeach;
+                    $this->saveRecordBank($movimientos, $ah, $manager);
                 break;
                 case '2200555126':
                     $movimientos = array(
@@ -462,25 +444,7 @@ class LoadMovimientos extends AbstractFixture implements OrderedFixtureInterface
                         array('mo_fecha' => new \DateTime('2014-01-03'), 'mo_concepto' => 'RETIRO ATM BP N/EL TENA 2', 'mo_tipo' => 'D', 'mo_documento' => '0009304727', 'mo_oficina' => 'TENA', 'mo_monto' => 50.00, 'mo_saldo' => 5862.42, 'mo_fecha_crea' => new \DateTime('2014-02-01 00:00:01'), 'mo_quien_crea' => 1, 'mo_fecha_modifica' => NULL, 'mo_quien_modifica' => NULL, 'mo_fecha_borrado' => NULL, 'mo_quien_borra' => NULL, 'mo_borrado_logico' => false),
                         array('mo_fecha' => new \DateTime('2014-01-02'), 'mo_concepto' => 'CONSUMO DATA SANASANA TENA', 'mo_tipo' => 'D', 'mo_documento' => '0003431397', 'mo_oficina' => 'INSTITUCIONAL SS.CC.', 'mo_monto' => 34.43, 'mo_saldo' => 5912.42, 'mo_fecha_crea' => new \DateTime('2014-02-01 00:00:01'), 'mo_quien_crea' => 1, 'mo_fecha_modifica' => NULL, 'mo_quien_modifica' => NULL, 'mo_fecha_borrado' => NULL, 'mo_quien_borra' => NULL, 'mo_borrado_logico' => false),
                     );
-                    foreach (array_reverse($movimientos) as $movimiento):
-                        $mo = new Movimientos();
-                        $mo->setMoFecha($movimiento['mo_fecha']);
-                        $mo->setMoConcepto($movimiento['mo_concepto']);
-                        $mo->setMoTipo($movimiento['mo_tipo']);
-                        $mo->setMoDocumento($movimiento['mo_documento']);
-                        $mo->setMoOficina($movimiento['mo_oficina']);
-                        $mo->setMoMonto($movimiento['mo_monto']);
-                        $mo->setMoSaldo($movimiento['mo_saldo']);
-                        $mo->setMoFechaCrea($movimiento['mo_fecha_crea']);
-                        $mo->setMoQuienCrea($movimiento['mo_quien_crea']);
-                        $mo->setMoFechaModifica($movimiento['mo_fecha_modifica']);
-                        $mo->setMoQuienModifica($movimiento['mo_quien_modifica']);
-                        $mo->setMoFechaBorrado($movimiento['mo_fecha_borrado']);
-                        $mo->setMoQuienBorra($movimiento['mo_quien_borra']);
-                        $mo->setMoBorradoLogico($movimiento['mo_borrado_logico']);
-                        $mo->setAhorrosAh($ah);
-                        $manager->persist($mo);
-                    endforeach;
+                    $this->saveRecordBank($movimientos, $ah, $manager);
                 break;
                 case '2200555154':
                     $movimientos = array(
@@ -631,59 +595,47 @@ class LoadMovimientos extends AbstractFixture implements OrderedFixtureInterface
                         array('mo_fecha' => new \DateTime('2014-01-03'), 'mo_concepto' => 'INTERES A SU FAVOR', 'mo_tipo' => 'C', 'mo_documento' => '0001056762', 'mo_oficina' => 'AGENCIA PARA PROCESOS BATCH', 'mo_monto' => 0.09, 'mo_saldo' => 505.61, 'mo_fecha_crea' => new \DateTime('2014-02-01 00:00:01'), 'mo_quien_crea' => 1, 'mo_fecha_modifica' => NULL, 'mo_quien_modifica' => NULL, 'mo_fecha_borrado' => NULL, 'mo_quien_borra' => NULL, 'mo_borrado_logico' => false),
                         array('mo_fecha' => new \DateTime('2014-01-02'), 'mo_concepto' => 'INTERES A SU FAVOR', 'mo_tipo' => 'C', 'mo_documento' => '0001056764', 'mo_oficina' => 'AGENCIA PARA PROCESOS BATCH', 'mo_monto' => 0.03, 'mo_saldo' => 505.52, 'mo_fecha_crea' => new \DateTime('2014-02-01 00:00:01'), 'mo_quien_crea' => 1, 'mo_fecha_modifica' => NULL, 'mo_quien_modifica' => NULL, 'mo_fecha_borrado' => NULL, 'mo_quien_borra' => NULL, 'mo_borrado_logico' => false),
                     );
-                    foreach (array_reverse($movimientos) as $movimiento):
-                        $mo = new Movimientos();
-                        $mo->setMoFecha($movimiento['mo_fecha']);
-                        $mo->setMoConcepto($movimiento['mo_concepto']);
-                        $mo->setMoTipo($movimiento['mo_tipo']);
-                        $mo->setMoDocumento($movimiento['mo_documento']);
-                        $mo->setMoOficina($movimiento['mo_oficina']);
-                        $mo->setMoMonto($movimiento['mo_monto']);
-                        $mo->setMoSaldo($movimiento['mo_saldo']);
-                        $mo->setMoFechaCrea($movimiento['mo_fecha_crea']);
-                        $mo->setMoQuienCrea($movimiento['mo_quien_crea']);
-                        $mo->setMoFechaModifica($movimiento['mo_fecha_modifica']);
-                        $mo->setMoQuienModifica($movimiento['mo_quien_modifica']);
-                        $mo->setMoFechaBorrado($movimiento['mo_fecha_borrado']);
-                        $mo->setMoQuienBorra($movimiento['mo_quien_borra']);
-                        $mo->setMoBorradoLogico($movimiento['mo_borrado_logico']);
-                        $mo->setAhorrosAh($ah);
-                        $manager->persist($mo);
-                    endforeach;
+                    $this->saveRecordBank($movimientos, $ah, $manager);
                 break;
                 case '12196038826':
                     $movimientos = array(
-                        array('mo_fecha' => new \DateTime('2014-07-14'), 'mo_concepto' => 'PAGO MOVISTAR', 'mo_tipo' => 'D', 'mo_documento' => '641925020506', 'mo_oficina' => 'MATRIZ - QUITO', 'mo_monto' => 3.00, 'mo_saldo' => 1.30, 'mo_fecha_crea' => new \DateTime('2014-07-15 20:21:8'), 'mo_quien_crea' => 1, 'mo_fecha_modifica' => NULL, 'mo_quien_modifica' => NULL, 'mo_fecha_borrado' => NULL, 'mo_quien_borra' => NULL, 'mo_borrado_logico' => false),
-                        array('mo_fecha' => new \DateTime('2014-07-02'), 'mo_concepto' => 'RETIROS ATM CLIENTES PRODUBANCO', 'mo_tipo' => 'D', 'mo_documento' => '9382000143', 'mo_oficina' => 'AG. PDBCO EXPRESS MEGAMAXI UIO', 'mo_monto' => 180.00, 'mo_saldo' => 4.30, 'mo_fecha_crea' => new \DateTime('2014-07-15 20:21:8'), 'mo_quien_crea' => 1, 'mo_fecha_modifica' => NULL, 'mo_quien_modifica' => NULL, 'mo_fecha_borrado' => NULL, 'mo_quien_borra' => NULL, 'mo_borrado_logico' => false),
-                        array('mo_fecha' => new \DateTime('2014-07-02'), 'mo_concepto' => 'RETIRO CON LIBRETA', 'mo_tipo' => 'D', 'mo_documento' => '0028525948', 'mo_oficina' => 'AG. PDBCO EXPRESS MEGAMAXI UIO', 'mo_monto' => 1000.00, 'mo_saldo' => 184.30, 'mo_fecha_crea' => new \DateTime('2014-07-15 20:21:8'), 'mo_quien_crea' => 1, 'mo_fecha_modifica' => NULL, 'mo_quien_modifica' => NULL, 'mo_fecha_borrado' => NULL, 'mo_quien_borra' => NULL, 'mo_borrado_logico' => false),
-                        array('mo_fecha' => new \DateTime('2014-06-30'), 'mo_concepto' => 'CAPITALIZACION DE INTERESES EN CUENTA', 'mo_tipo' => 'C', 'mo_documento' => '0020140630', 'mo_oficina' => 'MATRIZ - QUITO', 'mo_monto' => 0.08, 'mo_saldo' => 1184.30, 'mo_fecha_crea' => new \DateTime('2014-07-15 20:21:8'), 'mo_quien_crea' => 1, 'mo_fecha_modifica' => NULL, 'mo_quien_modifica' => NULL, 'mo_fecha_borrado' => NULL, 'mo_quien_borra' => NULL, 'mo_borrado_logico' => false),
-                        array('mo_fecha' => new \DateTime('2014-06-30'), 'mo_concepto' => 'ROL DE PAGOS', 'mo_tipo' => 'C', 'mo_documento' => '0199880577', 'mo_oficina' => 'MATRIZ - QUITO', 'mo_monto' => 1175.18, 'mo_saldo' => 1184.22, 'mo_fecha_crea' => new \DateTime('2014-07-15 20:21:8'), 'mo_quien_crea' => 1, 'mo_fecha_modifica' => NULL, 'mo_quien_modifica' => NULL, 'mo_fecha_borrado' => NULL, 'mo_quien_borra' => NULL, 'mo_borrado_logico' => false),
-                        array('mo_fecha' => new \DateTime('2014-06-12'), 'mo_concepto' => 'RETIRO CON LIBRETA', 'mo_tipo' => 'D', 'mo_documento' => '0031789350', 'mo_oficina' => 'AG. PDBCO EXPRESS EL GIRÓN QUI', 'mo_monto' => 500.00, 'mo_saldo' => 9.04, 'mo_fecha_crea' => new \DateTime('2014-07-15 20:21:8'), 'mo_quien_crea' => 1, 'mo_fecha_modifica' => NULL, 'mo_quien_modifica' => NULL, 'mo_fecha_borrado' => NULL, 'mo_quien_borra' => NULL, 'mo_borrado_logico' => false),
-                        array('mo_fecha' => new \DateTime('2014-05-30'), 'mo_concepto' => 'ROL DE PAGOS', 'mo_tipo' => 'C', 'mo_documento' => '0197325546', 'mo_oficina' => 'MATRIZ - QUITO', 'mo_monto' => 509.04, 'mo_saldo' => 509.04, 'mo_fecha_crea' => new \DateTime('2014-07-15 20:21:8'), 'mo_quien_crea' => 1, 'mo_fecha_modifica' => NULL, 'mo_quien_modifica' => NULL, 'mo_fecha_borrado' => NULL, 'mo_quien_borra' => NULL, 'mo_borrado_logico' => false),
+                        array('mo_fecha' => new \DateTime('2014-07-14'), 'mo_concepto' => 'PAGO MOVISTAR', 'mo_tipo' => 'D', 'mo_documento' => '641925020506', 'mo_oficina' => 'MATRIZ - QUITO', 'mo_monto' => 3.00, 'mo_saldo' => 1.30, 'mo_fecha_crea' => new \DateTime('2014-07-15 21:57:11'), 'mo_quien_crea' => 1, 'mo_fecha_modifica' => NULL, 'mo_quien_modifica' => NULL, 'mo_fecha_borrado' => NULL, 'mo_quien_borra' => NULL, 'mo_borrado_logico' => false),
+                        array('mo_fecha' => new \DateTime('2014-07-02'), 'mo_concepto' => 'RETIROS ATM CLIENTES PRODUBANCO', 'mo_tipo' => 'D', 'mo_documento' => '009382000143', 'mo_oficina' => 'AG. PDBCO EXPRESS MEGAMAXI UIO', 'mo_monto' => 180.00, 'mo_saldo' => 4.30, 'mo_fecha_crea' => new \DateTime('2014-07-15 21:57:11'), 'mo_quien_crea' => 1, 'mo_fecha_modifica' => NULL, 'mo_quien_modifica' => NULL, 'mo_fecha_borrado' => NULL, 'mo_quien_borra' => NULL, 'mo_borrado_logico' => false),
+                        array('mo_fecha' => new \DateTime('2014-07-02'), 'mo_concepto' => 'RETIRO CON LIBRETA', 'mo_tipo' => 'D', 'mo_documento' => '000028525948', 'mo_oficina' => 'AG. PDBCO EXPRESS MEGAMAXI UIO', 'mo_monto' => 1000.00, 'mo_saldo' => 184.30, 'mo_fecha_crea' => new \DateTime('2014-07-15 21:57:11'), 'mo_quien_crea' => 1, 'mo_fecha_modifica' => NULL, 'mo_quien_modifica' => NULL, 'mo_fecha_borrado' => NULL, 'mo_quien_borra' => NULL, 'mo_borrado_logico' => false),
+                        array('mo_fecha' => new \DateTime('2014-06-30'), 'mo_concepto' => 'CAPITALIZACION DE INTERESES EN CUENTA', 'mo_tipo' => 'C', 'mo_documento' => '000020140630', 'mo_oficina' => 'MATRIZ - QUITO', 'mo_monto' => 0.08, 'mo_saldo' => 1184.30, 'mo_fecha_crea' => new \DateTime('2014-07-15 21:57:11'), 'mo_quien_crea' => 1, 'mo_fecha_modifica' => NULL, 'mo_quien_modifica' => NULL, 'mo_fecha_borrado' => NULL, 'mo_quien_borra' => NULL, 'mo_borrado_logico' => false),
+                        array('mo_fecha' => new \DateTime('2014-06-30'), 'mo_concepto' => 'ROL DE PAGOS', 'mo_tipo' => 'C', 'mo_documento' => '000199880577', 'mo_oficina' => 'MATRIZ - QUITO', 'mo_monto' => 1175.18, 'mo_saldo' => 1184.22, 'mo_fecha_crea' => new \DateTime('2014-07-15 21:57:11'), 'mo_quien_crea' => 1, 'mo_fecha_modifica' => NULL, 'mo_quien_modifica' => NULL, 'mo_fecha_borrado' => NULL, 'mo_quien_borra' => NULL, 'mo_borrado_logico' => false),
+                        array('mo_fecha' => new \DateTime('2014-06-12'), 'mo_concepto' => 'RETIRO CON LIBRETA', 'mo_tipo' => 'D', 'mo_documento' => '000031789350', 'mo_oficina' => 'AG. PDBCO EXPRESS EL GIRÓN QUI', 'mo_monto' => 500.00, 'mo_saldo' => 9.04, 'mo_fecha_crea' => new \DateTime('2014-07-15 21:57:11'), 'mo_quien_crea' => 1, 'mo_fecha_modifica' => NULL, 'mo_quien_modifica' => NULL, 'mo_fecha_borrado' => NULL, 'mo_quien_borra' => NULL, 'mo_borrado_logico' => false),
+                        array('mo_fecha' => new \DateTime('2014-05-30'), 'mo_concepto' => 'ROL DE PAGOS', 'mo_tipo' => 'C', 'mo_documento' => '000197325546', 'mo_oficina' => 'MATRIZ - QUITO', 'mo_monto' => 509.04, 'mo_saldo' => 509.04, 'mo_fecha_crea' => new \DateTime('2014-07-15 21:57:11'), 'mo_quien_crea' => 1, 'mo_fecha_modifica' => NULL, 'mo_quien_modifica' => NULL, 'mo_fecha_borrado' => NULL, 'mo_quien_borra' => NULL, 'mo_borrado_logico' => false),
                     );
-                    foreach (array_reverse($movimientos) as $movimiento):
-                        $mo = new Movimientos();
-                        $mo->setMoFecha($movimiento['mo_fecha']);
-                        $mo->setMoConcepto($movimiento['mo_concepto']);
-                        $mo->setMoTipo($movimiento['mo_tipo']);
-                        $mo->setMoDocumento($movimiento['mo_documento']);
-                        $mo->setMoOficina($movimiento['mo_oficina']);
-                        $mo->setMoMonto($movimiento['mo_monto']);
-                        $mo->setMoSaldo($movimiento['mo_saldo']);
-                        $mo->setMoFechaCrea($movimiento['mo_fecha_crea']);
-                        $mo->setMoQuienCrea($movimiento['mo_quien_crea']);
-                        $mo->setMoFechaModifica($movimiento['mo_fecha_modifica']);
-                        $mo->setMoQuienModifica($movimiento['mo_quien_modifica']);
-                        $mo->setMoFechaBorrado($movimiento['mo_fecha_borrado']);
-                        $mo->setMoQuienBorra($movimiento['mo_quien_borra']);
-                        $mo->setMoBorradoLogico($movimiento['mo_borrado_logico']);
-                        $mo->setAhorrosAh($ah);
-                        $manager->persist($mo);
-                    endforeach;
+                    $this->saveRecordBank($movimientos, $ah, $manager);
                 break;
             endswitch;
         endforeach;
         $manager->flush();
+    }
+    
+    private function saveRecordBank($records = array(), $objClass = null, ObjectManager $manager) {
+        if (is_array($records)):
+            foreach (array_reverse($records) as $rec):
+                $mo = new Movimientos();
+                $mo->setMoFecha($rec['mo_fecha']);
+                $mo->setMoConcepto($rec['mo_concepto']);
+                $mo->setMoTipo($rec['mo_tipo']);
+                $mo->setMoDocumento($rec['mo_documento']);
+                $mo->setMoOficina($rec['mo_oficina']);
+                $mo->setMoMonto($rec['mo_monto']);
+                $mo->setMoSaldo($rec['mo_saldo']);
+                $mo->setMoFechaCrea($rec['mo_fecha_crea']);
+                $mo->setMoQuienCrea($rec['mo_quien_crea']);
+                $mo->setMoFechaModifica($rec['mo_fecha_modifica']);
+                $mo->setMoQuienModifica($rec['mo_quien_modifica']);
+                $mo->setMoFechaBorrado($rec['mo_fecha_borrado']);
+                $mo->setMoQuienBorra($rec['mo_quien_borra']);
+                $mo->setMoBorradoLogico($rec['mo_borrado_logico']);
+                $mo->setAhorrosAh($objClass);
+                $manager->persist($mo);
+            endforeach;
+        endif;
     }
     
 }
