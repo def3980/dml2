@@ -1,8 +1,9 @@
 {% extends '::base.html.twig' %}
 
-{% block title %}Detalle gastos{% endblock %}
+{% block title %}Informe gastos{% endblock %}
 {% block incluir_css %}
         <link href="{{ asset('bundles/todo/js/bootstrap-select/bootstrap-select.css') }}" rel="stylesheet">
+        <link href="{{ asset('bundles/todo/css/offcanvas.css') }}" rel="stylesheet">
 {% endblock %}
 {% block incluir_javascripts %}
         <script src="{{ asset('bundles/todo/js/expander/jquery.expander.js') }}"></script>
@@ -11,6 +12,7 @@
         <script src="{{ asset('bundles/todo/js/mis-javascripts/dump.js') }}"></script>
         <script src="{{ asset('bundles/todo/js/jquery-zclip/jquery.zclip.js') }}"></script>
         <script src="{{ asset('bundles/todo/js/mis-javascripts/validators.js') }}"></script>
+        <script src="{{ asset('bundles/todo/js/offcanvas.js') }}"></script>
 {% endblock %}
 {% block body %}
         <style>
@@ -49,231 +51,156 @@
                 text-align: right;
             }
         </style>
-        <a class="sr-only" href="#content">Skip to main content</a>
-        <!-- Docs master nav -->
-        <header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
+        <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
             <div class="container">
                 <div class="navbar-header">
-                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a href="../" class="navbar-brand">Bootstrap</a>
+                    <a class="navbar-brand" href="#">Project name</a>
                 </div>
-                <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+                <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="../getting-started">Getting started</a></li>
-                        <li class="active"><a href="../css">CSS</a></li>
-                        <li><a href="../components">Components</a></li>
-                        <li><a href="../javascript">JavaScript</a></li>
-                        <li><a href="../customize">Customize</a></li>
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
                     </ul>
-                    <ul class="nav navbar-nav navbar-right">{% set usuario = app.user %}
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <span class="glyphicon glyphicon-user"></span>&nbsp;
-                                {{ myNameLastnameOs(usuario.peNombres, usuario.peApellidos) }} <b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li class="divider"></li>
-                                <li><a href="{{ path('todo_logout') }}">Cerrar Sesi&oacute;n</a></li>
-                            </ul>
-                        </li>                        
-                    </ul>
-                </nav>
-            </div>
-        </header>
-        <!-- Docs page layout -->
-        <div class="bs-docs-header" id="content">
-            <div class="container">
-                <h1>CSS</h1>
-                <p>Global CSS settings, fundamental HTML elements styled and enhanced with extensible classes, and an advanced grid system.</p>
-                <div id="carbonads-container"><div class="carbonad"><div id="azcarbon"></div><script>var z = document.createElement("script"); z.async = true; z.src = "http://engine.carbonads.com/z/32341/azcarbon_2_1_0_HORIZ"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(z, s);</script></div></div>
-            </div>
-        </div>
-        <div class="container bs-docs-container">
-            <div class="row">
-                <div class="col-md-9" role="main">
-                    <!-- Global Bootstrap settings ================================================== -->
-                    <div class="bs-docs-section">
-                        <h1 id="overview" class="page-header">Principal</h1>
-                        <p class="lead">Get the lowdown on the key pieces of Bootstrap's infrastructure, including our approach to better, faster, stronger web development.</p>
-                        <h3 id="overview-ahorros">Cuentas de ahorros</h3>
-                        <p>Aqui encontramos de forma de tallada las cuentas de ahorros que tiene el usuario ordenados del &uacute;ltimo al primero.</p>
-                        <div class="row" style="padding-bottom: 1%">
-                            <div class="col-md-4">
-                                <div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="margin-top: 1px">&times;</button>
-                                                <h4 class="modal-title" id="myModalLabel">Ingreso movimientos bancarios</h4>
+                </div><!-- /.nav-collapse -->
+            </div><!-- /.container -->
+        </div><!-- /.navbar -->
+        <div class="container">
+            <div class="row row-offcanvas row-offcanvas-right">
+                <div class="col-xs-12 col-sm-9">
+                    <p class="pull-right visible-xs">
+                        <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+                    </p>
+                    <div class="jumbotron">
+                        <h1>Hello, world!</h1>
+                        <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
+                    </div>
+                    <div class="row" style="padding-bottom: 1%">
+                        <div class="col-md-4">
+                            <div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="margin-top: 1px">&times;</button>
+                                            <h4 class="modal-title" id="myModalLabel">Ingreso movimientos bancarios</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label for="insercion">Inserci&oacute;n : <span id="msj-insercion" style="display: none"></span></label>
+                                                <textarea id="pegar" class="form-control" rows="7" style="resize: none"></textarea>
                                             </div>
-                                            <div class="modal-body">
-                                                <div class="form-group">
-                                                    <label for="insercion">Inserci&oacute;n : <span id="msj-insercion" style="display: none"></span></label>
-                                                    <textarea id="pegar" class="form-control" rows="7" style="resize: none"></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer" style="margin-top: 0">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary btn-paste">Save changes</button>
-                                            </div>
+                                        </div>
+                                        <div class="modal-footer" style="margin-top: 0">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary btn-paste">Save changes</button>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-inline">
-                                    <div class="form-group cp">
-                                        <button class="btn btn-default" data-toggle="tooltip" title="Copiado">
-                                            <span class="glyphicon glyphicon-paperclip" style="top: 3px"></span>
-                                        </button>
-                                    </div>
-                                    <div class="form-group">
-                                        <button class="btn btn-default" data-toggle="modal" data-target="#myModal">
-                                            <span class="glyphicon glyphicon glyphicon-floppy-open" style="top: 3px"></span>
-                                        </button>
-                                    </div>
-                                    <div class="form-group">
-                                        <select id="ah" class="form-control">
-{% for ah in ahorros %}
-                                            <option value="{{ ah.ahId }}"{% if loop.index == 1 %} selected="selected"{% endif %}>{{ ah.ahNumeroCuenta }}</option>
+                            </div>
+                            <div class="form-inline">
+                                {#<div class="form-group cp">
+                                    <button class="btn btn-default" data-toggle="tooltip" title="Copiado">
+                                        <span class="glyphicon glyphicon-paperclip" style="top: 3px"></span>
+                                    </button>
+                                </div>#}
+                                {#<div class="form-group">
+                                    <button class="btn btn-default" data-toggle="modal" data-target="#myModal">
+                                        <span class="glyphicon glyphicon glyphicon-floppy-open" style="top: 3px"></span>
+                                    </button>
+                                </div>#}
+                                <div class="form-group">
+                                        <select id="ah" class="selectpicker show-tick show-menu-arrow" data-style="btn-inverse" data-width="auto" data-size="5" data-show-subtext="true">
+{% for con in ahorros %}
+{%  for ah in con.cuentas %}
+                                                <option data-subtext=":: {{ con.banco }}" value="{{ ah.ahId }}"{% if ah.ahId == 1 %} selected="selected"{% endif %}>{{ ah.ahNumeroCuenta }}</option>
+{%  endfor %}
+{%  if not loop.last %}
+                                            <option data-divider="true"></option>
+{%  endif %}
 {% endfor %}
                                         </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="form-inline" style="text-align: right">
-                                    <input type="text" class="form-control" id="bMo" placeholder="Movimientos" style="width: 70%">
-                                    <div class="btn-group accion" style="text-align: left">
-                                        <button type="button" class="btn btn-primary trigger" style="width: 120px">Default</button>
-                                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                            <span class="caret"></span>
-                                            <span class="sr-only">Toggle Dropdown</span>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li class="porFecha"><a onclick="javascript:void(0)">Por fecha</a></li>
-                                            <li class="porConcepto"><a onclick="javascript:void(0)">Por concepto</a></li>
-                                            <li class="porDocumento"><a onclick="javascript:void(0)">Por documento</a></li>
-                                            <li class="divider"></li>
-                                            <li class="default">                                                
-                                                <a onclick="javascript:void(0)"><span class="glyphicon glyphicon-ok"></span> Default</a>
-                                            </li>
-                                        </ul>
-                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-striped responsive-utilities table-hover table-condensed" style="border: none">
-                                <thead>
-                                    <tr style="border: 1px solid #ddd">
-                                        <th>Fecha</th>
-                                        <th>Concepto</th>
-                                        <th>Tipo</th>
-                                        <th>Documento</th>
-                                        <th>Oficina</th>
-                                        <th>Monto</th>
-                                        <th>Saldo</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+                        <div class="col-md-8">
+                            <div class="form-inline" style="text-align: right">
+                                <input type="text" class="form-control" id="bMo" placeholder="Movimientos" style="width: 70%" />
+                                <div class="btn-group accion" style="text-align: left">
+                                    <button type="button" class="btn btn-primary trigger" style="width: 120px">Default</button>
+                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                        <span class="caret"></span>
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li class="porFecha"><a onclick="javascript:void(0)">Por fecha</a></li>
+                                        <li class="porConcepto"><a onclick="javascript:void(0)">Por concepto</a></li>
+                                        <li class="porDocumento"><a onclick="javascript:void(0)">Por documento</a></li>
+                                        <li class="divider"></li>
+                                        <li class="default">                                                
+                                            <a onclick="javascript:void(0)"><span class="glyphicon glyphicon-ok"></span> Default</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped responsive-utilities table-hover table-condensed" style="border: none">
+                            <thead>
+                                <tr style="border: 1px solid #ddd">
+                                    <th>Fecha</th>
+                                    <th>Concepto</th>
+                                    <th>Tipo</th>
+                                    <th>Documento</th>
+                                    <th>Oficina</th>
+                                    <th>Monto</th>
+                                    <th>Saldo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
 {{ include ('TodoBundle:Movimientos:mo_list.html.twig', { 'pager' : pager }) }}
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-9 miPager">
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-9 miPager">
 {{ include ('TodoBundle:Movimientos:mo_pager.html.twig', { 'pager' : pager }) }}
-                            </div>
-                            <div class="col-md-3">
-                                <div class="btn-toolbar pull-right" role="toolbar">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-default total">
-                                            Total: {{ pager.getNbResults() }}
-                                        </button>
-                                    </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="btn-toolbar pull-right" role="toolbar">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default total">
+                                        Total: {{ pager.getNbResults() }}
+                                    </button>
                                 </div>
                             </div>
                         </div>
-                        <h3 id="overview-mobile">Mobile first</h3>
-                        <p>With Bootstrap 2, we added optional mobile friendly styles for key aspects of the framework. With Bootstrap 3, we've rewritten the project to be mobile friendly from the start. Instead of adding on optional mobile styles, they're baked right into the core. In fact, <strong>Bootstrap is mobile first</strong>. Mobile first styles can be found throughout the entire library instead of in separate files.</p>
-                        <p>To ensure proper rendering and touch zooming, <strong>add the viewport meta tag</strong> to your <code>&lt;head&gt;</code>.</p>
-<div class="highlight"><pre><code class="html"><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content=</span><span class="s">&quot;width=device-width, initial-scale=1&quot;</span><span class="nt">&gt;</span>
-</code></pre></div>
-                        <p>You can disable zooming capabilities on mobile devices by adding <code>user-scalable=no</code> to the viewport meta tag. This disables zooming, meaning users are only able to scroll, and results in your site feeling a bit more like a native application. Overall, we don't recommend this on every site, so use caution!</p>
-<div class="highlight"><pre><code class="html"><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content=</span><span class="s">&quot;width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no&quot;</span><span class="nt">&gt;</span>
-</code></pre></div>
-                        <h3 id="overview-type-links">Typography and links</h3>
-                            <p>Bootstrap sets basic global display, typography, and link styles. Specifically, we:</p>
-                            <ul>
-                                <li>Set <code>background-color: #fff;</code> on the <code>body</code></li>
-                                <li>Use the <code>@font-family-base</code>, <code>@font-size-base</code>, and <code>@line-height-base</code> attributes as our typographic base</li>
-                                <li>Set the global link color via <code>@link-color</code> and apply link underlines only on <code>:hover</code></li>
-                            </ul>
-                        <p>These styles can be found within <code>scaffolding.less</code>.</p>
-                        <h3 id="overview-normalize">Normalize.css</h3>
-                        <p>For improved cross-browser rendering, we use <a href="http://necolas.github.io/normalize.css/" target="_blank">Normalize.css</a>, a project by <a href="http://twitter.com/necolas" target="_blank">Nicolas Gallagher</a> and <a href="http://twitter.com/jon_neal" target="_blank">Jonathan Neal</a>.</p>
-                        <h3 id="overview-container">Containers</h3>
-                        <p>Easily center a page's contents by wrapping its contents in a <code>.container</code>. Containers set <code>width</code> at various media query breakpoints to match our grid system.</p>
-                        <p>Note that, due to <code>padding</code> and fixed widths, containers are not nestable by default.</p>
-<div class="highlight"><pre><code class="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;container&quot;</span><span class="nt">&gt;</span>
-...
-<span class="nt">&lt;/div&gt;</span>
-</code></pre></div>
                     </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="bs-docs-sidebar hidden-print" role="complementary">
-                        <ul class="nav bs-docs-sidenav">
-                            <li>
-                                <a href="#overview">Overview</a>
-                                <ul class="nav">
-                                    <li><a href="#overview-ahorros">Ahorros</a></li>
-                                    <li><a href="#overview-mobile">Mobile first</a></li>
-                                    <li><a href="#overview-type-links">Typography and links</a></li>
-                                    <li><a href="#overview-normalize">Normalize.css</a></li>
-                                    <li><a href="#overview-container">Containers</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <a class="back-to-top" href="#top">Back to top</a>
+                </div><!--/span-->
+                <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item active">Link</a>
+                        <a href="#" class="list-group-item">Link</a>
+                        <a href="#" class="list-group-item">Link</a>
+                        <a href="#" class="list-group-item">Link</a>
+                        <a href="#" class="list-group-item">Link</a>
+                        <a href="#" class="list-group-item">Link</a>
+                        <a href="#" class="list-group-item">Link</a>
+                        <a href="#" class="list-group-item">Link</a>
+                        <a href="#" class="list-group-item">Link</a>
+                        <a href="#" class="list-group-item">Link</a>
                     </div>
-                </div>
-            </div>
-        </div>
-        <!-- Footer ================================================== -->
-        <footer class="bs-docs-footer" role="contentinfo">
-            <div class="container">
-                <p>Designed and built with all the love in the world by <a href="http://twitter.com/mdo" target="_blank">@mdo</a> and <a href="http://twitter.com/fat" target="_blank">@fat</a>.</p>
-                <p>Maintained by the <a href="https://github.com/twbs?tab=members">core team</a> with the help of <a href="https://github.com/twbs/bootstrap/graphs/contributors">our contributors</a>.</p>
-                <p>Code licensed under <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT</a>, documentation under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
-                <ul class="bs-docs-footer-links muted">
-                    <li>Currently v3.1.1</li>
-                    <li>&middot;</li>
-                    <li><a href="https://github.com/twbs/bootstrap">GitHub</a></li>
-                    <li>&middot;</li>
-                    <li><a href="../getting-started/#examples">Examples</a></li>
-                    <li>&middot;</li>
-                    <li><a href="../2.3.2/">v2.3.2 docs</a></li>
-                    <li>&middot;</li>
-                    <li><a href="../about/">About</a></li>
-                    <li>&middot;</li>
-                    <li><a href="http://expo.getbootstrap.com">Expo</a></li>
-                    <li>&middot;</li>
-                    <li><a href="http://blog.getbootstrap.com">Blog</a></li>
-                    <li>&middot;</li>
-                    <li><a href="https://github.com/twbs/bootstrap/issues?state=open">Issues</a></li>
-                    <li>&middot;</li>
-                    <li><a href="https://github.com/twbs/bootstrap/releases">Releases</a></li>
-                </ul>
-            </div>
-        </footer>
+                </div><!--/span-->
+            </div><!--/row-->
+            <hr>
+            <footer><p>&copy; Company 2014</p></footer>
+        </div><!--/.container-->
         <script type="text/javascript">
             $(function() {
                 $('div.cp').zclip({
@@ -288,6 +215,13 @@
                         $('div.cp button').tooltip('hide');
                     },800);
                 });
+                /**
+                 * Custom Select ----------------------------------------------
+                 */
+                $('.selectpicker').selectpicker();
+                /**
+                 * ------------------------------------------------------------
+                 */
                 miExpander();
                 $('select#ah').bind('change', function(){
                     var url_list  = '{{ path('todo_mo_list', { 'id' : 'val' }) }}',
@@ -346,7 +280,6 @@
                         default: busquedaPorDefault();
                     }
                 });
-{# Funciona al cargar la página #}
                 setTimeout(function(){
                     $('a[data-toggle^="tool"]').tooltip({ placement : 'left' });
                     $('a[data-toggle^="tool"]').tooltip('show');
@@ -356,10 +289,6 @@
                 },500);
                 
                 $('.btn-paste').bind('click', function(){
-                    {#$.post('{{ path('todo_mo_paste') }}', { txta : $('textarea[id="pegar"]').val(), ica : $('select#ah option:selected').val() }) //id_cuenta_ahorros = ica
-                     .done(function(data) {
-                         alert(data);
-                     });#}
                     if ($('#pegar').val().length <= 9) {
                         $('#pegar').focus();
                         $('#msj-insercion').addClass('label label-danger');

@@ -17,6 +17,9 @@
         <!-- Documentation extras -->
         <link href="{{ asset('bundles/todo/css/docs.min.css') }}" rel="stylesheet">
         <!--[if lt IE 9]><script src="{{ asset('bundles/todo/js/ie8-responsive-file-warning.js') }}"></script><![endif]-->
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <script src="{{ asset('bundles/todo/js/ie10-viewport-bug-workaround.js') }}"></script>
+        <script src="{{ asset('bundles/todo/js/ie-emulation-modes-warning.js') }}"></script>
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -36,7 +39,8 @@
 
 {% block incluir_local_style %}{% endblock %}
     </head>
-    <body class="bs-docs-home{% block clases_internas %}{% endblock %}">
+{#    <body class="bs-docs-home{% block clases_internas %}{% endblock %}">#}
+    <body>
 {% block body %}{% endblock %}
     </body>
 </html>

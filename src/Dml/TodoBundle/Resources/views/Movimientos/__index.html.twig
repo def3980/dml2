@@ -9,6 +9,8 @@
         <script src="{{ asset('bundles/todo/js/bootstrap-select/bootstrap-select.js') }}"></script>
         <script src="{{ asset('bundles/todo/js/bootstrap3-typeahead/bootstrap3-typeahead.js') }}"></script>
         <script src="{{ asset('bundles/todo/js/mis-javascripts/dump.js') }}"></script>
+        <script src="{{ asset('bundles/todo/js/jquery-zclip/jquery.zclip.js') }}"></script>
+        <script src="{{ asset('bundles/todo/js/mis-javascripts/validators.js') }}"></script>
 {% endblock %}
 {% block body %}
         <style>
@@ -20,7 +22,7 @@
             }
             .table thead th:nth-child(2),
             .table thead th:nth-child(5) {
-                width: 27%
+                width: 25.5%
             }
             .table thead th:nth-child(3) {
                 width: 5%
@@ -30,7 +32,7 @@
             }
             .table thead th:nth-child(6),
             .table thead th:nth-child(7) {
-                width: 8%
+                width: 9.5%
             }
             .table thead th:nth-child(1),
             .table thead th:nth-child(2),
@@ -52,13 +54,13 @@
         <header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
             <div class="container">
                 <div class="navbar-header">
-                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                </button>
-                <a href="../" class="navbar-brand">Bootstrap</a>
+                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="../" class="navbar-brand">Bootstrap</a>
                 </div>
                 <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
                     <ul class="nav navbar-nav">
@@ -68,9 +70,20 @@
                         <li><a href="../javascript">JavaScript</a></li>
                         <li><a href="../customize">Customize</a></li>
                     </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="http://expo.getbootstrap.com" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Community links', 'Expo']);">Expo</a></li>
-                        <li><a href="http://blog.getbootstrap.com" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Community links', 'Blog']);">Blog</a></li>
+                    <ul class="nav navbar-nav navbar-right">{% set usuario = app.user %}
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <span class="glyphicon glyphicon-user"></span>&nbsp;
+                                {{ myNameLastnameOs(usuario.peNombres, usuario.peApellidos) }} <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li class="divider"></li>
+                                <li><a href="{{ path('todo_logout') }}">Cerrar Sesi&oacute;n</a></li>
+                            </ul>
+                        </li>                        
                     </ul>
                 </nav>
             </div>
@@ -88,14 +101,78 @@
                 <div class="col-md-9" role="main">
                     <!-- Global Bootstrap settings ================================================== -->
                     <div class="bs-docs-section">
-                        <h1 id="overview" class="page-header">Overview</h1>
+                        <h1 id="overview" class="page-header">Principal</h1>
                         <p class="lead">Get the lowdown on the key pieces of Bootstrap's infrastructure, including our approach to better, faster, stronger web development.</p>
                         <h3 id="overview-ahorros">Cuentas de ahorros</h3>
                         <p>Aqui encontramos de forma de tallada las cuentas de ahorros que tiene el usuario ordenados del &uacute;ltimo al primero.</p>
+                        <div class="row" style="padding-bottom: 1%">
+                            <div class="col-md-4">
+                                <div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="margin-top: 1px">&times;</button>
+                                                <h4 class="modal-title" id="myModalLabel">Ingreso movimientos bancarios</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <label for="insercion">Inserci&oacute;n : <span id="msj-insercion" style="display: none"></span></label>
+                                                    <textarea id="pegar" class="form-control" rows="7" style="resize: none"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer" style="margin-top: 0">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary btn-paste">Save changes</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-inline">
+                                    <div class="form-group cp">
+                                        <button class="btn btn-default" data-toggle="tooltip" title="Copiado">
+                                            <span class="glyphicon glyphicon-paperclip" style="top: 3px"></span>
+                                        </button>
+                                    </div>
+                                    <div class="form-group">
+                                        <button class="btn btn-default" data-toggle="modal" data-target="#myModal">
+                                            <span class="glyphicon glyphicon glyphicon-floppy-open" style="top: 3px"></span>
+                                        </button>
+                                    </div>
+                                    <div class="form-group">
+                                        <select id="ah" class="form-control">
+{% for ah in ahorros %}
+                                            <option value="{{ ah.ahId }}"{% if loop.index == 1 %} selected="selected"{% endif %}>{{ ah.ahNumeroCuenta }}</option>
+{% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-inline" style="text-align: right">
+                                    <input type="text" class="form-control" id="bMo" placeholder="Movimientos" style="width: 70%">
+                                    <div class="btn-group accion" style="text-align: left">
+                                        <button type="button" class="btn btn-primary trigger" style="width: 120px">Default</button>
+                                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                            <span class="caret"></span>
+                                            <span class="sr-only">Toggle Dropdown</span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li class="porFecha"><a onclick="javascript:void(0)">Por fecha</a></li>
+                                            <li class="porConcepto"><a onclick="javascript:void(0)">Por concepto</a></li>
+                                            <li class="porDocumento"><a onclick="javascript:void(0)">Por documento</a></li>
+                                            <li class="divider"></li>
+                                            <li class="default">                                                
+                                                <a onclick="javascript:void(0)"><span class="glyphicon glyphicon-ok"></span> Default</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="table-responsive">
-                            <table class="table table-bordered table-striped responsive-utilities table-hover table-condensed">
+                            <table class="table table-bordered table-striped responsive-utilities table-hover table-condensed" style="border: none">
                                 <thead>
-                                    <tr>
+                                    <tr style="border: 1px solid #ddd">
                                         <th>Fecha</th>
                                         <th>Concepto</th>
                                         <th>Tipo</th>
@@ -106,41 +183,24 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-{% for mo in pager.getResults() %}
-                                    <tr>
-                                        <th>{{ mo.moFecha | date('Y-m-d') }}</th>
-                                        <td><span class="expander">{{ mo.moConcepto }}</span></td>
-                                        <td>{{ mo.moTipo }}</td>
-                                        <td>{{ mo.moDocumento }}</td>
-                                        <td><span class="expander">{{ mo.moOficina }}</span></td>
-                                        <td>{{ mo.moMonto }}</td>
-                                        <td>{{ mo.moSaldo }}</td>
-                                    </tr>
-{% endfor %}
+{{ include ('TodoBundle:Movimientos:mo_list.html.twig', { 'pager' : pager }) }}
                                 </tbody>
                             </table>
                         </div>
-{% if pager.haveTopaginate() %}
-                        <ul class="pagination" style="margin: 0">
-                            <li{% if pager.getPage() == 1 %} class="disabled"{% endif %}>
-                                <a{% if pager.getPage() != 1 %} id="home"{% else %} onclick="javascript:void(0)"{% endif %}>&LeftArrow;</a>
-                            </li>
-                            <li{% if pager.getPage() == pager.getPreviousPage() %} class="disabled"{% endif %}>
-                                <a{% if pager.getPage != pager.getPreviousPage() %} id="before"{% else %} onclick="javascript:void(0)"{% endif %}>&laquo;</a>
-                            </li>
-{% for link in pager.getLinks(3) %}
-                            <li{% if pager.getPage() == link %} class="disabled"{% endif %}>
-                                <a{% if pager.getPage() != link %} id="pag-{{ link }}"{% endif %} onclick="javascript:void(0)">{{ link }}</a>
-                            </li>
-{% endfor %}
-                            <li{% if pager.getPage() == pager.getNextPage() %} class="disabled"{% endif %}>
-                                <a{% if pager.getPage != pager.getNextPage() %} id="forward"{% else %} onclick="javascript:void(0)"{% endif %}>&raquo;</a>
-                            </li>
-                            <li{% if pager.getPage() == pager.getLastPage() %} class="disabled"{% endif %}>
-                                <a{% if pager.getPage() != pager.getLastPage() %} id="last"{% else %} onclick="javascript:void(0)"{% endif %}>&RightArrow;</a>
-                            </li>
-                        </ul>
-{% endif %}
+                        <div class="row">
+                            <div class="col-md-9 miPager">
+{{ include ('TodoBundle:Movimientos:mo_pager.html.twig', { 'pager' : pager }) }}
+                            </div>
+                            <div class="col-md-3">
+                                <div class="btn-toolbar pull-right" role="toolbar">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default total">
+                                            Total: {{ pager.getNbResults() }}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <h3 id="overview-mobile">Mobile first</h3>
                         <p>With Bootstrap 2, we added optional mobile friendly styles for key aspects of the framework. With Bootstrap 3, we've rewritten the project to be mobile friendly from the start. Instead of adding on optional mobile styles, they're baked right into the core. In fact, <strong>Bootstrap is mobile first</strong>. Mobile first styles can be found throughout the entire library instead of in separate files.</p>
                         <p>To ensure proper rendering and touch zooming, <strong>add the viewport meta tag</strong> to your <code>&lt;head&gt;</code>.</p>
@@ -216,6 +276,118 @@
         </footer>
         <script type="text/javascript">
             $(function() {
+                $('div.cp').zclip({
+                    path       : '{{ asset('bundles/todo/js/jquery-zclip/ZeroClipboard.swf') }}',
+                    copy       : function(){ return $('select#ah option:selected').text() },
+                    beforeCopy : function(){},
+                    afterCopy  : function(){}
+                }).bind('click', function(){
+                    $('div.cp button').tooltip({ placement : 'left' });
+                    $('div.cp button').tooltip('show');
+                    setTimeout(function(){
+                        $('div.cp button').tooltip('hide');
+                    },800);
+                });
+                miExpander();
+                $('select#ah').bind('change', function(){
+                    var url_list  = '{{ path('todo_mo_list', { 'id' : 'val' }) }}',
+                        url_list  = url_list.replace('val', $(this).val()),
+                        url_pager = '{{ path('todo_mo_pager', { 'id' : 'val' }) }}',
+                        url_pager = url_pager.replace('val', $(this).val());
+                    if ($('input#bMo').val().length) {
+                        switch ($.trim($('button.trigger').text())){
+                            case "Por fecha":
+                                url_list  = agregarParametroAURL(url_list,'bMoFecha',$('input#bMo').val());
+                                url_pager = agregarParametroAURL(url_pager,'bMoFecha',$('input#bMo').val());
+                            break;
+                            case "Por concepto":
+                                url_list  = agregarParametroAURL(url_list,'bMoConcepto',$('input#bMo').val());
+                                url_pager = agregarParametroAURL(url_pager,'bMoConcepto',$('input#bMo').val());
+                            break;
+                            case "Por documento":
+                                url_list  = agregarParametroAURL(url_list,'bMoDocumento',$('input#bMo').val());
+                                url_pager = agregarParametroAURL(url_pager,'bMoDocumento',$('input#bMo').val());
+                            break;
+                        }
+                    }
+                    $.post(url_list, function(data){ $('.table tbody').html(data); miExpander(); });
+                    $.post(url_pager, function(data){ $('.miPager').html(data); });
+                });
+                $('ul.dropdown-menu li > a').css('cursor','pointer');
+                $('li.porFecha a:first').bind('click', function(){ 
+                    $('div.accion button:first').text($(this).text());
+                    $('ul.dropdown-menu li > a span:first').remove();
+                    $('input#bMo').val('');
+                    $(this).html('<span/> '+$(this).text()).find('span').addClass('glyphicon glyphicon-ok');
+                });
+                $('li.porConcepto a:first').bind('click', function(){
+                    $('div.accion button:first').text($(this).text());
+                    $('ul.dropdown-menu li > a span:first').remove();
+                    $('input#bMo').val('');
+                    $(this).html('<span/> '+$(this).text()).find('span').addClass('glyphicon glyphicon-ok');
+                });
+                $('li.porDocumento a:first').bind('click', function(){
+                    $('div.accion button:first').text($(this).text());
+                    $('ul.dropdown-menu li > a span:first').remove();
+                    $('input#bMo').val('');
+                    $(this).html('<span/> '+$(this).text()).find('span').addClass('glyphicon glyphicon-ok');
+                });
+                $('li.default a:first').bind('click', function(){
+                    $('div.accion button:first').text($(this).text());
+                    $('ul.dropdown-menu li > a span:first').remove();
+                    $('input#bMo').val('');
+                    $(this).html('<span/> '+$(this).text()).find('span').addClass('glyphicon glyphicon-ok');
+                });
+                $('button.trigger').bind('click', function() {
+                    switch ($.trim($(this).text())){
+                        case "Por fecha":     busquedaPorFecha();     break;
+                        case "Por concepto":  busquedaPorConcepto();  break;
+                        case "Por documento": busquedaPorDocumento(); break;
+                        default: busquedaPorDefault();
+                    }
+                });
+{# Funciona al cargar la página #}
+                setTimeout(function(){
+                    $('a[data-toggle^="tool"]').tooltip({ placement : 'left' });
+                    $('a[data-toggle^="tool"]').tooltip('show');
+                    setTimeout(function(){
+                        $('a[data-toggle^="tool"]').tooltip('hide');
+                    },1300);
+                },500);
+                
+                $('.btn-paste').bind('click', function(){
+                    {#$.post('{{ path('todo_mo_paste') }}', { txta : $('textarea[id="pegar"]').val(), ica : $('select#ah option:selected').val() }) //id_cuenta_ahorros = ica
+                     .done(function(data) {
+                         alert(data);
+                     });#}
+                    if ($('#pegar').val().length <= 9) {
+                        $('#pegar').focus();
+                        $('#msj-insercion').addClass('label label-danger');
+                        $('#msj-insercion').text('Contenido incompleto').fadeIn('slow');
+                        setTimeout(function(){ $('#msj-insercion').fadeOut('fast'); },1500);
+                    } else {
+                        var array = { 
+                                txta : $('textarea[id="pegar"]').val(), 
+                                ica  : $('select#ah option:selected').val() 
+                            }
+                        $.post('{{ path('todo_mo_paste') }}', array, function(data){
+                            if (data.msj) {
+                                $('#msj-insercion').removeClass('label label-danger');
+                                $('#msj-insercion').addClass('label label-success');
+                                $('#msj-insercion').text('Insercion completa').fadeIn('slow');
+                                $('#pegar').attr('disabled', true);
+                                setTimeout(function(){ 
+                                    $('#msj-insercion').fadeOut('fast');
+                                    $('#pegar').removeAttr('disabled');
+                                    $('#myModal').modal('hide');
+                                    busquedaPorDefault();
+                                }, 1500);
+                            }
+                        }, 'json');
+                    }
+                });
+            });
+            function miExpander() {
                 $('span.expander').expander({
                     slicePoint       : 17,
                     widow            : 2,
@@ -226,36 +398,51 @@
                     expandText       : '>>',
                     userCollapseText : '<<'
                 });
-                $('ul.pagination > li:not(.disabled) a').css('cursor','pointer');
-{% if pager.haveTopaginate() %}
-{%  if pager.getPage() != 1 %}
-                $('#home').bind('click', function(){
-                    location.href = "{{ path('todo_homepage', { 'page' : 1 }) }}";
-                });
-{%  endif %}
-{%  if pager.getPage != pager.getPreviousPage() %}
-                $('#before').bind('click', function(){
-                    location.href = "{{ path('todo_homepage', { 'page' : pager.getPreviousPage() }) }}";
-                });
-{%  endif %}
-{%  for link in pager.getLinks(3) %}
-{%      if pager.getPage() != link %}
-                $('#pag-{{ link }}').bind('click', function(){
-                    location.href = "{{ path('todo_homepage', { 'page' : link }) }}";
-                });
-{%      endif %}
-{%  endfor %}
-{%  if pager.getPage() != pager.getNextPage() %}
-                $('#forward').bind('click', function(){
-                    location.href = "{{ path('todo_homepage', { 'page' : pager.getNextPage() }) }}";
-                });
-{%  endif %}
-{%  if pager.getPage != pager.getLastPage() %}
-                $('#last').bind('click', function(){
-                    location.href = "{{ path('todo_homepage', { 'page' : pager.getLastPage() }) }}";
-                });
-{%  endif %}
-{% endif %}
-            });
+            }
+            function agregarParametroAURL(url, param, value){
+                return url 
+                       + (url.split('?')[1] ? '&' : '?')
+                       + encodeURIComponent(param)
+                       + '=' + encodeURIComponent(value);
+            }
+            function busquedaPorFecha() {
+                var url_list  = '{{ path('todo_mo_list', { 'id': 'val', 'bMoFecha': 'val2' }) | raw }}',
+                    url_list  = url_list.replace('val', $('select#ah').val()),
+                    url_list  = url_list.replace('val2', $('input#bMo').val()),
+                    url_pager = '{{ path('todo_mo_pager', { 'id' : 'val', 'bMoFecha' : 'val2' }) | raw }}',
+                    url_pager = url_pager.replace('val', $('select#ah').val()),
+                    url_pager = url_pager.replace('val2', $('input#bMo').val());
+                $.post(url_list, function(data){ $('.table tbody').html(data); miExpander(); });
+                $.post(url_pager, function(data){ $('.miPager').html(data); });
+            }
+            function busquedaPorConcepto() {
+                var url_list  = '{{ path('todo_mo_list', { 'id': 'val', 'bMoConcepto': 'val2' }) | raw }}',
+                    url_list  = url_list.replace('val', $('select#ah').val()),
+                    url_list  = url_list.replace('val2', $('input#bMo').val()),
+                    url_pager = '{{ path('todo_mo_pager', { 'id' : 'val', 'bMoConcepto' : 'val2' }) | raw }}',
+                    url_pager = url_pager.replace('val', $('select#ah').val()),
+                    url_pager = url_pager.replace('val2', $('input#bMo').val());
+                $.post(url_list, function(data){ $('.table tbody').html(data); miExpander(); });
+                $.post(url_pager, function(data){ $('.miPager').html(data); });
+            }
+            function busquedaPorDocumento() {
+                var url_list  = '{{ path('todo_mo_list', { 'id': 'val', 'bMoDocumento': 'val2' }) | raw }}',
+                    url_list  = url_list.replace('val', $('select#ah').val()),
+                    url_list  = url_list.replace('val2', $('input#bMo').val()),
+                    url_pager = '{{ path('todo_mo_pager', { 'id' : 'val', 'bMoDocumento' : 'val2' }) | raw }}',
+                    url_pager = url_pager.replace('val', $('select#ah').val()),
+                    url_pager = url_pager.replace('val2', $('input#bMo').val());
+                $.post(url_list, function(data){ $('.table tbody').html(data); miExpander(); });
+                $.post(url_pager, function(data){ $('.miPager').html(data); });
+            }
+            function busquedaPorDefault() {
+                var url_list  = '{{ path('todo_mo_list', { 'page' : 1, 'id' : 'val' }) }}',
+                    url_list  = url_list.replace('val', $('select#ah option:selected').val()),
+                    url_pager = '{{ path('todo_mo_pager', { 'page' : 1, 'id' : 'val' }) }}',
+                    url_pager = url_pager.replace('val', $('select#ah option:selected').val());
+                $('input#bMo').val('');
+                $.post(url_list, function(data) { $('.table tbody').html(data); miExpander(); });
+                $.post(url_pager, function(data) { $('.miPager').html(data); });
+            }
         </script>
 {% endblock %}
